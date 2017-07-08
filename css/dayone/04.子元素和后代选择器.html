@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>xxx</title>
+
+    <style media="screen">
+      /*
+        为div中的span设置绿色背景
+        后代元素选择器
+          直接选中元素指定的后代元素
+
+          祖先元素 后代元素{
+            ...
+          }
+      */
+      div span{
+        background-color: rgb(8, 91, 133);
+      }
+
+      /*
+        选中id为d1的div中的p的span元素
+      */
+      #d1 p span{
+        background-color: rgb(246, 130, 241);
+      }
+
+      /*
+        子元素选择器
+          只选择子元素
+          父元素 > 子元素 > ....{
+            ...
+          }
+      */
+      div > span{
+        background-color: rgb(203, 28, 28);
+      }
+
+    </style>
+  </head>
+  <body>
+
+      <!--
+          元素之间的关系
+            父元素：包含子元素
+            子元素：被父元素包含的元素
+            祖先元素
+            后代元素
+            兄弟元素
+        -->
+      <div class="">
+        <span>这是div中的span</span>
+        <p><span>这是div中的p中的span元素</span></p>
+      </div>
+
+      <div id="d1">
+        <p><span>id为d1的div中的p的span元素</span></p>
+      </div>
+
+      <span>这是div的兄弟元素</span>
+  </body>
+</html>

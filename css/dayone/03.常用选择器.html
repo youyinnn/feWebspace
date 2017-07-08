@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>常用选择器</title>
+    <style media="screen">
+      /*
+        元素选择器：
+          通过这个选择器 可以选中页面中所有对应元素
+          标签名{
+            ...
+          }
+      */
+      p{
+        color: rgb(193, 59, 134);
+        font-size: 20px;
+      }
+
+      /*
+        id选择器：
+          通过元素的id值来选择唯一的元素
+          #id{
+            ...
+          }
+      */
+      #p1{
+        color: rgb(45, 33, 91);
+        font-size: 12px;
+      }
+
+      /*
+        class选择器：
+          通过元素的class值来选择一组元素
+          .class{
+            ...
+          }
+      */
+      .a1{
+        color: rgb(33, 89, 91);
+        font-size: 25px;
+      }
+
+      /*
+        分组选择器（交集）
+          同时为多个选择器写声明
+          选择器1,选择器2,选择器n{}
+      */
+      #p1,.a1,h1{
+        background-color: rgb(39, 83, 196);
+      }
+
+      /*
+        通配选择器（全集）
+          选择页面中所有的元素
+          *{
+            ...
+          }
+      */
+      *{
+        text-align: center;
+      }
+
+      /*
+        复合选择器（交集）
+          可以选中同时满足多个选择器的元素
+          比如只选class为p2 并且是span元素的元素声明样式
+          不建议id选择器使用这种方式
+          选择器1选择器2选择器n{
+            ...
+          }
+      */
+      span.p3{
+        color: rgb(65, 24, 152);
+        font-size: 50px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>你好丫丫丫丫丫丫丫</h1>
+    <p>你好呀</p>
+    <p>你好呀</p>
+    <p id="p1">你好呀</p>
+    <p>你好呀</p>
+
+    <!--
+        我们可以为元素设置class属性
+        我们可以为一个元素设置多个class 多个class之间用空格隔开
+      -->
+    <p class="a1">你好呀</p>
+    <p class="a1">你好呀</p>
+    <p>你好呀</p>
+    <p class="a1">你好呀</p>
+    <p class="p3">你好呀</p>
+    <span class="p3">你好呀</span>
+  </body>
+</html>

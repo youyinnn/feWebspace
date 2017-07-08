@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>内联和块元素</title>
+  </head>
+  <body>
+
+    <!--
+        块元素会独占一行
+        即使再窄 无论内容有多少 都会独占一行
+        p h1 h2 ...  都是块元素
+
+        div没有语意 主要用来对页面分区 做页面布局
+      -->
+
+    <div class="">
+      我是一个div
+    </div>
+
+
+    <div class="" style="color:red">
+      我是一个div
+    </div>
+
+    <!--
+        span：一个内联元素（行内元素）
+        只占自身大小
+
+        没有任何语意 专门用于选择一段文字来设置样式
+      -->
+    <span>这是一个span</span>
+
+    <!--
+      一般只用div包含span
+      a可以包含任意的元素 除了a本身
+      p不可以包含任何其他的“块”元素
+      -->
+
+  </body>
+</html>
