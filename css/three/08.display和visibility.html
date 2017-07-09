@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      a{
+        width: 500px;
+        height: 500px;
+        background-color: rgb(51, 96, 45);
+        /*
+          a是内联元素 不可支持宽高调整
+          可以通过display样式可以修改元素的类型
+            可选：
+              inline 内联
+              block 块元素
+              inline-block 行内块元素
+                           可以使一个元素既有行内元素的特点也有块元素的特点
+                           既可以设置宽高 又不会独占一行
+              none 隐藏元素
+                   不会再页面中被布局 并且不会被显示在页面中
+
+        */
+        display: none;
+      }
+
+      .box{
+        width: 100px;
+        height: 100px;
+        background-color: rgb(22, 111, 139);
+
+        /*
+          visibility可以设置元素的显示状态
+          只是改变显示状态 但是位置依然保持
+            可选：
+              visible 可见
+              hidden 不可见
+        */
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="box"></div>
+
+    <a href="#">我是一个大大的超链接</a>
+    <span>hello</span>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .box1{
+        border: 10px red solid;
+      }
+      .box2{
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+
+        /*
+          在文档流中父元素的高度默认是被子元素撑开的
+          为子元素设置浮动后 原来的父元素高度会异常
+          因为子元素已经完全脱离文档流
+          这样父元素塌陷了 和父元素挨着的下面的元素也会塌陷
+
+          为了避免这个问题 我们可以：
+            一：将父元素的高度写死 但是这样父元素的高度就不能适应子元素的大小了
+        */
+        float: left;
+      }
+      .box3{
+        width: auto;
+        height: 100px;
+        background-color: rgb(73, 223, 133);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1">
+      <div class="box2"></div>
+    </div>
+
+    <div class="box3"></div>
+  </body>
+</html>

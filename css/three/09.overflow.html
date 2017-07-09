@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .box1{
+        width: 200px;
+        height: 200px;
+        background-color: rgb(227, 202, 205);
+        /*
+          子元素默认是存在于父元素的内容区中的
+            理论上子元素最大可以等于父元素内容区的大小
+          如果子元素大小超过父元素 那么超过部分会在父元素之外显示
+
+          可以设置overflow来选择父元素如何处理溢出情况 默认是显示在外面
+            可选值：
+              visible 可见 默认 允许溢出
+              hidden 溢出部分被隐藏 被剪掉
+              scoll 内容不溢出 但是提供滚动条浏览溢出部分 这个值无论内容是否溢出都会加上两个滚动条
+
+              auto 根据需求自动添加滚动条
+
+        */
+        overflow: auto;
+      }
+      .box2{
+        width: 100px;
+        height: 600px;
+        background-color: rgb(60, 177, 132);
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="box1">
+      <div class="box2"></div>
+    </div>
+
+  </body>
+</html>

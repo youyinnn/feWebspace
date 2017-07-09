@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      /*
+        属性选择器
+          根据元素中的属性或者属性值来选取指定元素
+
+      */
+      p[title]{
+        background-color: rgb(231, 55, 186);
+      }
+
+      /*
+        有某个属性且值为指定值的元素
+        其他语法：
+          [attribute]           选取含有指定属性的元素
+          [attribute="value"]   选取含有指定值的元素
+          [attribute^="value"]  选取以某个指定值开头的元素
+          [attribute$="value"]  选取以某个指定值结尾的元素
+          [attribute*="value"]  选取以包含某个指定值的元素
+
+
+
+      */
+      p[title="123"]{
+        background-color: rgb(14, 55, 201);
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <!--
+        每个元素都有title属性
+          当鼠标移入元素的时候 会显示title中的值作为文字提示
+      -->
+    <p title="文字">我是一个段落</p>
+    <p >我是一个段落</p>
+    <p >我是一个段落</p>
+    <p title="123">我是一个段落</p>
+
+  </body>
+</html>

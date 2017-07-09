@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .box1{
+        border: 10px red solid;
+        /*
+          根据w3c标准 在页面中元素都有一个隐含属性叫做 Block Formatting Context
+          简称BFC 这个属性可以设置开启或者关闭 默认关闭
+          开启后：
+            1、父元素的垂直外边距不会和子元素重叠（子元素的外边距将不会传递给父元素
+            2、开启的元素不会被浮动元素覆盖
+            3、开启的元素可以包含浮动的子元素（解决坍塌问题
+
+          没有唯一的熟悉能够直接开启bfc 但是可以设置其他的设置间接的开启
+            1、设置元素浮动
+                但是这样不能完全解决问题 这样元素就脱离文档流
+                  1、这样元素的宽度会由子元素撑开 造成宽度塌陷
+                  2、而且到导致下边的元素上移
+                造成更多的异常
+            2、设置元素绝对定位
+                这样做的效果和方式一一样
+            3、设置元素为inline-block
+                这样做可以解决问题 但是这样会导致宽度丢失
+            4、将元素的overflow设置为一个非visible的值
+                auto
+                hidden
+                这样做的副作用最小
+
+          但是IE6以下的浏览器中并不支持BFC 所以这种方式不兼容IE6
+            IE6中虽然没有BFC但是有另外的隐含属性hasLayout
+            这个属性也不能直接开启
+            需要设置zoom样式 这个样式只有IE浏览器有
+            zoom : 1;
+            zoom属性表示将元素放大几倍
+        */
+        /*float: left;*/
+        /*display: inline-block;*/
+        overflow: hidden;
+        zoom: 1;
+      }
+      .box2{
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        float: left;
+      }
+      .box3{
+        width: auto;
+        height: 100px;
+        background-color: rgb(73, 223, 133);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1">
+      <div class="box2"></div>
+    </div>
+
+    <div class="box3"></div>
+  </body>
+</html>

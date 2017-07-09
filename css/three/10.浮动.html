@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .box1{
+        width: 100px;
+        height: 100px;
+        background-color: rgb(187, 110, 4);
+        /*
+          如果希望块元素在页面中水平排列 可以使块元素脱离文档流
+          使用float属性
+            可选值：
+              left 元素会立即脱离文档流 向页面左侧浮动
+              right 。。。右侧浮动
+              none 默认值 按照文档流安排的排列
+
+          元素设置float之后 会立即脱离文档流
+          元素浮动以后会尽量向我们页面的左上或者右上漂浮
+          直到浮到父元素的边框或者其他浮动元素的边框
+          如果浮动元素上面是一个没有浮动的块元素 则浮动元素不会超过快元素边界
+          浮动的元素不会超过他上边的兄弟元素
+        */
+        float: right;
+      }
+      .box2{
+        width: 100px;
+        height: 100px;
+        background-color: rgb(8, 88, 128);
+        float: right;
+      }
+      .box3{
+        width: 100px;
+        height: 100px;
+        background-color: rgb(250, 44, 117);
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+
+  </body>
+</html>

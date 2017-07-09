@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+
+      *{
+        margin: 0px;
+        padding: 0px;
+      }
+
+      .box1{
+        width: 100px;
+        height: 100px;
+        background-color: rgb(25, 105, 98);
+
+        /*
+          浮动元素不会盖住文字 文字会自动环绕在浮动元素周围
+        */
+        float: left;
+      }
+      .p1{
+        height: 200px;
+        background-color: rgb(28, 78, 163);
+      }
+
+      .box2{
+        /*
+          在文档流中 块元素的宽度默认的父元素的全部
+          但是如果块元素设置了浮动 那么块元素的宽度默认被内容撑开
+        */
+        background-color: rgb(33, 168, 190);
+      }
+      .s1{
+        /*
+          内联元素脱离文档流以后 会变成块元素 宽高可以被设置
+        */
+        width: 100px;
+        height: 100px;
+        background-color: rgb(44, 49, 204);
+
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="box2">a</div>
+    <span class="s1">vvv</span>
+    <div class="box1"></div>
+    <p class="p1">你哈哈哈哈哈哈哈哈哈哈哈哈哈哈丫</p>
+  </body>
+</html>

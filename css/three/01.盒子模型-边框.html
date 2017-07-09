@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .box{
+        /*
+          使用width设置内容区的宽度
+          使用height设置内容区的高度
+            盒子可见大小等于 内容区大小+内边距大小+边框大小
+        */
+        background-color: rgb(201, 161, 39);
+        width: 100px;
+        height: 100px;
+
+        /*
+          为元素设置边框必须指定三个样式s
+            border-width  边框宽度
+                          如果指定四个值的时候：
+                             上 右 下 左 顺时针分别设置
+                          如果指定三个值的时候：
+                             上 左右 下
+                          如果指定两个值的时候：
+                             上下 左右
+
+            border-color  边框颜色
+            border-styler 边框样式
+        */
+        border-width: 10px 20px 30px 40px;
+        border-color: red;
+        border-style: double;
+
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="box">
+
+
+    </div>
+
+  </body>
+</html>

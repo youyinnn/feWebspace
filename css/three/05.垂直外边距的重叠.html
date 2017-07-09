@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .box1{
+        width: 100px;
+        height: 100px;
+        background-color: rgb(35, 226, 146);
+        /*
+          设置下外边距
+        */
+        margin-bottom: 100px;
+      }
+      /*
+        垂直外边距的重叠
+          网页中的相邻垂直方向的外边距会重叠
+          所以会取两个盒子外边距的最大值
+      */
+      .box2{
+        width: 100px;
+        height: 100px;
+        background-color: rgb(252, 86, 56);
+
+        margin-top: 100px;
+      }
+
+      .box3{
+        width: 200px;
+        height: 200px;
+        background-color: rgb(57, 103, 25);
+      }
+
+      .box4{
+        width: 100px;
+        height: 100px;
+        background-color: rgb(32, 94, 187);
+        /*
+          为子元素设置上边距 让box4下移
+          但实际上box3也下移了 这是因为box4是box3的子元素 如果父子元素相邻且子元素有外边距
+          那么子元素的外边距会设置给父元素
+        */
+        /*margin-top: 100px;*/
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="box3">
+      <div class="box4"></div>
+    </div>
+
+    <div class="box1"></div>
+    <div class="box2"></div>
+
+  </body>
+</html>

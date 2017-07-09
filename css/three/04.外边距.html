@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .box{
+        width: 200px;
+        height: 200px;
+        background-color: rgb(35, 226, 146);
+        border: 10px solid red;
+
+        /*
+          外边距值得的盒子之间的距离不会影响可见框大小
+          同样也有四个方向的外边距
+            margin-top
+            margin-right
+            margin-bottom
+            margin-left
+        */
+        /*
+          外边距也可以指定负值 这时候元素会往反方向移动
+        */
+        /*margin-bottom: -100px;*/
+
+        /*
+          可以设置auto 这个只设置给水平方向的外边框
+          如果单给一个方向设置 一般取最大值
+          如果给所有方向设置auto 这样就会区到居中的位置
+        */
+        margin: auto;
+      }
+
+      .box1{
+        width: 200px;
+        height: 200px;
+        background-color: rgb(252, 86, 56);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+    </div>
+
+    <div class="box1"></div>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+
+      span{
+        background-color: rgb(118, 156, 26);
+      }
+
+      .box1{
+        width:100px;
+        height:100px;
+        background-color: rgb(233, 106, 169);
+      }
+
+      .s1{
+        /*
+          内联元素不能设置内容区大小
+        */
+        width: 100px;
+        height: 100px;
+
+        /*
+          可以设置水平方向内边距
+          也可以设置垂直方向内边距 但是不会影响页面布局但是会影响其他的显示
+        */
+        padding-left: 10px;
+        padding-right: 10px;
+
+        /*
+          也可以设置边框 不支持垂直外边距
+          水平方向的外边距不会重叠 会相加
+        */
+        border: 1px blue solid;
+
+        /*
+          外边距
+          水平外边距起作用 但是垂直方向
+        */
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <span class="s1">我是一个span</span>
+    <span>我是一个span</span>
+    <span>我是一个span</span>
+    <span>我是一个span</span>
+    <div class="box1"></div>
+  </body>
+</html>

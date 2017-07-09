@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>xxx</title>
+
+    <style media="screen">
+      /*
+        伪类
+          专门用来表示元素的一种状态 比如访问过的链接或者没被访问过的链接
+          当我们需要为这些具有特殊状态的元素设置样式的时候 就可以使用伪类选择器
+          - a:link    正常的链接（未访问）
+          - a:visited 已访问过的链接
+          - a:hover   鼠标滑过的链接
+          - a:active  正在点击的链接
+      */
+
+      a{
+        font-size: 20px;
+      }
+
+      a:link{
+        background-color: rgb(132, 168, 98);
+      }
+
+      /*
+        浏览器是通过历史记录来判断是否访问过连接
+        由于涉及到用户隐私问题 所以使用visited伪类选择器只能设置字体颜色 其他样式不能设置
+      */
+      a:visited{
+        color: rgb(222, 174, 201);
+      }
+
+      /*
+        hover和active也可以被其他元素绑定 IE6浏览器除外
+      */
+      a:hover{
+        background-color: rgb(10, 68, 108);
+      }
+
+      a:active{
+        background-color: rgb(52, 150, 7);
+      }
+
+      input:focus{
+        background-color: rgb(71, 87, 224);
+      }
+
+      p::selection{
+        background-color: rgb(46, 167, 97);
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <a href="http://baidu.com">没访问过的链接</a><br>
+
+    <a href="http://baidu.com">没访问过的链接</a><br>
+
+    <p>这是一个段落</p><br>
+
+    <input type="text" name="" value="">
+
+  </body>
+</html>
