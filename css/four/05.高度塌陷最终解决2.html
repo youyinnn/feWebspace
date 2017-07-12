@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+    .box1{
+      border: 1px red solid;
+    }
+    .box2{
+      width: 100px;
+      height: 100px;
+      background-color: rgb(47, 33, 98);
+      float: left;
+    }
+    /*
+      解决高度塌陷问题：
+        可以在塌陷的元素里面加一个空白div 然后clear:both;
+        基本没有副作用 而且可以兼容各种浏览器
+
+        但是使用这种方式虽然可以解决问题 但是会在页面中添加多余的结构
+    */
+    .clear{
+      clear: both;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="box1">
+          <div class="box2"></div>
+          <div class="clear"></div>
+    </div>
+
+  </body>
+</html>

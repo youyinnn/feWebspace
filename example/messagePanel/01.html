@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      /*清除默认样式*/
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      /*规定所有字体的大小/行高 和字体*/
+      body{
+        font: 15px/1 微软雅黑;
+      }
+      /*面板主体 设置宽度和居中显示*/
+      .mpanel{
+        width: 300px;
+        margin: 50px auto;
+        /*background-color: rgb(82, 24, 142);*/
+      }
+      /*面板标题部分*/
+      .mtitle{
+        border-top: 2px rgb(31, 163, 105) solid;
+        height: 50px;
+        background-color: rgb(238, 238, 238);
+        margin: auto;
+        /*文字按照行高居中 把行高设置为和标题部分一样高 那么标题字体就会居中*/
+        line-height: 50px;
+        padding: 0px 22px 0px 16px;
+      }
+      /*标题超链接左右浮动*/
+      .mtitle a{
+        float: right;
+        color: red;
+      }
+      .mtitle h3{
+        float: left;
+      }
+      /*面板内容部分*/
+      .mcontent{
+        border: 1px rgb(148, 148, 148) solid;
+        background-color: rgb(255, 255, 255);
+        padding: 0px 22px;
+      }
+      /*面板内容去下划线 改颜色*/
+      .mcontent a{
+        color: black;
+        text-decoration: none;
+        font-size: 16px;
+      }
+      /*内容超链接划过特效*/
+      .mcontent a:hover{
+        color: rgb(161, 23, 210);
+        text-decoration: underline;
+      }
+      /*去掉列表小点点 给每个列表下面加一条dashed*/
+      .mcontent ul{
+        list-style: none;
+        border-bottom: 1px rgb(204, 204, 204) dashed;
+      }
+      /*最后一个列表下面没有dashed*/
+      .lastul{
+        border: none;
+      }
+      /*内容里面的特殊信息加粗改颜色*/
+      .mcontent .ared{
+          color: red;
+          font-weight: bold;
+      }
+      /*列表一些信息右浮动*/
+      .mcontent .aright{
+        float: right;
+      }
+      .mcontent h3{
+        padding-top: 13px;
+        padding-bottom: 12px;
+      }
+      .mcontent li{
+        margin-bottom: 12px;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div class="mpanel">
+
+      <div class="mtitle">
+        <h3>标题栏标题</h3>
+        <a href="#">超链接</a>
+      </div>
+
+      <div class="mcontent">
+        <h3><a href="#">标题一</a></h3>
+        <ul>
+          <li>
+            <a class="aright" href="#"><span class="ared">a文字</span></a></a>
+            <a href="#">AAAAAA:<span class="ared">aaaa</span></a>
+          </li>
+          <li>
+            <a class="aright" href="#"><span class="ared">b文字</span></a></a>
+            <a href="#">BBBBBB: <span class="ared">bbbb</span></a>
+          </li>
+          <li>
+            <a class="aright" href="#">c文字</a></a>
+            <a href="#">CCCCCC:cccc</a>
+          </li>
+          <li>
+            <a class="aright" href="#">d文字</a></a>
+            <a href="#">DDDDDD:dddd</a>
+          </li>
+        </ul>
+
+        <h3><a href="#">标题二</a></h3>
+        <ul>
+          <li>
+            <a class="aright" href="#"><span class="ared">1文字</span></a></a>
+            <a href="#">1111111:<span class="ared">1111</span></a>
+          </li>
+          <li>
+            <a class="aright" href="#">2文字</a></a>
+            <a href="#">2222222:2222</a>
+          </li>
+          <li>
+            <a class="aright" href="#">3文字</a></a>
+            <a href="#">3333333:3333</a>
+          </li>
+          <li>
+            <a class="aright" href="#">4文字</a></a>
+            <a href="#">4444444:4444</a>
+          </li>
+        </ul>
+
+        <h3><a href="#">标题三</a></h3>
+        <ul class="lastul">
+          <li>
+            <a class="aright" href="#">s文字</a></a>
+            <a href="#">SSSSSSS:ssss</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+    /* NOTE:
+          一般的按钮渐变状态是通过改变超链接的三个伪类状态
+          link hover active的背景图片来完成的
+          这样的做法是分别在三个状态下加载三个不同的图片
+          但是这样会在第一次浏览的时候会因为没有缓存 其他图片加载的时候
+          用户会看到闪烁的状态 这非常影响用户体验
+
+          为了解决这样问题 我们吧三个按钮状态图整合成一张图片 一次加载
+          然后在不同的状态中改变图片显示的position
+
+          这种技术叫做图片整合技术（CSS-Sprite）css雪碧
+          好处：
+            1、减少资源请求 一次加载 提高用户体验
+            2、多图片整合为一张 减小图片总体积（图片保存技术）
+       */
+    .button:link{
+      display: block;
+      width: 93px;
+      height: 29px;
+      background: url(./btn.png) no-repeat;
+    }
+    .button:hover{
+      background-position: -93px 0px;
+    }
+    .button:active{
+      background-position: -186px 0px;
+    }
+  </style>
+</head>
+<body>
+  <a class="button" href="#"></a>
+</body>
+</html>

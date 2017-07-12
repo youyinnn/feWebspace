@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .box1{
+        width: 100px;
+        height: 100px;
+        background-color: rgb(67, 144, 195);
+        position: relative;
+        z-index: 2;
+      }
+      .box2{
+        width: 100px;
+        height: 100px;
+        background-color: rgb(62, 209, 62);
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        /*
+          如果元素层级是一样的 则下边的元素会盖住上面的
+          可以通过z-index设置元素的层级
+          只能是开启了定位的元素设置z-index才有用
+        */
+        z-index: 25;
+      }
+      .box3{
+        width: 100px;
+        height: 100px;
+        background-color: rgb(87, 100, 193);
+        /*position: relative;
+        z-index: 3;*/
+        position: absolute;
+        top: 100px;
+        left: 100px;
+        z-index: 30;
+        /*
+          这属性可以设置透明度
+          但是IE8以下的浏览器不兼容
+        */
+        opacity:0.8;
+      }
+      .box4{
+        width: 100px;
+        height: 100px;
+        background-color: rgb(254, 139, 49);
+        position: relative;
+        z-index: 20;
+        /*
+          父元素的层级再高也永远盖不住子元素（父爱...
+        */
+      }
+      .box5{
+        width: 50px;
+        height: 50px;
+        background-color: rgb(77, 40, 14);
+        position: absolute;
+        z-index: 10;
+      }
+    </style>
+  </head>
+  <body style="height: 5000px;">
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box4">
+      <div class="box5"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .box1{
+        width: 100px;
+        height: 100px;
+        background-color: rgb(46, 16, 62);
+        float: left;
+      }
+      .box2{
+        width: 200px;
+        height: 200px;
+        background-color: rgb(47, 33, 98);
+        /*
+          这时候box2会收到box1的浮动影响
+          这时候我们希望清楚其他元素对当前元素的浮动影响 可以使用clear
+          clear可选值
+            none 默认值 不清楚浮动
+            left 清除左侧浮动元素对当前元素的影响
+            right 清除右侧。。。
+            both 清除两侧
+        */
+        /* 清除box1对box2的浮动影响 */
+        /* 清除浮动之后会消除box1浮动之前的影响 */
+        /*clear: left;*/
+        float: right;
+      }
+      .box3{
+        width: 300px;
+        height: 300px;
+        background-color: rgb(15, 32, 166);
+        clear: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+    .box1{
+      width: 500px;
+      height: 500px;
+      margin: 0 auto;
+      background-color: rgb(8, 44, 45);
+
+      background-image: url(./dahuangmao-15.png);
+      background-repeat: no-repeat;
+
+      /* NOTE:
+           使用background-position可以调整背景图片在元素中的位置
+           可选值：
+           一：
+              可以使用 top left bottom right 中的至少俩个值指定位置
+              如果只给一个值 那么默认第二个值是center
+              所以可以组合出的位置就是一个九宫格
+
+           二：
+              也可以使用两个px值设置偏移量
+              第一个值是水平偏移量
+              第二个值是垂直偏移量
+              尽量不要省略 不然就只有相对于居中的水平偏移量
+           */
+      /*background-position: top right;*/
+      background-position: 100px 50px;
+    }
+    body{
+      background-repeat: no-repeat;
+      background-image: url(./dahuangmao-15.png);
+      /* NOTE:
+          设置背景图片是否固定或者随着页面其他部分滚动
+          可选值：
+            scroll 默认值 图片会随着页面而滚动
+            fixed 图片固定在浏览器窗口 不会滚动
+      */
+      background-attachment: fixed;
+    }
+  </style>
+</head>
+<body style="height: 5000px;">
+  <div class="box1"></div>
+</body>
+</html>

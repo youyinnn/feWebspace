@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+  <style media="screen">
+    .box1{
+      width: 1000px;
+      height: 1000px;
+      background-color: rgb(172, 118, 25);
+      /*
+        如果元素大小小于图片 则从图片左上角开始显示图片
+        如果元素大小小于图片 则图片会在元素内容区内平铺显示图片
+      */
+      background-image: url("./background.jpg");
+
+      /*
+        背景图片填充策略
+          repeat 默认值 平铺重复
+          no-repeat 不重复 只有一张
+          repeat-x 横向重复
+          repeat-y 竖向重复
+      */
+      background-repeat: no-repeat;
+    }
+  </style>
+</head>
+<body>
+  <div class="box1"></div>
+</body>
+</html>

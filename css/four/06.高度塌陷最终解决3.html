@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+    .box1{
+      border: 1px red solid;
+    }
+    .box2{
+      width: 100px;
+      height: 100px;
+      background-color: rgb(47, 33, 98);
+      float: left;
+    }
+
+    /*
+      通过after伪类选中box1的后面
+      而且这样不会在页面中添加多余的div
+      几乎没有副作用 只是IE6不支持
+    */
+    .clearfix::after{
+      /*添加空白内容*/
+      content: "";
+      /*转换为块元素*/
+      display: block;
+      /*清除浮动*/
+      clear: both;
+    }
+    /*
+      解决IE6不支持after问题 就要开启hasLayout
+    */
+    .clearfix{
+      zoom : 1;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="box1 clearfix">
+          <div class="box2"></div>
+    </div>
+
+  </body>
+</html>

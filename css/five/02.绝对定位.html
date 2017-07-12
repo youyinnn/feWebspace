@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .box1{
+        width: 100px;
+        height: 100px;
+        background-color: rgb(67, 144, 195);
+      }
+      .box2{
+        width: 100px;
+        height: 100px;
+        background-color: rgb(62, 209, 62);
+        /*
+          绝对定位：
+            特点：
+              1、元素会脱离文档流
+              2、如果不设置偏移量 元素不会发生位置变化
+              3、绝对定位是相对于离他最近的开启了相对定位的祖先元素定位的
+                 如果所有祖先元素都没有开启定位 才相对于浏览器窗口定位
+              4、绝对定位会使元素提升一个层级
+              5、绝对定位会改变元素性质
+                   内联元素变成块元素
+                   块元素的宽高默认被内联元素撑开
+        */
+        position: absolute;
+
+        top: 0px;
+        left: 0px;
+      }
+      .box4{
+        width: 180px;
+        height: 180px;
+        background-color: rgb(175, 21, 249);
+
+      }
+      .box5{
+        width: 200px;
+        height: 200px;
+        background-color: rgb(246, 110, 210);
+      }
+      .box3{
+        width: 200px;
+        height: 200px;
+        background-color: rgb(87, 100, 193);
+      }
+    </style>
+  </head>
+  <body style="height: 5000px;">
+    <div class="box1"></div>
+    <div class="box5">
+      <div class="box4">
+        <div class="box2"></div>
+      </div>
+    </div>
+    <div class="box3"></div>
+  </body>
+</html>
