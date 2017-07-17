@@ -1,0 +1,87 @@
+body{
+  background-image: url(../img/bd-bg.png);
+  background-repeat: repeat-x;
+}
+/*
+  固定元素的宽度和居中
+*/
+.w{
+  width: 940px;
+  margin: 0 auto;
+}
+.clearfix::after,
+.clearfix::before{
+  content: "";
+  /* table和block效果一样 */
+  display: table;
+  /* clear不影响display:table */
+  clear: both;
+}
+.header{
+  padding-top: 37px;
+  padding-bottom: 46px;
+  /*background-color: rgb(158, 119, 170);*/
+}
+.logo{
+  /*padding-left: 15px;*/
+  /*height: 76px;*/
+  margin-left: 15px;
+  /*background-color: rgb(49, 9, 112);*/
+  float: left;
+}
+.guideList a{
+  display: inline-block;
+  color: rgb(46, 46, 46);
+  font: bold 14px Georgia;
+  text-decoration: none;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.guideList a:hover{
+  text-decoration: underline;
+  color: rgb(156, 156, 156);
+}
+.guideList a:active{
+  text-decoration: underline;
+  color: rgb(184, 110, 150);
+}
+.guideList li{
+  border-left: 1px rgb(69, 67, 65) dotted;
+  float: left;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.guideList p{
+  font-size: 11px;
+}
+.guideList{
+  margin-top: 22px;
+  float: right;
+}
+.banner{
+  height: 356px;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-image: url(../img/banner-bg.png);
+  position: relative;
+}
+.pointer{
+  top: 318px;
+  left: 8px;
+  position: absolute;
+}
+.pointer a{
+  float: left;
+  width: 17px;
+  height: 17px;
+  background: url(../img/pointer.png);
+
+  margin-left: 4px;
+}
+.pointer a:hover,.pointer a:active{
+  background-image: url(../img/pointer-active.png);
+}
+.content{
+  height: 900px;
+  background-color:rgb(139, 199, 57);
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+    form{
+      width: 500px;
+      background-color: rgb(159, 181, 29);
+      margin: 50px auto;
+    }
+  </style>
+</head>
+<body>
+  <form class="" action="./target.html" method="get">
+    <!--
+        使用label标签可以专门框起给表单的提示文字
+        里面有一个for属性 指向对应的表单项的id
+        这样就会有一个特效：
+          点击表单提示文字 表单项会获得光标焦点
+      -->
+    <label for="um">用户名：</label>
+    <input id="um" type="text" name="username"><br>
+    <label for="">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+    <input type="password" name="password"><br>
+
+    <!--
+        单选 type:radio
+        默认选中：checked="checked"
+      -->
+    性别：<input type="radio" name="gender" value="male" checked="checked">男
+         <input type="radio" name="gender" value="famale">女
+
+    <!--
+        多选 type:checkbox
+        默认选中：checked="checked"
+      -->
+    <br>
+    爱好：
+    <input type="checkbox" name="habit" value="music">Music
+    <input type="checkbox" name="habit" value="sport" checked="checked">Sport
+    <input type="checkbox" name="habit" value="art">Atr
+    <input type="checkbox" name="habit" value="math">Math
+    <br>
+
+    <!--
+        下拉列表
+        默认选中：selected="selected"
+        multiple="multiple" 会吧下拉列表变成多选下拉列表
+      -->
+    专业
+    <select name="major">
+      <option value="cs">计科</option>
+      <option value="se" selected="selected">软工</option>
+      <option value="ne">网工</option>
+    </select>
+    <br>
+
+    <!--
+        文本域
+      -->
+    个人信息
+    <textarea name="info" rows="8" cols="20"></textarea>
+
+    <br>
+    <input type="submit" value="提交">
+    <input type="reset" name="" value="重置">
+    <input type="button" name="" value="按钮">
+
+    <!--
+        按钮的另外一种写法
+        这种方式更加灵活 我们可以在内容里面添加图片作为按钮
+      -->
+    <br>
+    <button type="submit" name="button">提交</button>
+    <button type="reset" name="button">重置</button>
+    <button type="button" name="button">按钮</button>
+  </form>
+</body>
+</html>

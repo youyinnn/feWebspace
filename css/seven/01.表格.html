@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+  /* NOTE:
+      table也是一个块元素
+   */
+    table{
+      width: 400px;
+      margin: 50px auto;
+      /*border: 1px black solid;*/
+      /*
+          table和td之间会有一段距离 可以使用这个属性设置
+          spacing设置为0之后 会把table和td的边框粘在一起 所以实际有两个像素
+          因此还要设置一个collapse属性 把table和td的边框合并
+          所以合并了以后spacing设置大于0的值就没有任何意义了
+        */
+      /*border-spacing:0px;*/
+      border-collapse: collapse;
+    }
+
+    td , th{
+      border: 1px black solid;
+    }
+    /*
+      隔行变色(IE8以下的浏览器不支持)
+    */
+    tr:nth-child(even){
+      background-color: rgb(166, 212, 206);
+    }
+    tr:hover{
+      background-color: rgb(25, 190, 250);
+    }
+  </style>
+</head>
+<body>
+  <!-- NOTE:
+    使用tr表示一行
+    使用td表示一列
+ -->
+  <table>
+      <tr>
+        <!--
+            可以使用th来表示表头内容
+            用法和td一样 只是有加粗和居中的默认效果
+          -->
+        <th>学号</th>
+        <th>姓名</th>
+        <th>专业</th>
+      </tr>
+      <tr>
+        <td>0001</td>
+        <td>张三</td>
+        <td>软工</td>
+      </tr>
+      <tr>
+        <td>0003</td>
+        <td>里斯</td>
+        <td>计科</td>
+      </tr>
+      <tr>
+        <td>0056</td>
+        <td>猫丕</td>
+        <td>智科</td>
+      </tr>
+  </table>
+</body>
+</html>

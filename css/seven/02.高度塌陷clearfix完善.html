@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+
+    /* NOTE:
+        问题一：高度塌陷
+       */
+    .box1{
+      border: 1px red solid;
+    }
+    .box2{
+      width: 200px;
+      height: 200px;
+      background-color: rgb(82, 52, 110);
+      float: left;
+    }
+
+    /* NOTE:
+        问题二：子元素外边距传递给相邻父元素
+       */
+    .box3{
+      width: 300px;
+      height: 300px;
+      background-color: rgb(117, 228, 38);
+    }
+    .box4{
+      width: 200px;
+      height: 200px;
+      background-color: rgb(166, 118, 17);
+      /*
+        这里会出现相邻子元素的外边距和父元素重叠 导致子元素外边距传递给父元素
+        使用table标签可以隔离父子元素的外边距（破坏相邻条件
+      */
+      margin-top: 100px;
+    }
+
+    /* NOTE:
+        解决一：使用clear清除高度塌陷
+       */
+    .clearfix::after{
+      content: "";
+      display: block;
+      clear: both;
+    }
+    /* NOTE:
+        解决二：使用display：table隔离父子元素
+       */
+    .clearfix::before{
+      content: "";
+      /*
+      display：table可以将元素作为一个表格显示
+      */
+      display: table;
+    }
+
+
+    /* NOTE:
+        两种解决可以一并写
+       */
+    .clearfix::after,
+    .clearfix::before{
+      content: "";
+      /* table和block效果一样 */
+      display: table;
+      /* clear不影响display:table */
+      clear: both;
+    }
+  </style>
+</head>
+<body>
+  <div class="box1 clearfix">
+    <div class="box2"></div>
+  </div>
+
+  <div class="box3 clearfix">
+    <!-- <table></table> -->
+    <div class="box4"></div>
+  </div>
+</body>
+</html>
