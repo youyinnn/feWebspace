@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script type="text/javascript">
+    /*
+                创建一个构造函数 专门用来创建自定义对象
+                  构造函数就是一个普通的函数 创建方式和普通函数没区别
+                  不同的是构造函数习惯上首字母大写
+
+                构造函数和普通函数的区别就是调用方式不同
+                  构造函数需要使用new关键字来调用
+
+                构造函数的执行流程：
+                  1、调用时候立即创建一个新对象
+                  2、将新建对象设置为我们函数中的this 在构造函数中可以使用this来引用新建对象
+                  3、执行构造函数中的代码 （只有这一步我们可以操作 其它的步骤浏览器来执行
+                  4、将新对象作为返回值返回
+
+                使用同一个构造函数创建的对象 称为一类对象 也将这个构造函数称为一个类
+                  我们将这个构造函数创建出来的类称为这个类的实例
+              */
+    function Person(name, age, gender) {
+      this.name = name;
+      this.age = age;
+      this.gender = gender;
+
+      this.say = function() {
+        console.log(this.name + ' ' + this.age + ' ' + this.gender + ' ');
+      }
+    }
+
+    var p = new Person('白龙马', 15, '女');
+
+    p.say();
+
+    console.log(p);
+
+    /*
+          使用instanceof 可以检查一个对象是否是一个类的实例
+          任何一个对象都是Object的后代 所以第二行是true
+    */
+    console.log(p instanceof Person);
+    console.log(p instanceof Object);
+
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

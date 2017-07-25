@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+
+      /*
+        字面量 都是不可变的量
+          如 1 2 3
+        我们一般不直接使用字面量
+
+        变量 可以保存字面量
+      */
+
+      // 声明一个变量
+      var a = 1;
+
+      // alert(a);
+
+      /*
+        JS中一共有六种数据类型
+          String 字符串
+          Number 数值
+          Boolean 布尔值
+          Null 空
+          Undefined 未定义
+          Object 对象
+
+        其中前5中是基本数据类型 Object属于引用数据类型
+      */
+
+      /*
+        String：
+          可以用单引号或者双引号引起来
+      */
+
+      /*
+        Number：
+          包括整数和浮点数
+
+        可以使用typeof 来检查变量类型
+      */
+
+      var a = 123;
+      var b = "123";
+
+      document.writeln(typeof a);
+      document.writeln(typeof b);
+
+      // 可以输出Number所表示的最大值 同理也可以看最小值
+      // 如果超过这个值 数值就变为Infinity（无穷
+      // NaN 是一个特殊的数值 表示这个值不是一个数值 比如你使用字符串去运算 就会返回这个
+
+      // 使用typeof检查NaN或者Infinity都是Number
+      document.writeln(Number.MAX_VALUE);
+      document.write(Number.MIN_VALUE);
+
+      //JS中的整数运算基本精确 小数运算不能精确表示
+      // alert(0.1+0.2);
+
+      // Boolean值只有true和false
+
+      // Null只有一个值 就是null 专门用来表示空对象 注意大小写 使用typeof检查 返回的是Object
+
+      // Undefined只有一个值 就undefined 当变量声明没赋值的时候 就会等于它 typeof 返回Undefined
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>

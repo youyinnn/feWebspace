@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+      /*
+        函数
+          - 函数也是对象
+          - 函数中可以封装功能和代码 在我们需要的时候可以执行
+          - 使用typeof检查会返回funtion
+          - 可以将要封装的代码以字符串的形式传递给构造函数
+          - 函数对象中可以加参数 和其它对象一样
+      */
+
+      // 创建函数对象 但是这种构造函数的方式 在开发的时候一般不这么用,
+      var fun = new Function("console.log('这是第一个函数功能');");
+
+      // 调用函数 函数对象()
+      fun();
+
+      /*
+        使用函数声明来创建一个函数
+        funtion 函数名([形参1，形参2，···，形参n])
+      */
+      function fun2(){
+        console.log('这是我的第二个函数');
+      }
+
+      console.log(fun2);
+
+      fun2();
+
+      /*
+        使用函数表达式
+      */
+      var fun3 = function(){
+        console.log('这是我的第三个函数');
+      }
+
+      fun3();
+
+      function sum(a,b){
+        return a+b;
+      }
+
+      var c = sum(99,3);
+
+      console.log(c);
+
+      // 解析器不会检查实参类型
+      var d = sum(2,"*****hello");
+
+      console.log(d);
+
+      // 解析器也不会检查形参数量 没有对应实参的形参就是undefined
+      console.log(sum());
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>

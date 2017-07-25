@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+
+      /*
+          ==比较两个值是否相等
+          当使用 == 的时候 如果两端类型不同 就会自动做类型转换
+          至于怎么转换 就不一定
+
+          !=用来判断两个值是否不相等
+      */
+
+      var a = (1 == 1);// true
+
+      a = ("1" == 1);// true
+
+      a = (true == 1);// true
+
+      a = (true == "hello");// false 都转成number
+
+      a = (true == "1");// true
+
+      a = (null == 0);//false
+
+      // undefined衍生自null 所以undefined==null为true
+
+      a = (NaN == NaN);// false 因为NaN不和任何值相等
+
+
+      // alert(a);
+
+      // 可以使用isNaN()函数检查一个指是否是NaN值
+      var b = NaN;
+      // document.write(isNaN(b));
+
+      /*
+          === 全等
+            判断的是变量的值是否相等 如果类型不同则直接返回false
+          !== 全不等
+      */
+
+      a = ("a" == "a");
+
+      alert(a);
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>

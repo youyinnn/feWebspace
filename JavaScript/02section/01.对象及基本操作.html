@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+      /*
+        对象的分类：
+          1、内建对象
+            - ES标准中的内建对象 再任何ES实现中都可以使用
+            - 如Math、String、Number等等
+
+          2、宿主对象
+            - 由JS运行环境提供的对象
+            - 如BOM DOM
+
+          3、自定义对象
+            - 由开发自己创建的对象
+      */
+
+      // 创建对象 后面的Object()也是构造函数
+      var obj = new Object();
+
+
+      // 向对象中添加属性 语法
+      obj.name = '孙悟空';
+
+      // 读取就直接对象.属性名
+      console.log(obj.name);
+
+      // 删除属性
+      delete obj.name;
+      console.log(obj.name);
+
+      /*
+        对象的属性名可以不按照标识符的命名规范
+        但是如果要使用奇葩的名字的话就得用下面的方式去定义和使用
+      */
+      obj['123'] = 456;
+      console.log(obj['123']);
+
+      /*
+        上面的定义方式就更加的灵活
+      */
+      obj['asd'] = 'qwe';
+      var n = '123';
+      var n = 'asd';
+
+      console.log(obj[n]);
+
+      var b = new Object();
+      b.name = '猪八戒';
+
+      // 对象的属性可以是对象
+      obj.test = b ;
+
+      console.log(obj.test);
+
+      // 检查对象中是否存在某个属性
+      console.log('test' in obj);
+      console.log('test2' in obj);
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>

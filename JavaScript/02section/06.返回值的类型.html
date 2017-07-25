@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+
+      /*
+        返回值的类型可以是任意的 包括对象和函数
+      */
+
+      function a(){
+        var a = {name:"你好"};
+
+        return a;
+      }
+
+      console.log(a());
+
+      function b(){
+        function c(){
+          console.log('c');
+
+          return 'c return';
+        }
+
+        console.log('b');
+
+        return c;
+      }
+
+      // b()返回的是c 所以b()等同于c()
+      console.log(b);
+      console.log('-----------------');
+      console.log(b());
+      console.log('-----------------');
+      console.log(b()());
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>

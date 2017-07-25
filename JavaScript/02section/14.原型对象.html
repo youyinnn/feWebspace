@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script type="text/javascript">
+
+    function Person(name, age, gender) {
+      this.name = name;
+      this.age = age;
+      this.gender = gender;
+
+      this.say1 = function() {
+        console.log(this.name + ' ' + this.age + ' ' + this.gender + ' ');
+      };
+    }
+
+    function Dog(name) {
+      this.name = name;
+    }
+    /*
+          上面那种构造函数方法其实还不完善
+            在方法中 我们为每一个对象都添加了一个say方法
+            所以这样我们每new一个Person对象就会创建一个新的say方法 但是这些方法做的都是同一件事
+            所以我们希望只用一个方法就可以给所有的对象共用
+    */
+    console.log(Person.prototype);
+    /*
+          原型 prototype
+            我们创建的每一个函数 解析器都会向函数中添加一个属性 prototype
+            这个属性对应着一个对象 这个对象就是原型对象
+          如果函数作为普通函数调用 那么这个属性没有任何作用
+
+          所以构造函数中当然也会有这个属性
+            使用构造函数创建的对象 对象中都会有一个隐含属性
+            这个隐含属性指向改构造函数的原型对象 我们可以使用__proto__来访问该属性
+
+          原型对象相当于公共的区域 所有同一个类的实例都可以访问到这个原型对象
+            所以我们可以将对象中共有的内容 统一设置到原型对象中
+
+          当我们访问对象的一个属性或者方法时 会先再对象自身中寻找 如果有就直接使用
+          如果没有就会去原型对象中寻找 找到就直接使用
+          如果没有就去原型的原型对象中去寻找
+    */
+
+    var p1 = new Person('唐三藏', 18, '女');
+    var p2 = new Person('冲田杏梨', 18, '女');
+
+    console.log(p1.__proto__);
+
+    console.log(Person.prototype == p1.__proto__);
+
+    // 使用构造函数的原型对象 添加公共属性
+    Person.prototype.att1 = '456';
+    // 使用类的实例的隐含对象 添加公共属性
+    p1.__proto__.att2 = '123';
+
+    console.log(p1.att2);
+    console.log(p1.att1);
+
+    Person.prototype.say2 = function() {
+      console.log(this.name + ' ' + this.age + ' ' + this.gender + ' ');
+    };
+
+    p1.say2();
+
+    // say1是写在构造函数里面的 每一个对象都有各自的say1对象
+    console.log(p1.say1 == p2.say1);
+    // say2是写在原型对象里面的 每一个对象的say2都是同一个对象
+    console.log(p1.say2 == p2.say2);
+
+    // 不同的构造函数会有不同的原型对象
+    console.log(Dog.prototype == Person.prototype);
+
+    // in检查的范围包括对象自身和对象属性中的原型对象
+    console.log('att1' in p1);
+
+    // 可以使用这个函数来判断函数自身是否含有这个名字的属性
+    console.log(p1.hasOwnProperty('att1'));
+
+    // hasOwnProperty这个函数是来自原型对象的 更不是来自对象自身的
+    console.log(Person.prototype.hasOwnProperty('hasOwnProperty'));
+
+    /*
+      原型对象也是一个对象 对象就得是构造函数创造出来的 所以它也有原型对象
+      原型的原型就是Object对象 而Object对象的原型是null
+      所以上面的hasOwnProperty()方法是来自Object对象中的方法
+    */
+    console.log(Person.prototype.__proto__.hasOwnProperty('hasOwnProperty'));
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

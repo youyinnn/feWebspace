@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+
+      /*
+        类型转换一般是其它值转换位String Number Boolean
+        转String：
+          方式一：
+            调用被转换数据类型的toSting()方法
+            改方法不会影响到原变量类型
+            但是null和undefined没有这两个方法 调用会报错
+          方式二：
+            调用String()函数 可以改变原类型 而且会直接改变原变量
+            对于Number和Boolean其实也是调用的toString()方法
+            对于null会直接转换“null”
+            undefined转“undefined”
+      */
+
+      var a = 4 ;
+
+      var b = a.toString();
+
+      document.write(b);
+
+      a = null;
+      a = String(a);
+
+      document.writeln(typeof a);
+
+      /*
+        将其它类型转换位Number
+          使用Number()函数
+          如果纯数值字符串 则直接转换
+          否则转换位NaN
+          如果全是空格的串或者空串 则转为0
+
+          Null转为0
+          Undefined转为NaN
+      */
+
+      var b = "123";
+      b = Number(b);
+
+      // alert(b);
+
+      /*
+        其它进制转Boolean
+          正数负数小数都是true
+          Infinity是true
+          0是false
+          NaN是false
+
+          字符串除了空串都是true
+
+          null是false
+          undefined是false
+      */
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>

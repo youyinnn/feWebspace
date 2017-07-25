@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script type="text/javascript">
+    /*
+        作用域值的是变量的作用范围
+          1、全局作用域
+            - 直接编写在script标签中的JS代码 都是全局作用域
+            - 在页面打开的时候创建 关闭的时候销毁
+            - 在全局作用域中有一个全局对象window 可以直接使用
+            - 在全局作用域中：
+                创建的变量都会作为window对象的属性保存
+                创建的函数都会作为window对象的方法保存
+            - 全局作用域中的变量都送全局变量
+
+          2、函数作用域（局部）
+              写在函数里面的变量 变量的作用范围只有函数内 如果函数内没有才找函数外
+              函数声明也会在函数中所有的代码之前声明 和全局类似
+              定义形参就相当于使用var声明这个变量名字
+    */
+
+    var a = 10;
+    var fun = function(){
+      console.log('Hello');
+    }
+
+    console.log(window.a);
+    window.fun();
+
+    /*
+        变量声明提前
+          使用var声明变量的时候 系统会把这个声明放在所有代码之前执行 但是只执行声明部分
+          赋值部分在原行执行
+
+        函数声明提前
+          - 使用函数声明形式创建的函数 function(){}
+              它会在所有代码执行之前就被创建
+          - 使用函数表达式创建的函数 不会被提前创建
+          - 但函数中不使用var声明的变量 都会引用或者变成全局变量
+    */
+
+    function fun2(){
+      console.log('这是一个函数声明 会被提前创建');
+    }
+
+    var fun3 = function(){
+      console.log('这是一个函数表达式 不会被提前声明');
+
+      b = 10; // window.b
+    }
+
+    fun2();
+    fun3();
+
+    console.log(b);
+
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

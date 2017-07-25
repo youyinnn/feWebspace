@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      /* NOTE:
+            选择后一个紧挨着的指定元素
+            前一个 + 后一个
+
+            选中后面所有兄弟元素
+            前一个 ~ 后面所有
+         */
+      /*span + p {
+        background-color: rgb(132, 210, 11);
+      }
+
+      p + p{
+        background-color: rgb(126, 44, 161);
+      }*/
+
+      /* NOTE:
+          否定
+          :not(要排除的元素的选择器)
+         */
+      p:not(.hello){
+        background-color: rgb(181, 29, 191);
+      }
+
+      /* NOTE:
+          状态伪类的顺序：
+            :link
+            :visited
+            :hover
+            :active
+          原因：这四个伪类是同级 如果顺序不对会优先使用下面那个样式
+         */
+    </style>
+  </head>
+  <body>
+    <p>我是一个p</p>
+    <p>我是一个p</p>
+    <p>我是一个p</p>
+    <span>我是一个span</span>
+    <p class="hello">我是一个p</p>
+    <p>我是一个p</p>
+    <p>我是一个p</p>
+
+  </body>
+</html>

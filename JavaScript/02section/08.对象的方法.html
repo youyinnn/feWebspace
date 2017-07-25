@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script type="text/javascript">
+    var obj = new Object();
+
+    obj.name = '孙悟空';
+    obj.age = 15;
+
+    obj.say = function() {
+      console.log('我是' + obj.name + ' 我今年' + obj.age + '岁');
+    };
+
+    obj.say();
+
+    /*
+      函数也可以是对象的属性
+      如果一个函数是对象的属性 那么这个函数称为这个对象的方法
+    */
+
+    // 另外一种定义形式
+    var obj2 = {
+      name: '猪八戒',
+      age: '15',
+      say: function() {
+        console.log('我是' + obj2.name + ' 我今年' + obj2.age + '岁');
+      }
+    }
+    obj2.say();
+
+    /*
+      枚举对象中的属性
+      需要使用for in 语句
+    */
+    console.log('----------------');
+    for( var n in obj ){
+      console.log(obj[n] );
+    }
+
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

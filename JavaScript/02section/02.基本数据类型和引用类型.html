@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+      /*
+        五种基本数据类型
+          String Number Null Undefined Boolean
+        一种引用类型
+          Object
+
+        这里可以参考Java的引用
+      */
+
+      var a = 123;
+      var b = a;
+
+      a++;
+      // 一个值的变化不会影响到其他值 两个值是独立的 没有引用
+      console.log('a = '+a);
+      console.log('b = '+b);
+
+      var obj1 = new Object();
+      var obj2 = obj1;
+
+      obj1.name = '孙悟空';
+
+      console.log(obj2.name);
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
