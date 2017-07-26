@@ -16,10 +16,10 @@
     var p = new Person('傻逼',15);
 
     Person.prototype.toString = function () {
-      return 'Person';
+      return 'Person['+this.name+',age='+this.age+']';
     };
 
-    console.log(p);
+    console.log(p+'');
   </script>
 </head>
 

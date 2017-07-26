@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+      /*
+        String对象方法
+          charAt(index) 返回index位置的字符
+          charCodeAt(index) 返回index位置的unicode编码
+          concat(str) 连接字符串
+          indexof(str,index)
+            该方法从index位置开始往后检测字符串中是否含有指定内容
+            有就返回第一次出现的索引 没有就返回-1
+          slice(begin,end) 截取内容 不影响原串 可以接收负值
+          subString(index,end) 截取内容 不影响原串 不接收负值 还自动调整参数位置
+          split(str) 将字符串按照str正则规则拆分字符串为数组
+
+          toUpperCase()
+          toLowerCase()
+      */
+
+      var str = 'Hello';
+      var str2 = 'JavaScript';
+
+      console.log(str.length);
+      console.log(str[1]);
+      console.log(str.charAt(1));
+      console.log(str.concat(' ').concat(str2));
+      console.log(str.indexOf('x'));
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>

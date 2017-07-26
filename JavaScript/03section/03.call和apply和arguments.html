@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+      function fun1() {
+        console.log(this.name);
+
+      }
+
+      // 这样直接调用函数 意思也就是调用window的方法 所以这个函数的this就是window
+      fun1();
+
+      var obj = {
+        name:'孙悟空'
+      };
+      var obj2 = {
+        name:'沙和尚'
+      };
+
+      // 这样的调用我们可以传入调用函数的对象 所以这样的调用函数的this就是传入的对象
+      fun1.call(obj);
+      fun1.apply(obj2);
+
+
+      function fun2(a,b){
+        console.log(this.name+' : a = '+a+',b = '+b);
+      };
+      /*
+        call和apply的区别
+        call调用函数的时候 第一个参数是this 后面的参数就是函数的实参
+        apply需要把实参封装到数组中统一传递
+      */
+      fun2.call(obj,2,3);
+      fun2.apply(obj,[2,3]);
+
+      /*
+        在我们调用函数的时候 浏览器每次都会传入两个隐含对象
+          1、this
+          2、arguments 封装实参的对象
+
+        arguments是一个类数组对象
+          - 可以通过索引来操作数组 也可以获取长度
+          - 里面有一个callee属性 这个对象指向当前执行该函数的对象
+      */
+      function fun3(a,b){
+        console.log(arguments.length);
+        console.log(arguments[0]);
+        console.log(arguments.callee == fun3);
+      };
+      fun3(1,2);
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
