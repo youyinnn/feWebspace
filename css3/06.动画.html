@@ -23,9 +23,12 @@
         margin: 50px auto;
         width: 200px;
         height: 200px;
-        -webkit-animation-delay: 5s;
-        animation: myfirst 3s;
         background-color: red;
+        transition: all 1s;
+      }
+      .box1:hover{
+        animation: myfirst 1s;
+        background-color: yellow
       }
       /*
         还可以直接使用百分比来设置动画
@@ -41,12 +44,14 @@
         margin: 50px auto;
         width: 200px;
         height: 200px;
-        animation: mysecond 5s;
         /* 动画反向播放或者正向播放或者奇偶数次交叉向播放 */
         animation-direction: normal;
         /* 动画播放次数 */
         animation-iteration-count: 1;
         background-color: red;
+      }
+      .box2:hover{
+        animation: mysecond 5s;
       }
     </style>
   </head>
