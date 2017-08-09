@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style media="screen">
+    #employeeTable,
+    #formDiv {
+      border: 1px black solid;
+      margin: 20px auto;
+      width: 300px;
+      text-align: center;
+    }
+
+    table {
+      margin: auto;
+    }
+
+    input,
+    button {
+      width: 90%;
+      margin-bottom: 5px;
+    }
+  </style>
+  <script type="text/javascript">
+    window.onload = function() {
+      var as = document.getElementsByTagName('a');
+      var employeeTable = document.getElementById('employeeTable');
+      var etbody = employeeTable.getElementsByTagName('tbody')[0];
+
+      var fun = function() {
+        var td = this.parentElement;
+        var tr = td.parentElement;
+
+        var conf = confirm('确认删除嘛？');
+        if(conf)
+          etbody.removeChild(tr);
+        // 在超链接上绑定onclick动作 如果要取消跳转动作 可以return false来取消默认响应动作
+        return false;
+      }
+
+      for (var i = 0; i < as.length; ++i) {
+        as[i].onclick = fun;
+      }
+
+      var sb = document.getElementById('addEmpButton');
+      sb.onclick = function() {
+        var inps = document.querySelectorAll('.inp');
+        var newtr = document.createElement('tr');
+        var atd = document.createElement('td');
+        var a = document.createElement('a');
+        a.innerHTML = 'Delete';
+        a.href = 'javascript:;'
+        a.onclick = fun;
+        atd.appendChild(a);
+
+        for(var i = 0 ; i < inps.length ; ++i){
+          var inp = inps[i].getElementsByTagName('input')[0];
+          var td = document.createElement('td');
+          td.innerHTML = inp.value;
+          newtr.appendChild(td);
+        }
+
+        newtr.appendChild(atd);
+
+        etbody.appendChild(newtr);
+      }
+
+    }
+  </script>
+</head>
+
+<body>
+  <table id="employeeTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Salary</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Tom</td>
+        <td>tom@tom.com</td>
+        <td>5000</td>
+        <!-- 这样也可以取消点击后跳转动作 -->
+        <td>
+          <a href="javascript:;">Delete</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Jerry</td>
+        <td>jerry@sohu.com</td>
+        <td>8000</td>
+        <td>
+          <a href="javascript:;">Delete</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Bob</td>
+        <td>bob@tom.com</td>
+        <td>10000</td>
+        <td>
+          <a href="deleteEmp?id=003">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div id="formDiv">
+
+    <h4>添加新员工</h4>
+
+    <table>
+      <tbody>
+        <tr>
+          <td class="word">name: </td>
+          <td class="inp">
+            <input type="text" name="empName" id="empName" />
+          </td>
+        </tr>
+        <tr>
+          <td class="word">email: </td>
+          <td class="inp">
+            <input type="text" name="email" id="email" />
+          </td>
+        </tr>
+        <tr>
+          <td class="word">salary: </td>
+          <td class="inp">
+            <input type="text" name="salary" id="salary" />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center">
+            <button id="addEmpButton" value="abc">
+            Submit
+          </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</body>
+
+</html>

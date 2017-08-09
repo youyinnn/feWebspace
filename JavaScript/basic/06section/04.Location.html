@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+      /*
+        Location封装了地址栏信息
+        如果直接修改location 为绝对路径或者相对路径
+        页面会自动跳转到对应路径并且生成历史纪录
+      */
+
+      window.onload = function(){
+        console.log(location.href);
+
+        var but = document.getElementById('but');
+        var but2 = document.getElementById('but2');
+
+        but.onclick = function(){
+          location = 'https://www.baidu.com';
+        }
+        but2.onclick = function(){
+          location.reload();
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <button type="button" name="button" id="but">去百度</button><br>
+    <button type="button" name="button" id="but2">刷新</button><br>
+    <button type="button" name="button" id="but">点</button><br>
+    <input type="text" name="" value="">
+  </body>
+</html>

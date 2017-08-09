@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style media="screen">
+    .d {
+      width: 300px;
+      padding: 20px;
+      margin: 50px auto;
+    }
+
+    input[name='b'],input[type='button']{
+      width: 100%;
+      margin: 5px auto;
+    }
+    .c{
+      text-align: right;
+    }
+    .s{
+      text-align: center;
+    }
+  </style>
+  <script type="text/javascript">
+    window.onload = function() {
+      function clic(idd,fun){
+        var el = document.getElementById(idd);
+        el.onclick = fun;
+      }
+
+      var items = document.getElementsByName('items');
+      var checkallchk = document.getElementById('checkallchk');
+
+      for(var i = 0 ; i < items.length ; ++i){
+        items[i].onclick = function(){
+
+          checkallchk.checked = true;
+          for(var j = 0 ; j < items.length ; ++j){
+            // 只要有一个没选 那就不选中全选
+            if(!items[j].checked){
+              checkallchk.checked = false;
+              // 一旦进入这里 结果就肯定是false了 可以break
+              break;
+            }
+          }
+        }
+      }
+
+      clic('checkallchk', function(){
+        for(var i = 0 ; i < items.length ; ++i){
+          items[i].checked = this.checked;
+        }
+      });
+
+      clic('checkallbtn',function(){
+        for(var i = 0 ; i < items.length ; ++i){
+          items[i].checked = true;
+        }
+        checkallchk.checked = true;
+      });
+
+      clic('uncheckallbtn',function(){
+        for(var i = 0 ; i < items.length ; ++i){
+          items[i].checked = false;
+        }
+        checkallchk.checked = false;
+      });
+
+      clic('recheckallbtn',function(){
+        for(var i = 0 ; i < items.length ; ++i){
+          items[i].checked = !items[i].checked;
+        }
+        checkallchk.checked = true;
+        for(var j = 0 ; j < items.length ; ++j){
+          if(!items[j].checked){
+            checkallchk.checked = false;
+          }
+        }
+      });
+    };
+  </script>
+</head>
+
+<body>
+  <form class="d" action="#" method="post">
+    <fieldset>
+      <legend>你爱好的运动是</legend>
+      <div class="c">
+        <input type="checkbox" name="" value="" id="checkallchk">
+        全选/全不选<br>
+      </div>
+
+      <div class="s">
+        羽毛球<input id="y" type="checkbox" name="items" value="羽毛球">
+        篮球<input id="l" type="checkbox" name="items" value="篮球">
+        足球<input id="z" type="checkbox" name="items" value="足球">
+        乒乓球<input id="p" type="checkbox" name="items" value="乒乓球">
+      </div>
+
+      <input id="checkallbtn" type="button" value="全选">
+      <input id="uncheckallbtn" type="button" value="全不选">
+      <input id="recheckallbtn" type="button" value="反选">
+      <input type="submit" name="b" value="提交">
+    </fieldset>
+  </form>
+</body>
+
+</html>

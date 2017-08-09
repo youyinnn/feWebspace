@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style media="screen">
+    .b1{
+      width: 100px;
+      height: 100px;
+      background-color: rgb(53, 35, 153);
+    }
+    .b2{
+      width: 300px;
+      height: 300px;
+      background-color: rgb(5, 85, 81);
+    }
+  </style>
+</head>
+
+<body>
+
+  <button id="btn">按钮</button>
+  <div class="b1 b2" id="box1">
+
+  </div>
+
+  <script type="text/javascript">
+    var box1 = document.getElementById('box1');
+    var btn = document.getElementById('btn');
+
+    btn.onclick = function(){
+      // box1.style.width = 200 + 'px';
+      // box1.style.height = 200 + 'px';
+      // box1.style.backgroundColor = 'black';
+      /*
+        上面这样的方式 每通过style修改的样式一次
+        浏览器就要重新渲染一次页面 这样执行性能比较差
+        而且如果要修改多个样式 这样效率也慢 不方便
+
+        我们可以直接修改元素的class属性来间接修改元素属性
+        这样只需要修改一次 浏览器渲染一次
+        也进一步把行为（js）和样式（css）分离开来
+      */
+      changeClass(box1,'b2');
+    }
+
+    function addClass(obj,cn){
+      if(!hasClass(obj,cn))
+        obj.className += ' ' + cn;
+    }
+
+    function removeClass(obj,cn){
+      var rgx = new RegExp('\\b'+' '+cn+'\\b');
+      obj.className = obj.className.replace(rgx,"");
+    }
+
+    function changeClass(obj,cn){
+      if(hasClass(obj,cn))
+        removeClass(obj,cn);
+      else
+        addClass(obj,cn);
+    }
+
+    function hasClass(obj,cn){
+      var rgx = new RegExp('\\b'+cn+'\\b');
+      return rgx.test(obj.className);
+    }
+  </script>
+</body>
+
+</html>

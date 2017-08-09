@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+      /*
+        由于历史原因
+        Navigator对象中的大部分属性已经不能帮助我们识别浏览器了
+
+        一般我们只会使用userAgent（用户代理=等价于浏览器）来判断浏览器信息
+        它就是字符串 不同浏览器会有不同的值
+
+        chrome中会有‘chrome’的字样
+        firefox会有‘firefox’字样
+        IE5-10中会有‘MSIE 10.0’的字样
+        但是IE11的字样会不一样（贼缺德
+          里面没有任何跟IE相关的内容 所以我们基本不能使用userAgent来判断是不是IE11了
+
+        如果通过这个属性不能判断IE11
+        我们可以通过浏览器特有对象就可以判断IE11
+        比如：ActiveXObject
+      */
+
+      if("ActiveXObject" in window){
+        console.log('ie browser');
+      }else {
+        var nu = navigator.userAgent ;
+        if(/firefox/i.test(nu))
+          console.log('firefox');
+        if(/chrome/i.test(nu))
+          console.log('chrome');
+      }
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>

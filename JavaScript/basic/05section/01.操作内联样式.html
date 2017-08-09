@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .box1{
+        margin: 50px auto 10px;
+        width: 200px;
+        height: 200px;
+        background-color: rgb(161, 24, 252);
+      }
+      button{
+        display: block;
+        margin: 5px auto;
+      }
+    </style>
+    <script type="text/javascript">
+      window.onload = function(){
+        var but = document.getElementsByName('button')[0];
+        var box1 = document.querySelector('.box1');
+
+        but.onclick = function(){
+          /*
+            要修改样式就只需要元素名.style.样式名 = "样式值" 就行(一定要引号)
+            如果css样式名中有-号 那就使用驼峰命名法
+            通过style属性设置的样式是加在属性的内联样式位置
+            同理读取的样式也都是内联样式 无法读取样式表中的样式
+          */
+          console.log(box1.style.width);
+          box1.style.width = '300px';
+          box1.style.backgroundColor = "rgb(45, 91, 176)";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="box1">
+
+    </div>
+    <button type="button" name="button" id="but">Change</button>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      #bigbox{
+        width: 300px;
+        height: 300px;
+        border: 1px solid #000;
+      }
+      #littlebox{
+        width: 100px;
+        height: 100px;
+        background-color: rgb(100,81,228);
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+      当放置被拖数据的时候 会发送drop事件
+      ondrop属性调用drop函数来处理放置事件
+     -->
+    <div id="bigbox" ondrop="drop(event)" ondragover="allowdrop(event)">
+
+    </div>
+    <!--
+      首先为了元素可以拖动 设置draggable为ture
+      然后使用ondragstart调用一个函数drag 这个函数规定了被拖动的数据
+     -->
+    <div id="littlebox" draggable="true" ondragstart="drag(event)">
+
+    </div>
+
+    <script type="text/javascript">
+      var drag = function (event) {
+        event = event || window.event
+        // 规定被拖数据的类型和值
+        event.dataTransfer.setData('text', event.target.id)
+      }
+      var ondragover = function (event) {
+        event = event || window.event
+        event.preventDefault ? event.preventDefault() : event.returnValue = false
+      }
+      var drop = function (event) {
+        event = event || window.event
+        event.preventDefault ? event.preventDefault() : event.returnValue = false
+
+        // 获取丢下来的元素的text属性值 这个是id号 该方法将返回在 setData() 方法中设置为相同类型的任何数据
+        var data = event.dataTransfer.getData('text')
+        console.log(data)
+        // 用这个id去添加被拖拽元素到被放置元素里面作为子元素
+        event.target.appendChild(document.getElementById(data))
+      }
+      var allowdrop = function (event) {
+        event = event || window.event
+        event.preventDefault ? event.preventDefault() : event.returnValue = false
+      }
+    </script>
+  </body>
+</html>

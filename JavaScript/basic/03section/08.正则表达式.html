@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+      /*
+        正则表达式
+          - 参数1：正则表达式
+          - 参数2：匹配模式
+
+        匹配模式：
+          i 忽略忽略大小写
+          g 全局匹配
+
+        有方法test可以检测表达式和字符串是否匹配
+        rgx.test(str);
+      */
+      var rgx = new RegExp('af','i');
+      console.log(rgx);
+
+      var str = 'Afcjsdl06aaa+5+6';
+
+      var result = rgx.test(str);
+      console.log(result);
+
+      /*
+        语法：
+          简单使用字面量创建正则表达式
+          var rgx = /正则表达式/匹配模式
+
+          /a|b/  匹配a或者b
+          /[0-9]/ 任意数字
+          /[a-z]/  是否含有任意小写字母
+          /[A-Z]/  任意大写
+          /[A-z]/  任意字母
+          /a[bde]c/  是否含有abc或者adc或者aec
+          /[ab]/  是否含有a或者b
+          /[^ab]/  除了ab以外
+      */
+      var rgx2 = /[a-z]/;
+
+      var str2 = '12g3';
+
+      console.log(rgx2.test(str2));
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>

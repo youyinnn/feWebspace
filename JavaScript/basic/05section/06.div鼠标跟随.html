@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      #box1{
+        width: 100px;
+        height: 100px;
+        background-color: rgb(208, 163, 201);
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body style="height: 2000px; width:2000px;">
+    <div id="box1">
+
+    </div>
+
+    <script type="text/javascript">
+      var box1 = document.getElementById('box1');
+
+      document.onmousemove = function(event){
+        event = event || window.event;
+
+        // console.log(event);
+
+        /*
+          clientX和clientY的位置是相对于可见窗口的定位
+          如果页面需要滚动的话 那么我们获取的client类坐标就不能实际设置到div偏移量上了
+          因为这样的话鼠标的cx和cy始终只是局限于可见部分
+          但是实际上我们在页面的坐标可能超过它
+
+          pageX和pageY的位置是相对于页面实际大小的坐标
+          但是page类并不兼容IE8
+          所以page类也并不能解决问题
+          所以我们用以下的解决方案
+        */
+
+        /*
+          由于c类坐标兼容性比较好
+          所以我们只要处理c类定位再加上我们页面滚动条的移动偏移量
+          也就相当于变成了实际页面坐标了
+          但是滚动条的获取兼容性也不太好（真tm作死
+
+          比如在chrome中 我们可以通过body.scrollTop来获取滚动条偏移量
+          但是在其它浏览器中则认为滚动条是属于html的（理论上也应如此）
+          所以我们先处理以下滚动条偏移量的兼容性
+        */
+        var scot = document.body.scrollTop || document.documentElement.scrollTop;
+        var scol = document.body.scrollLeft || document.documentElement.scrollLeft;
+
+        // 再把滚动条偏移量加给c类坐标 就等于实际页面坐标了！
+        var x = event.clientX + scol;
+        var y = event.clientY + scot;
+
+        // 注意px
+        box1.style.left = x+'px';
+        box1.style.top = y+'px';
+      }
+    </script>
+  </body>
+</html>

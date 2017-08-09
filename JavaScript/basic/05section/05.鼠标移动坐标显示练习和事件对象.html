@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      div{
+        width: 300px;
+        border: 1px black solid;
+        margin: auto;
+      }
+      #areadiv{
+        height: 300px;
+        margin-bottom: 10px;
+      }
+      #countdiv{
+        height: 25px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="areadiv"></div>
+    <div id="countdiv"></div>
+
+    <script type="text/javascript">
+      var areadiv = document.getElementById('areadiv');
+      var countdiv = document.getElementById('countdiv');
+
+      var body = document.body;
+
+      console.log(body.clientWidth+8*2);
+
+      /*
+        事件对象：
+          当事件的响应函数被触发的时候 浏览器每次都会将一个事件对象作为实参传递给响应函数
+          在事件对象中封装了一切和当前事件相关的信息
+            比如鼠标的坐标、键盘按键记录
+            鼠标滚轮滚动方向
+
+        但是下面这样的方式并不适用于IE8
+          在IE8中事件对象是window.event中的
+          但是window.event不适用于火狐（作死嘛
+      */
+      areadiv.onmousemove = function(event){
+
+        // 处理兼容性问题
+        event = event || window.event;
+
+        // 下面这两个事件属性是相对于可见窗口的定位来说的
+        var x = event.clientX;
+        var y = event.clientY;
+
+
+        countdiv.innerHTML = 'x = '+x+' , y = '+y;
+      }
+
+      // console.log(areadiv);
+      // console.log(countdiv);
+    </script>
+  </body>
+</html>

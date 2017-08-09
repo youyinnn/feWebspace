@@ -4,35 +4,35 @@
     <meta charset="utf-8">
     <title></title>
     <style media="screen">
-      /* NOTE:
+      /*  :
             只能是某个父元素（这里父元素是body）中的p元素 而且这个p还得是这个父元素中的第一个元素
          */
       p:first-child{
         background-color: rgb(66, 183, 236);
       }
 
-      /* NOTE:
+      /*  :
           只能是某个父元素中的p元素 而且这个p还得是这个父元素中的最后一个元素
          */
       p:last-child{
         /*background-color: rgb(103, 4, 89);*/
       }
 
-      /* NOTE:
+      /*  :
           只能是某个div的中的p元素 而且这个p元素还得是这个div的第一个元素
          */
       div > p:first-child{
         background-color: rgb(232, 223, 242);
       }
 
-      /* NOTE:
+      /*  :
           只能是某个div中的p元素 而且这个p元素还得是这个div的最后一个元素
          */
       div > p:last-child{
         background-color: rgb(108, 45, 57);
       }
 
-      /* NOTE:
+      /*  :
           里面如果传
               even可以表示偶数位置的子元素
               odd表示奇数
@@ -43,7 +43,7 @@
         background-color: rgb(202, 217, 43);
       }
 
-      /* NOTE:
+      /*  :
           :first-of-type
           :last-of-type
           :nth-of-type

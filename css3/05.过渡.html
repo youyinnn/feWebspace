@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      /*
+        可以在不使用Flash和JS的情况下
+        在一种样式变换到另外一种样式的时候加上过渡效果
+
+        IE10以上和其它浏览器支持
+
+        要使用过渡：
+          - 指定要过渡的样式
+          - 指定过渡的时长
+      */
+      .box1{
+        height: 200px;
+        width: 200px;
+        margin: 50px auto;
+        background-color: rgb(227,223,84);
+        /*
+          多个过渡可以使用逗号隔开
+          根据时长可以设置样式变换的先后顺序
+          并且只能用简写属性 比如background-color 需要写成background
+        */
+        transition: width 1s, transform 1s;
+      }
+      .box1:hover{
+        width: 300px;
+        transform: scale(2, 2);
+        background-color: rgb(213,144,90);
+      }
+
+      .box2{
+        height: 200px;
+        width: 50px;
+        margin: 50px auto;
+        background-color: rgb(170,18,152);
+        transition: width 2s;
+        /*
+          设置过渡动画的时间曲线：
+          transition-timing-function：
+            - ease：慢-快-慢
+            - ease-in：慢-快
+            - ease-out：快-慢
+            - cubic-bezier(n,n,n,n) 贝塞尔曲线 这个参数比较复杂 人工调试比较难 可以使用在工具去测试取值
+        */
+        transition-timing-function: ease;
+      }
+      .box2:active{
+        width: 800px;
+      }
+
+      .box3{
+        height: 200px;
+        width: 200px;
+        margin: 50px auto;
+        background-color: rgb(165,201,135);
+        /* 多个过渡可以使用逗号隔开 根据时长可以设置样式变换的先后顺序 */
+        transition: width 0.6s;
+      }
+
+      .box4{
+        height: 200px;
+        width: 200px;
+        margin: 50px auto;
+        background-color: rgb(144,211,231);
+        transition: background 0.4s;
+      }
+      .box4:hover{
+        background-color: rgb(77,226,150);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1">
+
+    </div>
+    <div class="box2">
+
+    </div>
+    <div class="box3" id="box3">
+
+    </div>
+    <div class="box4" id="box4">
+
+    </div>
+
+    <script type="text/javascript">
+      var box3 = document.getElementById('box3')
+      var a = true
+      box3.onclick = function () {
+        box3.style.transitionDelay = '1s'
+        if (a) {
+          box3.style.width = '800px'
+          a = false
+        } else {
+          box3.style.width = '200px'
+          a = true
+        }
+      }
+    </script>
+  </body>
+</html>

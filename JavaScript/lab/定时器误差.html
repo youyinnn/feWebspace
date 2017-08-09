@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+
+</head>
+
+<body>
+  <button type="button" id="btn">开始修正误差</button>
+  <button type="button" id="btn2">停止修正误差</button>
+
+  <script type="text/javascript">
+    /*
+      产生误差的原因：
+        当我们使用setInterval
+        在很短的时间内执行一个函数的时候（比如1ms
+        我们执行这个函数的时间可能超过了1ms
+        但是等到1ms的时候下一次回调函数由调用起来了
+        并且使用了上一次函数并没有执行完毕的结果
+        这样就产生了“回调堆积”
+        看到知乎上一个比较有意思的形容就是：
+          上一帧的动画还没跑完
+          下一帧动画就开始跑了
+          下一帧也不管你上一帧跑没跑完任务它接着当前的地方继续跑 这样就缩短了我们本来的预期
+          我指挥a跑100米需要8秒中 但是8秒到了a只跑了50米
+        b是下一个接棒的 它也不管就继续跑 它也只跑8秒 它也只跑了60米
+      这样我总的任务本来预期16秒两个人跑完200米结果只跑了110米
+      解决方法
+        使用Date来修正时差 然后使用setTimeOut来延时递归调用
+
+        通过1000(也就是周期时间)减去当前时间和准确时间的差距,
+        来算出下次触发的时间,从而修正了当前触发的延迟
+    */
+    var btn = document.getElementById('btn')
+    var btn2 = document.getElementById('btn2')
+    var timer
+
+    btn.onclick = function () {
+      var starttime = new Date().getTime()
+      var count = 0
+      // 耗时任务
+      // setInterval(function() {
+      //   var i = 0;
+      //   while (i++ < 100000000);
+      // }, 0);
+
+      function fixed () {
+        count++
+        var offset = new Date().getTime() - (starttime + count * 1000)
+        var nexttime = 1000 - offset
+        if (nexttime < 0) nexttime = 0
+        timer = setTimeout(fixed, nexttime)
+
+        console.log(new Date().getTime() - (starttime + count * 1000))
+      }
+
+      timer = setTimeout(fixed, 1000)
+    }
+
+    btn2.onclick = function () {
+      clearTimeout(timer)
+    }
+  </script>
+</body>
+
+</html>

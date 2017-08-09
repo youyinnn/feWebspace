@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <button type="button" id="btn1">按钮1</button>
+  <button type="button" id="btn2">按钮2</button>
+
+  <script type="text/javascript">
+    var btn1 = document.getElementById('btn1');
+    var btn2 = document.getElementById('btn2');
+
+    /*
+    该方法仅在IE中有
+    当调用一个元素的setCapture()方法之后
+    这个元素会把下一次所有鼠标按下相关的事件都捕获到自身上
+    即使你点页面以外的地方也是
+    这就相当于一个强盗
+    */
+    // 释放强盗
+    // btn1.releaseCapture && btn1.releaseCapture();
+    // btn1.setCapture && btn1.setCapture();
+
+    btn1.onclick = function() {
+      console.log(1);
+    }
+    btn2.onclick = function() {
+      console.log(2);
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+      /*
+        split() 返回匹配切割数组
+        search() 返回找到匹配串的第一个下标 找不到就-1
+        match() 提取任意匹配段 默认情况下match只会找到第一个字母
+                我们可以加上全局匹配属性并且使用数组返回
+      */
+
+      var str = '1a2b3c4d5e6f';
+
+      var res = str.match(/[a-z]/ig);
+
+      console.log(res);
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>

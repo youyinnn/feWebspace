@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style media="screen">
+    #box1 {
+      width: 100px;
+      height: 100px;
+      background-color: rgb(147, 255, 40);
+      position: absolute;
+      /*
+        这里需要显式地设置left和top 不然在IE下用currentStyle第一次获取会是auto
+      */
+      left: 8px;
+      top: 8px;
+    }
+
+    #box2 {
+      width: 300px;
+      height: 300px;
+      background-color: rgb(29, 6, 250);
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      margin: 50px auto;
+    }
+  </style>
+</head>
+
+<body>
+  我是一段文字
+  <div id="box1">
+
+  </div>
+
+  <div id="box2">
+
+  </div>
+
+  <script type="text/javascript">
+    var box1 = document.getElementById('box1');
+    var box2 = document.getElementById('box2');
+
+    drag(box1);
+    drag(box2);
+
+    function drag(obj) {
+      bind(obj, 'mousedown', function() {
+        event = event || window.event;
+        /*
+          IE8的设置
+            点击捕获强盗
+        */
+        obj.setCapture && obj.setCapture();
+
+        //这样获取元素当前相对位置的话 拖拽就不会受margin的影响
+        var elementX = getStyle(obj,'left').split('px')[0];
+        var elementY = getStyle(obj,'top').split('px')[0];
+
+        var poorX = getX(event) - elementX
+        var poorY = getY(event) - elementY;
+
+        document.onmousemove = function(event) {
+          event = event || window.event;
+
+          obj.style.top = (getY(event) - Math.abs(poorY)) + 'px';
+          obj.style.left = (getX(event) - Math.abs(poorX)) + 'px';
+        };
+
+        document.onmouseup = function(event) {
+          event = event || window.event;
+          document.onmousemove = null;
+          document.onmouseup = null;
+
+          // 释放鼠标强盗
+          obj.releaseCapture && obj.releaseCapture();
+        };
+
+        /*
+          有时候我们选中一段文字的时候 我们可以对选中内容进行拖拽
+          这样就可以吧拖拽的内容放到地址栏中查询
+          但是这样会给我们的拖拽效果带来异常
+          这是浏览器的默认行为
+          下面这种方式可以取消浏览器默认行为 并且兼容IE/CHROME/FF
+        */
+        event.preventDefault ? event.preventDefault() : event.returnValue = false;
+      });
+    }
+
+    function getX(event) {
+      var scrol = document.body.scrollLeft || document.documentElement.scrollLeft;
+      var x = event.clientX + scrol;
+      return x;
+    }
+
+    function getY(event) {
+      var scrot = document.body.scrollTop || document.documentElement.scrollTop;
+      var y = event.clientY + scrot;
+      return y;
+    }
+
+    function bind(obj, eventStr, callback) {
+      if (obj.addEventListener) {
+        obj.addEventListener(eventStr, callback, false);
+      } else {
+        obj.attachEvent('on' + eventStr, function() {
+          callback.apply(obj);
+        });
+      }
+    }
+
+    function getStyle(obj, styleName) {
+      var cs = obj.currentStyle;
+
+      if (cs == undefined) {
+        var gcs = getComputedStyle(obj, null);
+        return gcs[styleName];
+      } else {
+        return cs[styleName];
+      }
+    }
+  </script>
+</body>
+
+</html>

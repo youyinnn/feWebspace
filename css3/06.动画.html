@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+    /*
+      使用@keyframes来创建动画
+        from：代表0%
+        to：代表100%
+      动画一旦执行完毕就回到初始状态
+    */
+    @keyframes myfirst {
+      from {background: red;}
+      to {background: yellow;}
+    }
+      /*
+        并绑定到一个选择器上 参数：
+          - 动画名称
+          - 动画时间
+      */
+      .box1{
+        margin: 50px auto;
+        width: 200px;
+        height: 200px;
+        -webkit-animation-delay: 5s;
+        animation: myfirst 3s;
+        background-color: red;
+      }
+      /*
+        还可以直接使用百分比来设置动画
+      */
+      @keyframes mysecond {
+        0% {background: rgb(157,210,135);}
+        25% {background: rgb(182,154,112);width: 300px;}
+        50% {background: rgb(128,134,205);width: 200px;}
+        75% {background: rgb(120,40,91);}
+        100% {background: rgb(33,121,90);}
+      }
+      .box2{
+        margin: 50px auto;
+        width: 200px;
+        height: 200px;
+        animation: mysecond 5s;
+        /* 动画反向播放或者正向播放或者奇偶数次交叉向播放 */
+        animation-direction: normal;
+        /* 动画播放次数 */
+        animation-iteration-count: 1;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1">
+
+    </div>
+
+    <div class="box2">
+
+    </div>
+  </body>
+</html>

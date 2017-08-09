@@ -5,25 +5,17 @@
     "jquery"
   ],
   "loadEagerly": [
-    "JavaScript\\01section\\01.js"
+    "**/*.js"
   ],
   "dontLoad": [
     "node_modules/**"
   ],
   "plugins": {
-    "doc_comment": {
-      "fullDocs": true,
-      "strong": false
-    },
-    "complete_strings": {
-      "maxLength": 15
-    },
     "modules": {
-      "dontLoad": "",
+      "dontLoad": "false",
       "load": "",
       "modules": ""
     },
-    "es_modules": {},
-    "commonjs": {}
+    "es_modules": {}
   }
 }

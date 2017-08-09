@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      #box1{
+        width: 100px;
+        height: 100px;
+        background-color: rgb(245, 29, 235);
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body style="height: 2000px;">
+    <div id="box1">
+
+    </div>
+
+    <script type="text/javascript">
+      /*
+        滚轮事件
+          onmousewheel
+          但是火狐不支持这个属性- -
+          我不想考虑火狐的兼容性
+        当浏览器有滚动条的时候
+        我们滚滚轮的时候 就会和浏览器窗口一起滚动
+        所以就要取消浏览器默认行为
+      */
+      var box1 = document.getElementById('box1');
+
+      box1.onmousewheel = function(event){
+        event = event || window.event;
+
+        var wheelDel = event.wheelDelta;
+        var ch = Number(getStyle(box1,'height').split('px')[0]);
+
+        if (wheelDel > 0){
+          box1.style.height = (ch + 10) + 'px';
+        }else{
+          box1.style.height = (ch - 10) + 'px';
+        }
+
+        event.preventDefault ? event.preventDefault() : event.returnValue = false;
+      };
+
+      function getStyle(obj,styleName){
+        var cs = obj.currentStyle;
+        if(cs == undefined){
+          return getComputedStyle(obj,null)[styleName];
+        }else{
+          return cs[styleName];
+        }
+      }
+
+    </script>
+  </body>
+</html>

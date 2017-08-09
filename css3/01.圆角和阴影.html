@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .box1{
+        height: 200px;
+        width: 400px;
+        background-color: rgb(71,150,227);
+        margin: auto;
+        /*
+          添加圆角：
+            border-radius
+        */
+        border-radius: 100px;
+
+        /*
+          阴影
+            border-shadow
+          参数1：水平位移
+          参数2：垂直位移
+          参数3：阴影模糊度
+          参数4：阴影辐射度
+          设置5：inset 将外部阴影改为内部阴影
+        */
+        box-shadow: 10px 10px 10px 2px rgba(2,2,3,.48) inset;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1"></div>
+  </body>
+</html>

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style media="screen">
-  /* NOTE:
+  /*  :
       table也是一个块元素
    */
     table{
@@ -38,35 +38,46 @@
   </style>
 </head>
 <body>
-  <!-- NOTE:
+  <!--  :
     使用tr表示一行
     使用td表示一列
  -->
   <table>
-      <tr>
-        <!--
-            可以使用th来表示表头内容
-            用法和td一样 只是有加粗和居中的默认效果
-          -->
-        <th>学号</th>
-        <th>姓名</th>
-        <th>专业</th>
-      </tr>
-      <tr>
-        <td>0001</td>
-        <td>张三</td>
-        <td>软工</td>
-      </tr>
-      <tr>
-        <td>0003</td>
-        <td>里斯</td>
-        <td>计科</td>
-      </tr>
-      <tr>
-        <td>0056</td>
-        <td>猫丕</td>
-        <td>智科</td>
-      </tr>
+      <thead>
+        <tr>
+          <!--
+              可以使用th来表示表头内容
+              用法和td一样 只是有加粗和居中的默认效果
+            -->
+          <th>学号</th>
+          <th>姓名</th>
+          <th>专业</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0001</td>
+          <td>张三</td>
+          <td>软工</td>
+        </tr>
+        <tr>
+          <td>0003</td>
+          <td>里斯</td>
+          <td>计科</td>
+        </tr>
+        <tr>
+          <td>0056</td>
+          <td>猫丕</td>
+          <td>智科</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>傻逼</td>
+        </tr>
+      </tfoot>
   </table>
 </body>
 </html>

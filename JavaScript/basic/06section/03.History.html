@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+      /*
+        forward() 向前跳转页面
+        back() 向后跳转一页
+        go(num) 跳转num个页面 正值前跳 负值后跳
+      */
+      window.onload = function(){
+        console.log(history.length);
+
+        var f = document.getElementById('forward');
+        var b = document.getElementById('back');
+
+        f.onclick = function(){
+          history.forward();
+        }
+
+        b.onclick = function(){
+          history.back();
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <br>
+    <button type="button" id="forward">前一页</button>
+    <button type="button" id="back">后一页</button>
+    History
+  </body>
+</html>

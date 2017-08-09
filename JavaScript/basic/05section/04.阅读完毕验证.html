@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style media="screen">
+    #text {
+      width: 600px;
+      height: 500px;
+      margin: 50px auto 10px;
+      padding: 10px;
+      overflow: auto;
+      text-align: left;
+    }
+    #box1{
+      width: 620px;
+      margin: auto;
+    }
+    .check{
+      float: left;
+      margin-left: 10px;
+    }
+    .commit{
+      float: right;
+      margin-right: 10px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="box1">
+      <p id="text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at laoreet magna. Aliquam erat volutpat. Praesent molestie, dolor ut eleifend aliquam, mi ligula ultrices sapien, quis cursus neque dui nec risus. Duis tincidunt lobortis purus eu aliquet.
+        Quisque in dignissim magna. Aenean ac lorem at velit ultrices consequat. Nulla luctus nisi ut libero cursus ultrices. Pellentesque nec dignissim enim. Phasellus ut quam lacus, sed ultricies diam. Vestibulum convallis rutrum dolor, sit amet egestas
+        velit scelerisque id. Proin non dignissim nisl. Sed mi odio, ullamcorper eget mattis id, malesuada vitae libero. Integer dolor lorem, mattis sed dapibus a, faucibus id metus. Duis iaculis dictum pulvinar. In nisi nibh, dapibus ac blandit at, porta
+        at arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent dictum ipsum aliquet erat eleifend sit amet sollicitudin felis tempus. Aliquam congue cursus venenatis. Maecenas luctus pellentesque
+        placerat. Mauris nisl odio, condimentum sed fringilla a, consectetur id ligula. Praesent sem sem, aliquet non faucibus vitae, iaculis nec elit. Nullam volutpat, lectus et blandit bibendum, nulla lorem congue turpis, ac pretium tortor sem ut nibh.
+        Donec vel mi in ligula hendrerit sagittis. Donec faucibus viverra fermentum. Fusce in arcu arcu. Nullam at dignissim massa. Cras nibh est, pretium sit amet faucibus eget, sollicitudin in ligula. Vivamus vitae urna mauris, eget euismod nunc. Aenean
+        semper gravida enim non feugiat. In hac habitasse platea dictumst. Cras eleifend nisl volutpat ante condimentum convallis. Donec varius dolor malesuada erat consequat congue. Donec eu lacus ut sapien venenatis tincidunt. Quisque sit amet tellus
+        et enim bibendum varius et a orci. Donec aliquet volutpat scelerisque. Proin et tortor dolor. Ut aliquet, dolor a mattis sodales, odio diam pulvinar sem, egestas pretium magna eros vitae felis. Nam vitae magna lectus, et ornare elit. Morbi feugiat,
+        ipsum ac mattis congue, quam neque mollis tortor, nec mollis nisl dolor a tortor. Maecenas varius est sit amet elit interdum quis placerat metus posuere. Duis malesuada justo a diam vestibulum vel aliquam nisi ornare. Integer laoreet nisi a odio
+        ornare non congue turpis eleifend. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras vulputate libero sed arcu iaculis nec lobortis orci fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Vestibulum at laoreet magna. Aliquam erat volutpat. Praesent molestie, dolor ut eleifend aliquam, mi ligula ultrices sapien, quis cursus neque dui nec risus. Duis tincidunt lobortis purus eu aliquet. Quisque in dignissim magna. Aenean ac lorem
+        at velit ultrices consequat. Nulla luctus nisi ut libero cursus ultrices. Pellentesque nec dignissim enim. Phasellus ut quam lacus, sed ultricies diam. Vestibulum convallis rutrum dolor, sit amet egestas velit scelerisque id. Proin non dignissim
+        nisl. Sed mi odio, ullamcorper eget mattis id, malesuada vitae libero. Integer dolor lorem, mattis sed dapibus a, faucibus id metus. Duis iaculis dictum pulvinar. In nisi nibh, dapibus ac blandit at, porta at arcu. Pellentesque habitant morbi
+        tristique senectus et netus et malesuada fames ac turpis egestas. Praesent dictum ipsum aliquet erat eleifend sit amet sollicitudin felis tempus. Aliquam congue cursus venenatis. Maecenas luctus pellentesque placerat. Mauris nisl odio, condimentum
+        sed fringilla a, consectetur id ligula. Praesent sem sem, aliquet non faucibus vitae, iaculis nec elit. Nullam volutpat, lectus et blandit bibendum, nulla lorem congue turpis, ac pretium tortor sem ut nibh. Donec vel mi in ligula hendrerit sagittis.
+        Donec faucibus viverra fermentum. Fusce in arcu arcu. Nullam at dignissim massa. Cras nibh est, pretium sit amet faucibus eget, sollicitudin in ligula. Vivamus vitae urna mauris, eget euismod nunc. Aenean semper gravida enim non feugiat. In hac
+        habitasse platea dictumst. Cras eleifend nisl volutpat ante condimentum convallis. Donec varius dolor malesuada erat consequat congue. Donec eu lacus ut sapien venenatis tincidunt. Quisque sit amet tellus et enim bibendum varius et a orci. Donec
+        aliquet volutpat scelerisque. Proin et tortor dolor. Ut aliquet, dolor a mattis sodales, odio diam pulvinar sem, egestas pretium magna eros vitae felis. Nam vitae magna lectus, et ornare elit. Morbi feugiat, ipsum ac mattis congue, quam neque
+        mollis tortor, nec mollis nisl dolor a tortor. Maecenas varius est sit amet elit interdum quis placerat metus posuere. Duis malesuada justo a diam vestibulum vel aliquam nisi ornare. Integer laoreet nisi a odio ornare non congue turpis eleifend.
+        Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras vulputate libero sed arcu iaculis nec lobortis orci fermentum.
+      </p>
+    <div class="check">
+      <label for="readcheck">
+        <!-- 如果为表单项添加disabled属性就会把表单项变成不可用状态 -->
+        <input type="checkbox" disabled id="readcheck">我已仔细阅读完毕
+      </label>
+    </div>
+    <div class="commit">
+      <input type="submit" disabled id="readbut" value="提交">
+    </div>
+
+  </div>
+
+  <!--
+    这种方式的兼容性并不好 如果页面被缩放 那么abc的值就会有误差 就可能算不出true
+    所以为了避免误差 我们可以把b+c的值和 (a-5,a+5) 之间的范围内就认定为true
+   -->
+  <script type="text/javascript">
+    var readcheck = document.getElementById('readcheck');
+    var readbut = document.getElementById('readbut');
+    var ptext = document.getElementById('text');
+
+    // onscroll 是滚动条移动的事件
+    ptext.onscroll = function(){
+      var a = ptext.scrollHeight;
+      var b = ptext.scrollTop;
+      var c = ptext.clientHeight;
+
+      var d = b+c;
+      // console.log(d > a-10 && d < a);
+      if(d > a-5 && d < a+5)
+        readcheck.disabled = false;
+    }
+
+    readcheck.onclick = function(){
+      readbut.disabled = false;
+    }
+
+
+
+  </script>
+</body>
+
+</html>

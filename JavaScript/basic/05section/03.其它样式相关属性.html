@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      #box1{
+        width: 200px;
+        height: 200px;
+        background-color: rgb(209, 154, 213);
+        margin: 50px auto 10px;
+        padding: 10px;
+        border: 2px black solid;
+      }
+      #button{
+        display: block;
+        margin: auto;
+      }
+      #box2{
+        width: 200px;
+        height: 200px;
+        background-color: rgb(23, 193, 213);
+        overflow: auto;
+        margin: auto;
+      }
+      #box3{
+        width: 400px;
+        height: 400px;
+        background-color: rgb(40, 74, 144);
+      }
+    </style>
+    <script type="text/javascript">
+        window.onload = function(){
+          var box1 = document.getElementById('box1');
+          var box2 = document.getElementById('box2');
+          var box3 = document.getElementById('box3');
+          var bt = document.getElementById('button');
+
+          bt.onclick = function(){
+            /*
+              clientWidth 可见宽
+              clientHeight 可见高
+              这两个属性获取的值都是不带px的 可以直接计算
+              并且可见宽返回的大小包括padding旦不包含margin
+
+              offsetWidth 元素宽度
+              offsetHeight 元素高度
+              这两个返回：内容区+内边距+边框
+
+              offsetParent 返回元素的偏移容器（定位相对的元素
+              offsetLeft 当前元素相对于定位元素的水平偏移量
+              offsetTop 当前元素相对于定位元素的垂直偏移量
+
+              scrollWidth
+              scrollHeight
+              以上两组返回元素的整体大小
+
+              scrollLeft
+              scrollTop
+              获取当前元素的滚动偏移量(有滚动条的元素才能获取)
+            */
+
+            console.log(box1.clientWidth);
+            console.log(box1.clientHeight);
+            console.log(box1.offsetHeight);
+            console.log(box1.offsetWidth);
+            console.log(box1.offsetTop);
+            console.log(box1.offsetLeft);
+
+            var a = box2.clientHeight
+            var b = box3.scrollHeight;
+            var c = box2.scrollTop;
+
+            // console.log(a);
+            // console.log(b);
+            // console.log(c);
+
+            // b - c = a
+            // 可以利用这三个数值做阅读验证
+            console.log((b - c) == a);
+
+          }
+        }
+    </script>
+  </head>
+  <body>
+    <div id="box1"></div>
+
+    <div id="box2">
+      <div id="box3"></div>
+    </div>
+
+    <button type="button" name="button" id="button">点我</button>
+  </body>
+</html>

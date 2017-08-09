@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <button type="button" name="button" id="but">按钮</button>
+    <script type="text/javascript">
+      /*
+        事件就是用户和浏览器之间的交互行为
+          点击 移动 划过 关闭窗口
+        可以在事件对应属性中写JS代码 使用js来响应事件完成交互
+      */
+
+      var but = document.getElementById('but');
+
+      /*
+        当事件被触发 函数就调用
+      */
+
+      var i = 0;
+      but.onclick = function(){
+        i++;
+        console.log('click on '+i);
+      };
+
+      var j = 0;
+      but.onmousemove = function(){
+        j++;
+        console.log('move on '+j);
+      };
+    </script>
+  </body>
+</html>

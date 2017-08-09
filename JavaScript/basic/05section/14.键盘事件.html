@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      input{
+        display: block;
+        margin: 50px auto;
+      }
+    </style>
+  </head>
+  <body>
+
+    <input type="text" id="txt">
+
+    <script type="text/javascript">
+      /*
+        键盘事件：
+          onkeydown
+            某个按键被按下 如果一直按 事件就会一直被触发
+            当它连续触发的时候 第一次和第二次之间的间隔会长一点
+            后面的就会非常快防止误操作
+          onkeyup
+            某个按键被松开
+
+        键盘事件一般都绑定给可以获取到焦点的对象
+        如input text
+        或者是document
+      */
+      document.onkeydown = function (event) {
+        event = event || window.event
+        /*
+          可以使用event的keyCode属性获得按下键的unicode编码值
+          还可以使用
+            altKey
+            ctrlKey
+            shiftKey
+            这三个键来判断alt和ctrl和shift是否同时被按下
+          注意 这些组合键不便在atom里测试 因为atom的按键捕获优先级太高
+          有的组合键测试的时候 可能先被atom捕获
+        */
+        if (event.keyCode === 89 && event.shiftKey) { console.log(event.keyCode) }
+      }
+
+      document.onkeyup = function () {
+        console.log('up')
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      #ull{
+        list-style: none;
+      }
+      a{
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+
+      <button type="button" id="but">添加超链接</button>
+      <ul id="ull">
+        <li><a href="javascript:;">超链接1</a></li>
+        <li><a href="javascript:;">超链接2</a></li>
+        <li><a href="javascript:;">超链接3</a></li>
+      </ul>
+
+    <script type="text/javascript">
+      var but = document.getElementById('but');
+      var a = 4 ;
+      var ul = document.getElementById('ull');
+
+      but.onclick = function(){
+        var newli = document.createElement('li');
+        var newa = document.createElement('a');
+        newa.href = 'javascript:;';
+        newa.innerHTML = '超链接'+(a);
+        newli.appendChild(newa);
+
+        ul.appendChild(newli);
+        a++;
+      }
+
+      /*
+        在不停的添加a元素的情况下 如果按照以前的做法
+        我们在添加的同时还得给a绑定点击事件
+        这样工作就会变多 我们希望只绑定一次事件 就可以设置到所有的a标签中
+        这时候我们就可以尝试给a的共同祖先元素绑定事件
+
+        这种做法叫做事件委派 这是利用了事件的冒泡
+        可以减少事件的绑定 提高性能
+        但是这样做会把事件触发范围扩大
+        所以我们可以通过event对象来规定事件触发范围
+        event.target对象可以返回触发事件的对象
+      */
+
+      ul.onclick = function(event){
+        var tar = event.target;
+        // 通过nodeName来获取当前触发事件对象的标签名 规定只有A才能执行响应语句
+        if(tar.nodeName == 'A'){
+          console.log('a');
+        }else{
+          return ;
+        }
+      }
+
+    </script>
+  </body>
+</html>

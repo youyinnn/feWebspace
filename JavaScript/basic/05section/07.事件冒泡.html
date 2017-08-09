@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      #box1{
+        width: 500px;
+        height: 500px;
+        background-color: rgb(249, 81, 91);
+      }
+      #s1{
+        background-color: rgb(123, 156, 86);
+      }
+      #box2{
+        width: 100px;
+        height: 100px;
+        background-color: rgb(223, 217, 141);
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box1">
+      我是box1
+      <span id="s1">
+        我是s1
+      </span>
+    </div>
+
+    <div id="box2">
+
+    </div>
+
+    <script type="text/javascript">
+      var box1 = document.getElementById('box1');
+      var s1 = document.getElementById('s1');
+
+      s1.onclick = function(event){
+        event = event || window.event;
+
+        event.cancelBubble = true;
+
+        console.log('s1 onclick');
+      }
+      box1.onclick = function(event){
+        event = event || window.event;
+        console.log('box1 onclick');
+      }
+      document.body.onclick = function(event){
+        event = event || window.event;
+        console.log('body onclick');
+      }
+
+      /*
+        事件冒泡（bubble）
+          事件向上传导
+          如果后代元素事件被触发的时候
+          其祖先元素的相同事件也会被触发
+        根据业务的不同 冒泡也会有好有坏
+        所以我们也要会取消事件冒泡的设置
+        event.cancelBubble = true;
+        这个设置没有兼容性问题
+
+        下面通过div鼠标跟随来掩饰取消冒泡的情况
+        取消了之后 box1 是进不去box2 的
+      */
+      var box2 = document.getElementById('box2');
+
+      document.onmousemove = function(event){
+        event = event || window.event;
+
+        var scot = document.body.scrollTop || document.documentElement.scrollTop;
+        var scol = document.body.scrollLeft || document.documentElement.scrollLeft;
+
+        var x = event.clientX + scol;
+        var y = event.clientY + scot;
+
+        box2.style.left = x + 'px';
+        box2.style.top = y + 'px';
+      }
+
+      box1.onmousemove = function(event){
+        event = event || window.event;
+        event.cancelBubble = true ;
+      }
+
+    </script>
+  </body>
+</html>

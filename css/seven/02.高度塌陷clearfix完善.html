@@ -7,7 +7,7 @@
   <title>Document</title>
   <style media="screen">
 
-    /* NOTE:
+    /*  :
         问题一：高度塌陷
        */
     .box1{
@@ -20,7 +20,7 @@
       float: left;
     }
 
-    /* NOTE:
+    /*  :
         问题二：子元素外边距传递给相邻父元素
        */
     .box3{
@@ -39,7 +39,7 @@
       margin-top: 100px;
     }
 
-    /* NOTE:
+    /*  :
         解决一：使用clear清除高度塌陷
        */
     .clearfix::after{
@@ -47,7 +47,7 @@
       display: block;
       clear: both;
     }
-    /* NOTE:
+    /*  :
         解决二：使用display：table隔离父子元素
        */
     .clearfix::before{
@@ -59,7 +59,7 @@
     }
 
 
-    /* NOTE:
+    /*  :
         两种解决可以一并写
        */
     .clearfix::after,

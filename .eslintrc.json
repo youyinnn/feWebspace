@@ -1,0 +1,20 @@
+{
+  "extends": "standard",
+  "plugins": [
+    "standard",
+    "eslint-plugin-html"
+  ],
+  "env":{
+    "browser":true,
+    "node":true,
+    "es6":true
+  },
+  "rules" : {
+    // 允许空行
+    "no-multiple-empty-lines":0,
+    // 允许空行？
+    "no-trailing-spaces":0,
+    "padded-blocks":0,
+    "no-unused-vars":1
+  }
+}

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style media="screen">
+    @CHARSET "UTF-8";
+
+    body {
+      width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    button {
+      width: 300px;
+      margin-bottom: 10px;
+    }
+
+    #btnList {
+      float: left;
+    }
+
+    #total {
+      width: 450px;
+      float: left;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0px;
+      padding: 0px;
+    }
+
+    .inner li {
+      border-style: solid;
+      border-width: 1px;
+      padding: 5px;
+      margin: 5px;
+      background-color: #99ff99;
+      float: left;
+    }
+
+    .inner {
+      width: 400px;
+      border-style: solid;
+      border-width: 1px;
+      margin-bottom: 10px;
+      padding: 10px;
+      float: left;
+    }
+  </style>
+  <script type="text/javascript">
+
+    //创建一个回调函数
+    function fun(btnid,fun){
+      var btn = document.getElementById(btnid);
+      btn.onclick = fun;
+    }
+
+    window.onload = function() {
+
+      // 查找#bj节点
+      // var btn01 = document.getElementById('btn01');
+      // btn01.onclick = function() {
+      //   var bj = document.getElementById('bj');
+      //   alert(bj.innerHTML);
+      // }
+
+      fun('btn01',function(){
+        var bj = document.getElementById('bj');
+        alert(bj.innerHTML);
+      });
+
+      // 查找所有的li节点
+      fun('btn02',function(){
+        // 这个方法会给我们返回一个类数组对象 所有查询到的元素都返回到这个对象中
+        var lis = document.getElementsByTagName('li');
+
+        for(var i = 0 ; i < lis.length ; ++i){
+          alert(lis[i].innerHTML);
+        }
+      });
+
+      // 查找name=gender的所有节点
+      fun('btn03',function(){
+        var genders = document.getElementsByName('gender');
+
+        alert(genders.length);
+        /*
+          如果要读取元素节点的属性值 就直接元素名.属性名
+          但是class属性就不能采用这样的方式
+          因为class应该是js的保留字
+          所以要读取class值就要这样 元素名.className
+        */
+        for(var i = 0 ; i < genders.length ; ++i){
+          alert(genders[i].value);
+        }
+      });
+
+      // 查找#city下所有li节点
+      var btn04 = document.getElementById('btn04');
+
+      btn04.onclick = function(){
+        var cty = document.getElementById('city');
+
+        var cli = cty.getElementsByTagName('li');
+
+        for(var i = 0 ; i < cli.length ; ++i ){
+          alert(cli[i].innerHTML);
+        }
+      }
+      // 返回#city的所有子节点
+
+      // 返回#phone的第一个子节点
+      var btn06 = document.getElementById('btn06');
+
+      btn06.onclick = function(){
+        var pho = document.getElementById('phone');
+
+        var phc = pho.childNodes;
+
+        /*
+          <ul id="phone">
+            <li >IOS</li>
+            <li id="android">Android</li>
+            <li>Windows Phone</li>
+          </ul>
+          这里的长度有7个原因是
+          根据DOM标准 标签之间的空白或者换行也会被认为是一个节点
+          但是在IE8及以下浏览器不会把空白或者换行当做节点
+          对于pho这一组ul来说
+          它的childNodes有7个节点
+          分别是
+            ul标签后面的一个换行
+            第一个li
+            第一个li后面的换行
+            第二个li
+            第二个li后面的换行
+            第三个li
+            第三个li后面的换行
+        */
+        console.log(phc.length);
+        console.log(phc[1].firstChild.nodeValue);
+
+        /*
+          可以使用children属性 可以获取当前元素的所有子元素
+          这样就不会返回空白节点了 因为元素只有标签
+        */
+        phc = pho.children[0].innerHTML;
+
+        console.log(phc);
+
+        // 或者可以用这个方法 直接获取第一个子元素 但是不兼容IE8
+        phc = pho.firstElementChild.innerHTML;
+        console.log(phc);
+
+        alert(phc);
+
+      }
+
+
+      // 返回#bj的父节点
+      var btn07 = document.getElementById('btn07');
+
+      btn07.onclick = function(){
+        var bj = document.getElementById('bj');
+
+        var bjpe = bj.parentElement;
+        var bjpn = bj.parentNode;
+
+        console.log(bjpe.id);
+        console.log(bjpe);
+        console.log(bjpn.getAttribute('id'));
+        console.log(bjpn);
+
+      }
+
+      // 返回#android的前一个兄弟节点
+      fun('btn08',function(){
+        var and = document.getElementById('android');
+
+        // 这时候会把空白打出来 Object Text
+        // alert(and.previousSibling);
+
+        //应该使用这个previousElementSibling 旦同样是IE8及以下浏览器不支持
+        alert(and.previousElementSibling.innerHTML);
+      });
+
+      // 读取#username的value属性值
+      fun('btn09',function(){
+        var use = document.getElementById('username');
+
+        // 这样可以获取文本框实时输入的内容
+        alert(use.value);
+        alert(use.getAttribute('value'));
+      });
+
+      // 设置#username的value属性值
+      fun('btn10',function(){
+        var use = document.getElementById('username');
+
+        // use.setAttribute('value', '设置的Value');
+        use.value = '你好';
+      });
+
+      // 返回#bj的文本值
+      fun('btn11',function(){
+        var bje = document.getElementById('bj');
+
+        alert(bje.innerHTML);
+      });
+    };
+  </script>
+</head>
+
+<body>
+  <div id="total">
+    <div class="inner">
+      <p>
+        你喜欢哪个城市?
+      </p>
+
+      <ul id="city">
+        <li id="bj">北京</li>
+        <li>上海</li>
+        <li>东京</li>
+        <li>首尔</li>
+      </ul>
+
+      <br>
+      <br>
+
+      <p>
+        你喜欢哪款单机游戏?
+      </p>
+
+      <ul id="game">
+        <li id="rl">红警</li>
+        <li>实况</li>
+        <li>极品飞车</li>
+        <li>魔兽</li>
+      </ul>
+
+      <br />
+      <br />
+
+      <p>
+        你手机的操作系统是?
+      </p>
+
+      <ul id="phone">
+        <li >IOS</li>
+        <li id="android">Android</li>
+        <li>Windows Phone</li>
+      </ul>
+    </div>
+
+    <div class="inner">
+      gender:
+      <input class="hello" type="radio" name="gender" value="male" /> Male
+      <input class="hello" type="radio" name="gender" value="female" /> Female
+      <br>
+      <br> name:
+      <input type="text" name="name" id="username" value="abcde" />
+    </div>
+  </div>
+  <div id="btnList">
+    <div><button id="btn01">查找#bj节点</button></div>
+    <div><button id="btn02">查找所有li节点</button></div>
+    <div><button id="btn03">查找name=gender的所有节点</button></div>
+    <div><button id="btn04">查找#city下所有li节点</button></div>
+    <div><button id="btn05">返回#city的所有子节点</button></div>
+    <div><button id="btn06">返回#phone的第一个子节点</button></div>
+    <div><button id="btn07">返回#bj的父节点</button></div>
+    <div><button id="btn08">返回#android的前一个兄弟节点</button></div>
+    <div><button id="btn09">返回#username的value属性值</button></div>
+    <div><button id="btn10">设置#username的value属性值</button></div>
+    <div><button id="btn11">返回#bj的文本值</button></div>
+  </div>
+</body>
+
+</html>

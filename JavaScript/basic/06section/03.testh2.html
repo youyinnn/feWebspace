@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <script type="text/javascript">
+    window.onload = function(){
+      console.log(history.length);
+
+      var f = document.getElementById('forward');
+      var b = document.getElementById('back');
+
+      f.onclick = function(){
+        history.forward();
+      }
+
+      b.onclick = function(){
+        history.back();
+      }
+    }
+  </script>
+</head>
+<body>
+  <br>
+  <button type="button" id="forward">前一页</button>
+  <button type="button" id="back">后一页</button>
+    <h1>H2</h1>
+    <a href="./03.History.html">to history</a>
+  </body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+
+    </style>
+  </head>
+  <body>
+
+    <button type="button" id="but">点一下</button>
+
+    <script type="text/javascript">
+      var but = document.getElementById('but');
+
+      // but.onclick = function(){
+      //   console.log(1);
+      // }
+      //
+      // but.onclick = function(){
+      //   console.log(2);
+      // }
+
+      /*
+        对象.事件 = function()
+          这种方法只能在同一个对象中绑定同一个事件一次
+
+        但是有时候我们希望同一个事件可以绑定多个响应 就可以使用下面这种方法
+        addEventListener()
+          - 参数1：事件的字符串（不要on）
+          - 参数2：回调函数 事件触发函数调用
+          - 参数3：是否在捕获阶段触发事件 一般传false
+
+        但是IE8不支持这种方法（操
+      */
+      // but.addEventListener('click',function(){
+      //   console.log(1);
+      // },false);
+      //
+      // but.addEventListener('click',function(){
+      //   console.log(2);
+      // },false);
+      //
+      // but.addEventListener('click',function(){
+      //   console.log(3);
+      // },false);
+
+      /*
+        attachEvent()
+          - 参数1：事件字符串 要on
+          - 参数2：回调函数
+        但是这个方法调用绑定函数的顺序是倒的（5-8是如此以后的正常）
+        并且只支持IE5-10（脑残嘛？
+      */
+      // but.attachEvent("onclick",function(){
+      //   console.log(1);
+      // });
+      // but.attachEvent("onclick",function(){
+      //   console.log(2);
+      // });
+      // but.attachEvent("onclick",function(){
+      //   console.log(3);
+      // });
+
+      /*
+        所以我们开始做兼容方法
+        首先要注意：
+          addEventListener() 方法中的this是我们绑定的事件
+          attachedEvent() 方法中的this是window
+
+        参数：
+          1、obj 要绑定的对象
+          2、eventStr 绑定事件 (不要on)
+          3、callback 回调函数
+      */
+      function bind(obj,eventStr,callback){
+        if(obj.addEventListener){
+          // 兼容大部分浏览器
+          obj.addEventListener(eventStr,callback,false);
+        }else{
+          /*
+            this是谁由调用方式决定
+            由于attachEvent()的默认this是window
+            为了统一this
+            我们可以用下面的方式来指定this
+            callback.apply(obj);
+          */
+          //IE
+          obj.attachEvent('on'+eventStr,function(){
+            callback.apply(obj);
+          });
+        }
+      }
+
+      bind(but,'click',function(){
+        alert(this);
+      });
+      // bind(but,'click',function(){
+      //   console.log(2);
+      // });
+      // bind(but,'click',function(){
+      //   console.log(3);
+      // });
+    </script>
+  </body>
+</html>

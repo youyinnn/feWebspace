@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .box1{
+        margin: 50px auto 10px;
+        width: 200px;
+        height: 200px;
+        background-color: rgb(161, 24, 252);
+      }
+      button{
+        display: block;
+        width: 100px;
+        margin: 5px auto;
+      }
+    </style>
+    <script type="text/javascript">
+      window.onload = function(){
+          var but = document.getElementsByName('button')[0];
+          var box1 = document.getElementById('box1');
+
+          but.onclick = function(){
+            /*
+              获取元素当前正在显示的样式
+              并不是读取样式表里的也不是内联的
+
+              元素.currentStyle.样式名
+              但是这个B只有IE支持
+            */
+            // console.log(box1.currentStyle.width);
+
+            /*
+              其它浏览器就只能用这个window对象的方法
+                参数1：要操作的对象
+                参数2：可以传递一个伪元素 一般不用 传null
+              该方法IE8以下不支持
+            */
+            // var box1css = getComputedStyle(box1,null);
+
+            console.log(getStyle(box1, 'width'));
+
+            /*
+              需要注意的是 这两种方法是只读的
+              并不能通过这两个方法设置属性
+              设置样式只能是通过style属性设置内联样式
+            */
+          }
+
+          //定义方法做兼容
+          function getStyle(obj,styleName){
+            var cs = obj.currentStyle;
+
+            if (cs == undefined){
+              var gcs = getComputedStyle(obj,null);
+              return gcs[styleName];
+            }else{
+              return cs[styleName];
+            }
+          }
+        }
+    </script>
+  </head>
+  <body>
+    <div class="box1" id="box1">
+
+    </div>
+    <button type="button" name="button" id="but">Read</button>
+  </body>
+</html>

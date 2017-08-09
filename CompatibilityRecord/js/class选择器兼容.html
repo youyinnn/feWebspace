@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+
+      window.onload = function(){
+
+          // 获取body标签的两种方式
+          var body = document.getElementsByTagName('body')[0];
+          body = document.body;
+          console.log(body);
+
+          // 获取html标签
+          var html = document.documentElement;
+          console.log(html);
+
+          // 页面中所有的元素
+          var all = document.all;
+          console.log(all);
+
+          // 根据class属性值查询一组元素 但是这个方法对IE8及以下不支持
+          var box1 = document.getElementsByClassName('box1');
+          console.log(box1.length);
+
+          /*
+            根据css选择器来查询元素 这个方法可以代替根据class属性查询
+            而且这个方法被IE8兼容
+            但是如果页面中有多个符合选择器的元素 这个方法只会选择第一个
+          */
+          var box1div = document.querySelector('.box1 div');
+          console.log(box1div);
+
+          /*
+            这个时候可以选择使用方法 querySelectorAll() 可以选择所有符合选择器的元素
+          */
+          var box1s = document.querySelectorAll('.box1');
+          console.log(box1s.length);
+      }
+    </script>
+  </head>
+  <body>
+    <p>你好</p>
+    <p>JavaScript</p>
+
+    <div class="box1">
+        <div>box1中的div</div>
+    </div>
+    <div class="box1"></div>
+    <div class="box1"></div>
+  </body>
+</html>
