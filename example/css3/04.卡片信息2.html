@@ -140,7 +140,29 @@
         transform: scale(0.8, 0.8) rotateY(5deg);
       }
 
-
+      .cardmsge{
+        font-family: Microsoft YaHei Light;
+        background-color: rgb(196,196,196);
+        position: relative;
+        top: -295px;
+        width: 280px;
+        height: 290px;
+        box-shadow: 0px 3px 7px 1px rgba(36,44,46,.74);
+        transition: all .4s;
+        transform: scale(0.7, 0.7);
+        opacity: 0;
+      }
+      .cardbox:hover .cardmsge{
+        transform: scale(1, 1);
+        opacity: 1;
+      }
+      .carde{
+        transition: all .4s;
+      }
+      .cardbox:hover .carde{
+        transform: scale(1.2, 1.2);
+        opacity: 0;
+      }
     </style>
   </head>
   <body>
@@ -174,6 +196,16 @@
     <div class="cardbox" style="overflow: hidden; background-color:rgba(51,62,82,.79);">
       <img src="./card2.jpg" class="cardd">
       <div class="cardmsgd">
+        <span>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          我们一路奋战,不是为了能改变世界,而是为了不让世界改变我们。
+        </span>
+      </div>
+    </div>
+
+    <div class="cardbox">
+      <img src="./card2.jpg" class="carde">
+      <div class="cardmsge">
         <span>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           我们一路奋战,不是为了能改变世界,而是为了不让世界改变我们。
