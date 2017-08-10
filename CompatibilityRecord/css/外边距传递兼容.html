@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      /*  :
+          问题二：子元素外边距传递给相邻父元素
+         */
+      .box3{
+        width: 300px;
+        height: 300px;
+        background-color: rgb(117, 228, 38);
+      }
+      .box4{
+        width: 200px;
+        height: 200px;
+        background-color: rgb(166, 118, 17);
+        /*
+          这里会出现相邻子元素的外边距和父元素重叠 导致子元素外边距传递给父元素
+          使用table标签可以隔离父子元素的外边距（破坏相邻条件
+        */
+        margin-top: 100px;
+      }
+
+      /*  :
+          解决二：使用display：table隔离父子元素
+         */
+      .clearfix::before{
+        content: "";
+        /*
+        display：table可以将元素作为一个表格显示
+        */
+        display: table;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box3 clearfix">
+      <!-- <table></table> -->
+      <div class="box4"></div>
+    </div>
+  </body>
+</html>
