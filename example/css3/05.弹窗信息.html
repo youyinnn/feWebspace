@@ -93,11 +93,16 @@
         text-indent: 30px;
         padding: 0 5% 0;
       }
+
+      #p2{
+        transition: all .6s;
+        transform: scale(.8, .8);
+      }
     </style>
   </head>
   <body style="height: 1000px;">
     <div class="curtain userselect" id="c1">
-      <div class="msgpanel">
+      <div class="msgpanel" id="p1">
         <div class="ptitle">
           Youyinnn
         </div>
@@ -111,12 +116,12 @@
             ——本杰明，我们命中注定要失去所爱之人，不然我们怎么知道，他们在我们的生命中有多重要？
           </div>
         </div>
-        <a href="javascript:;" class="pexit" id="pexit">CLOSE ME</a>
+        <a href="javascript:;" class="pexit" id="pexit1">CLOSE ME</a>
       </div>
     </div>
 
     <div class="curtain userselect" id="c2">
-      <div class="msgpanel">
+      <div class="msgpanel" id="p2">
         <div class="ptitle">
           Youyinnn
         </div>
@@ -130,28 +135,43 @@
             ——本杰明，我们命中注定要失去所爱之人，不然我们怎么知道，他们在我们的生命中有多重要？
           </div>
         </div>
-        <a href="javascript:;" class="pexit" id="pexit">CLOSE ME</a>
+        <a href="javascript:;" class="pexit" id="pexit2">CLOSE ME</a>
       </div>
     </div>
 
     <a href="javascript:;" class="abt" id="abt1">普通淡入淡出</a>
-    <a href="javascript:;" class="abt" id="abt2">普通淡入淡出</a>
+    <a href="javascript:;" class="abt" id="abt2">缩放淡入淡出</a>
 
     <script type="text/javascript">
-      var pexit = document.getElementById('pexit')
-      var abt1 = document.getElementById('abt1')
       var c1 = document.getElementById('c1')
-      var c2 = document.getElementById('c2')
+      var pexit1 = document.getElementById('pexit1')
+      var abt1 = document.getElementById('abt1')
 
-      pexit.onclick = function () {
+      var pexit2 = document.getElementById('pexit2')
+      var abt2 = document.getElementById('abt2')
+      var c2 = document.getElementById('c2')
+      var p2 = document.getElementById('p2')
+
+      abt1.onclick = function () {
+        c1.style.cssText = 'visibility : visible; opacity: 1;'
+      }
+      pexit1.onclick = function () {
         var msp = this.parentElement
         var cur = msp.parentElement
         cur.style.cssText = 'visibility : hidden; opacity: 0;'
       }
 
 
-      abt1.onclick = function () {
-        c1.style.cssText = 'visibility : visible; opacity: 1;'
+
+      abt2.onclick = function () {
+        p2.style.cssText = 'transform: scale(1, 1);'
+        c2.style.cssText = 'visibility : visible; opacity: 1;'
+      }
+      pexit2.onclick = function () {
+        var msp = this.parentElement
+        var cur = msp.parentElement
+        msp.style.cssText = 'transform: scale(.8, .8);'
+        cur.style.cssText = 'visibility : hidden; opacity: 0;'
       }
 
     </script>
