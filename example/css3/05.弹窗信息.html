@@ -103,6 +103,15 @@
         transition: all .25s;
         transform: scale(.65, .65);
       }
+      #p3{
+        transition: all .25s;
+        transform: scale(1.5, 1.5);
+      }
+      #p4{
+        transition: all .25s;
+        /* 添加视距：3D效果的关键 */
+        transform: perspective(600px) rotateX(-60deg);
+      }
     </style>
   </head>
   <body style="height: 1000px;" onmouseover="window.status='';return true">
@@ -144,8 +153,48 @@
       </div>
     </div>
 
+    <div class="curtain userselect" id="c3">
+      <div class="msgpanel" id="p3">
+        <div class="ptitle">
+          Youyinnn
+        </div>
+        <div class="pmessage">
+          <br><br><br><br>
+          <div>
+            Benjamin，we're meant to lose the people we love.How else would we know how important they are to us?
+          </div>
+          <br>
+          <div>
+            ——本杰明，我们命中注定要失去所爱之人，不然我们怎么知道，他们在我们的生命中有多重要？
+          </div>
+        </div>
+        <button class="pexit abt" id="pexit3">CLOSE ME</button>
+      </div>
+    </div>
+
+    <div class="curtain userselect" id="c4">
+      <div class="msgpanel" id="p4">
+        <div class="ptitle">
+          Youyinnn
+        </div>
+        <div class="pmessage">
+          <br><br><br><br>
+          <div>
+            Benjamin，we're meant to lose the people we love.How else would we know how important they are to us?
+          </div>
+          <br>
+          <div>
+            ——本杰明，我们命中注定要失去所爱之人，不然我们怎么知道，他们在我们的生命中有多重要？
+          </div>
+        </div>
+        <button class="pexit abt" id="pexit4">CLOSE ME</button>
+      </div>
+    </div>
+
     <button class="abt" id="abt1">普通淡入淡出</button>
-    <button class="abt" id="abt2">缩放淡入淡出</button>
+    <button class="abt" id="abt2">放缩淡入淡出</button>
+    <button class="abt" id="abt3">缩放淡入淡出</button>
+    <button class="abt" id="abt4">上下翻转</button>
 
     <script type="text/javascript">
 
@@ -157,6 +206,16 @@
       var abt2 = document.getElementById('abt2')
       var c2 = document.getElementById('c2')
       var p2 = document.getElementById('p2')
+
+      var pexit3 = document.getElementById('pexit3')
+      var abt3 = document.getElementById('abt3')
+      var c3 = document.getElementById('c3')
+      var p3 = document.getElementById('p3')
+
+      var pexit4 = document.getElementById('pexit4')
+      var abt4 = document.getElementById('abt4')
+      var c4 = document.getElementById('c4')
+      var p4 = document.getElementById('p4')
 
       abt1.onclick = function () {
         this.disabled = true
@@ -180,6 +239,32 @@
         var cur = msp.parentElement
         abt2.disabled = false
         msp.style.cssText = 'transform: scale(.65, .65);'
+        cur.style.cssText = 'visibility : hidden; opacity: 0;'
+      }
+
+      abt3.onclick = function () {
+        this.disabled = true
+        p3.style.cssText = 'transform: scale(1, 1);'
+        c3.style.cssText = 'visibility : visible; opacity: 1;'
+      }
+      pexit3.onclick = function () {
+        var msp = this.parentElement
+        var cur = msp.parentElement
+        abt3.disabled = false
+        msp.style.cssText = 'transform: scale(1.5, 1.5);'
+        cur.style.cssText = 'visibility : hidden; opacity: 0;'
+      }
+
+      abt4.onclick = function () {
+        this.disabled = true
+        p4.style.cssText = 'transform: perspective(600px) rotateX(0deg);'
+        c4.style.cssText = 'visibility : visible; opacity: 1;'
+      }
+      pexit4.onclick = function () {
+        var msp = this.parentElement
+        var cur = msp.parentElement
+        abt4.disabled = false
+        msp.style.cssText = 'transform: perspective(600px) rotateX(-60deg);'
         cur.style.cssText = 'visibility : hidden; opacity: 0;'
       }
 
