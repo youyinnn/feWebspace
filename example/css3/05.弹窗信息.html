@@ -32,7 +32,7 @@
         background-color: rgb(120,139,193);
       }
       .abt:active{
-        transform: translateY(6px);
+        transform: translateY(4px);
       }
       .curtain{
         width: 100%;
@@ -43,8 +43,9 @@
         /*background-color: rgba(214,78,78, .7);*/
         position: fixed;
         visibility: hidden;
+        /*display: none;*/
         opacity: 0;
-        transition: all .4s;
+        transition: all .25s;
       }
 
       .msgpanel{
@@ -99,7 +100,7 @@
       }
 
       #p2{
-        transition: all .4s;
+        transition: all .25s;
         transform: scale(.65, .65);
       }
     </style>
@@ -158,22 +159,26 @@
       var p2 = document.getElementById('p2')
 
       abt1.onclick = function () {
+        this.disabled = true
         c1.style.cssText = 'visibility : visible; opacity: 1;'
       }
       pexit1.onclick = function () {
         var msp = this.parentElement
         var cur = msp.parentElement
+        abt1.disabled = false
         cur.style.cssText = 'visibility : hidden; opacity: 0;'
       }
 
 
       abt2.onclick = function () {
+        this.disabled = true
         p2.style.cssText = 'transform: scale(1, 1);'
         c2.style.cssText = 'visibility : visible; opacity: 1;'
       }
       pexit2.onclick = function () {
         var msp = this.parentElement
         var cur = msp.parentElement
+        abt2.disabled = false
         msp.style.cssText = 'transform: scale(.65, .65);'
         cur.style.cssText = 'visibility : hidden; opacity: 0;'
       }
