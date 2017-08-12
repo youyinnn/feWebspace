@@ -112,9 +112,15 @@
         /* 添加视距：3D效果的关键 */
         transform: perspective(600px) rotateX(-60deg);
       }
+
+      #p5{
+        transition: all .4s;
+        top: 0;
+        transform: translateY(-400px);
+      }
     </style>
   </head>
-  <body style="height: 1000px;" onmouseover="window.status='';return true">
+  <body style="height: 1000px;">
     <div class="curtain userselect" id="c1">
       <div class="msgpanel" id="p1">
         <div class="ptitle">
@@ -191,10 +197,30 @@
       </div>
     </div>
 
+    <div class="curtain userselect" id="c5">
+      <div class="msgpanel" id="p5">
+        <div class="ptitle">
+          Youyinnn
+        </div>
+        <div class="pmessage">
+          <br><br><br><br>
+          <div>
+            Benjamin，we're meant to lose the people we love.How else would we know how important they are to us?
+          </div>
+          <br>
+          <div>
+            ——本杰明，我们命中注定要失去所爱之人，不然我们怎么知道，他们在我们的生命中有多重要？
+          </div>
+        </div>
+        <button class="pexit abt" id="pexit5">CLOSE ME</button>
+      </div>
+    </div>
+
     <button class="abt" id="abt1">普通淡入淡出</button>
     <button class="abt" id="abt2">放缩淡入淡出</button>
     <button class="abt" id="abt3">缩放淡入淡出</button>
     <button class="abt" id="abt4">上下翻转</button>
+    <button class="abt" id="abt5">贴顶抽屉</button>
 
     <script type="text/javascript">
 
@@ -216,6 +242,11 @@
       var abt4 = document.getElementById('abt4')
       var c4 = document.getElementById('c4')
       var p4 = document.getElementById('p4')
+
+      var pexit5 = document.getElementById('pexit5')
+      var abt5 = document.getElementById('abt5')
+      var c5 = document.getElementById('c5')
+      var p5 = document.getElementById('p5')
 
       abt1.onclick = function () {
         this.disabled = true
@@ -265,6 +296,19 @@
         var cur = msp.parentElement
         abt4.disabled = false
         msp.style.cssText = 'transform: perspective(600px) rotateX(-60deg);'
+        cur.style.cssText = 'visibility : hidden; opacity: 0;'
+      }
+
+      abt5.onclick = function () {
+        this.disabled = true
+        p5.style.cssText = 'transform: translateY(0px);'
+        c5.style.cssText = 'visibility : visible; opacity: 1;'
+      }
+      pexit5.onclick = function () {
+        var msp = this.parentElement
+        var cur = msp.parentElement
+        abt5.disabled = false
+        msp.style.cssText = 'transform: translateY(-400px);'
         cur.style.cssText = 'visibility : hidden; opacity: 0;'
       }
 
