@@ -1,90 +1,109 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
 
-  </head>
-  <body>
-    <div id="myDiv">
+<head>
+  <meta charset="utf-8">
+  <title></title>
 
-    </div>
-    <button type="button" onclick="getFF()">getF</button>
+</head>
 
-    <script type="text/javascript">
-      var getF = function () {
-        console.log('In getF')
-        // 创建Ajax对象
-        var xmlhttp = new XMLHttpRequest()
-        /*
-          open(method,url,async)
-            规定请求的类型、URL 以及是否异步处理请求。
-              method：请求的类型；GET 或 POST
-              url：文件在服务器上的位置
-              async：true（异步）或 false（同步）这个参数可以省略 默认是true
+<body>
+  <div id="myDiv">
 
-              在异步的时候JS无需等待服务器响应而执行其他脚本 响应之后才对响应进行处理
+  </div>
+  <button type="button" onclick="postF()">getF</button>
 
-              在异步的时候 我们使用Ajax对象的onreadystatechange属性来规定程序应对服务器响应的行为
-          一般我们会在url后面加上时间戳防止浏览器缓存
-        */
-        xmlhttp.open('GET', 'http://localhost:8080/ajax?time=' + new Date().getTime(), true)
-        /*
-          send(string)
-            将请求发送到服务器。
-              string：仅用于 POST 请求
-        */
-        xmlhttp.send()
+  <script type="text/javascript" src="./AjaxReq.js"></script>
+  <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
 
-        xmlhttp.onreadystatechange = function () {
-          if (xmlhttp.readyState === 2) {
-            // console.log('The request has been accpet!')
-            // console.log(xmlhttp)
-          }
-          if (xmlhttp.readyState === 3) {
-            // console.log('The request is on the server handling...')
-            // console.log(xmlhttp)
-          }
-          // 当响应状态完成的时候 并且响应状态码是200的时候
-          if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-            // console.log('The request has finish !')
-            // 把获取到的响应字符串打印在对应元素中
-            document.getElementById('myDiv').innerHTML = xmlhttp.responseText
-            console.log(xmlhttp)
-            // console.log(xmlhttp.responseText)
-          }
-        }
+  </script>
+  <script type="text/javascript">
+  var getF = function () {
+    console.log('In getF')
+    // 创建Ajax对象
+    var xmlhttp = new XMLHttpRequest()
+    /*
+      open(method,url,async)
+        规定请求的类型、URL 以及是否异步处理请求。
+          method：请求的类型；GET 或 POST
+          url：文件在服务器上的位置
+          async：true（异步）或 false（同步）这个参数可以省略 默认是true
+
+          在异步的时候JS无需等待服务器响应而执行其他脚本 响应之后才对响应进行处理
+
+          在异步的时候 我们使用Ajax对象的onreadystatechange属性来规定程序应对服务器响应的行为
+      一般我们会在url后面加上时间戳防止浏览器缓存
+    */
+    xmlhttp.open('GET', 'http://localhost:8080/ajax?time=' + new Date().getTime(), true)
+    /*
+      send(string)
+        将请求发送到服务器。
+          string：仅用于 POST 请求
+    */
+    xmlhttp.send()
+
+    xmlhttp.onreadystatechange = function () {
+      if (xmlhttp.readyState === 2) {
+        // console.log('The request has been accpet!')
+        // console.log(xmlhttp)
       }
-
-      var postF = function () {
-        var xmlhttp = new XMLHttpRequest()
-        xmlhttp.open('POST', '***', true)
-        xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-        xmlhttp.send('name=Harry&age=18')
-
+      if (xmlhttp.readyState === 3) {
+        // console.log('The request is on the server handling...')
+        // console.log(xmlhttp)
       }
-
-      /*
-        使用回调函数的套路写Ajax
-      */
-      var xmlhttp
-      var req = function (url, func) {
-        xmlhttp = new XMLHttpRequest()
-        xmlhttp.open('GET', url, true)
-        xmlhttp.onreadystatechange = func
-        xmlhttp.send(null)
+      // 当响应状态完成的时候 并且响应状态码是200的时候
+      if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+        // console.log('The request has finish !')
+        // 把获取到的响应字符串打印在对应元素中
+        document.getElementById('myDiv').innerHTML = xmlhttp.responseText
+        console.log(xmlhttp)
+        // console.log(xmlhttp.responseText)
       }
+    }
+  }
 
-      var getFF = function () {
-        req('http://youyinnn.cn:8080/AjaxPratice-1.0-SNAPSHOT/ajax?time=' + new Date().getTime(), function () {
-          if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-            // document.getElementById('myDiv').innerHTML = xmlhttp.responseText
-            var person = JSON.parse(xmlhttp.responseText)
-            console.log(xmlhttp)
-            console.log(person)
-          }
-        })
+  var postF = function () {
+    var formData = new FormData()
+    formData.append('msg', 'wubda ba')
+    formData.append('mag', 'sdafgwfds')
+    $.ajax({
+      url: 'http://localhost:8080/ajax',
+      type: 'POST',
+      data: formData,
+      async: true,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function (returndata) {
+        console.log(returndata)
+      },
+      error: function (returndata) {
+        console.log(returndata)
       }
-    </script>
-  </body>
+    })
+}
+
+  /* global getReq xmlhttp */
+  var getFF = function () {
+    getReq('http://youyinnn.cn:8080/AjaxPratice-1.0-SNAPSHOT/ajax?time=' + new Date().getTime(), function () {
+      // document.getElementById('myDiv').innerHTML = xmlhttp.responseText
+
+      var person = JSON.parse(xmlhttp.responseText)
+      // console.log(xmlhttp)
+      console.log(person)
+    })
+  }
+
+  var getFF2 = function () {
+    getReq('http://localhost:8080/ajax?time=' + new Date().getTime(), function () {
+      // document.getElementById('myDiv').innerHTML = xmlhttp.responseText
+
+      var person = JSON.parse(xmlhttp.responseText)
+      // console.log(xmlhttp)
+      console.log(person)
+    })
+  }
+  </script>
+</body>
+
 </html>
