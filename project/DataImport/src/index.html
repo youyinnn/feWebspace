@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DataImport</title>
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/transform.css">
+  <link rel="stylesheet" href="./css/msgpanel.css">
+  <style media="screen">
+  #mainPanel {
+    height: 500px;
+    width: 900px;
+  }
+
+  #title {
+    line-height: 120px;
+    margin: 0 auto;
+    border-bottom: black 5px solid;
+    height: 120px;
+    width: 600px;
+    text-align: center;
+    font-size: 55px;
+  }
+
+  #buttons {
+    margin: 20px auto 0;
+    height: 300px;
+    width: 700px;
+  }
+  </style>
+</head>
+
+<body>
+
+  <div id="sidebut" class="sidebut unselectable">
+    Home
+  </div>
+
+  <div id="mainPanel" class="panel">
+    <div id="title">
+      <span>Data Import Tools</span>
+    </div>
+    <div id="buttons">
+      <div class="ar">
+        <a id="bt2" class="unselectable bt indexbt">数据库导出数据</a>
+      </div>
+      <div class="ar">
+        <a id="bt1" class="unselectable bt indexbt">导入至数据库</a>
+      </div>
+      <div class="ar">
+        <a id="bt4" class="unselectable bt indexbt">文件格式转换</a>
+      </div>
+      <div class="ar">
+        <a id="bt3" class="unselectable bt indexbt">数据库之间转换</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="dataImportPanel" class="panel dataImportPanel" style="aaa">
+    <span class="subtitle">导入至数据库</span>
+    <span class="introduce">说明：将xlsx、xls、csv格式文件导入MySql数据库表或者MongoDB数据库集合中。</span>
+
+    <a id="uploadbutton" class="unselectable bt funcbt">文件上传</a>
+  </div>
+
+  <div class="curtain unselectable" id="c2">
+    <div class="msgpanel" id="p2">
+      <div class="ptitle">
+
+      </div>
+      <div class="pmessage">
+      </div>
+      <button class="pexit pbt" id="pexit2">好的</button>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="./js/tool.js"></script>
+  <script type="text/javascript" src="./js/main.js"></script>
+  <script type="text/javascript" src="./js/AjaxReq.js"></script>
+  <script type="text/javascript" src="./js/uploadbut.js"></script>
+  <script type="text/javascript">
+
+  var pexit2 = document.getElementById('pexit2')
+  var c2 = document.getElementById('c2')
+  var p2 = document.getElementById('p2')
+
+
+  var mainPanel = document.getElementById('mainPanel')
+  var bt1 = document.getElementById('bt1')
+  var dataImportPanel = document.getElementById('dataImportPanel')
+  var uploadbutton = document.getElementById('uploadbutton')
+  var acceptableFileArr = ['jpg']
+
+  bt1.onclick = function () {
+    hideMainPanel(mainPanel)
+    showSecondPanel(dataImportPanel)
+  }
+
+  uploadbutton.onclick = function () {
+    uploadbut(0.05, acceptableFileArr)
+  }
+
+  </script>
+</body>
+
+</html>

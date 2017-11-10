@@ -1,0 +1,119 @@
+/* 禁止选中并且兼容 */
+*.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body {
+  background-color: rgb(200,200,200);
+}
+
+.ar {
+  width: 350px;
+  height: 150px;
+  float: right;
+}
+
+.indexbt {
+  margin: 20px auto 0;
+  padding: 0px 5px;
+  line-height: 60px;
+  width: 200px;
+  height: 60px;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.funcbt{
+  line-height: 30px;
+  margin: 10px auto 0;
+  width: 150px;
+  height: 30px;
+}
+
+.bt:hover {
+  background-color: rgb(48, 134, 161);
+}
+
+.bt:active {
+  transform: translateY(10px);
+}
+
+.bt {
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  color: white;
+  background-color: rgb(79, 199, 236);
+  box-shadow: 0px 4px 0px 0px rgb(59, 148, 176);
+  transition: all .3s;
+}
+
+.panel{
+  position: absolute;
+  border-radius: 40px;
+  background-color: #ffffff;
+  box-shadow: 6px 6px 0px 1px rgba(2, 2, 3, .48);
+  /* 面板适应屏幕居中 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all .3s;
+}
+
+.sidebut{
+  bottom: 10%;
+  right: 5%;
+  position: fixed;
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
+  background-color: rgb(32,28,28);
+  line-height: 80px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  transition: all .3s;
+  z-index: 80;
+}
+
+.sidebut:hover{
+  background-color: rgb(106,98,98);
+}
+
+.sidebut:active {
+  transform: translateY(10px);
+}
+
+.dataImportPanel{
+  width: 1200px;
+  height: 700px;
+  transform: translate(-50%, -50%) scale(.55, .55);
+   visibility : hidden;
+   opacity: 0;
+}
+
+.subtitle{
+  display: block;
+  line-height: 40px;
+  margin: 0 auto;
+  border-bottom: black 5px solid;
+  height: 40px;
+  width: 900px;
+  text-align: center;
+  font-size: 25px;
+}
+
+.introduce{
+  display: block;
+  line-height: 30px;
+  margin: 10px auto 0;
+  height: 30px;
+  text-align: center;
+  font-size: 18px;
+}
