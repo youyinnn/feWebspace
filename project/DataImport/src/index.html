@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
 
@@ -29,8 +30,8 @@
     width: 700px;
   }
 
-  #uploadbutton{
-    margin: 10px auto 0;
+  #uploadbutton {
+    margin: 10px auto 20px;
     height: 30px;
     width: 300px;
   }
@@ -65,12 +66,16 @@
 
   <div id="dataImportPanel" class="panel dataImportPanel">
     <span class="subtitle unselectable">导入至数据库</span>
-    <span class="introduce unselectable">说明：将xlsx、xls、csv格式文件导入MySql数据库表或者MongoDB数据库集合中。</span>
+    <span class="introduce unselectable">
+      说明：请将xlsx、xls、csv格式文件导入MySql数据库表或者MongoDB数据库集合中。<br />
+      然后系统会返回源文件中的列名，需要您手动建立映射关系。</span>
 
     <a id="uploadbutton" class="unselectable bt funcbt">文件上传</a>
 
-    <div id="tablemsg">
-
+    <div id="tablemsg" class="tablemsg clearfix">
+      <!-- <form class="" action="index.html" method="post">
+        <input type="text" name="tableName" value="">
+      </form> -->
     </div>
   </div>
 
@@ -90,7 +95,6 @@
   <script type="text/javascript" src="./js/AjaxReq.js"></script>
   <script type="text/javascript" src="./js/uploadbut.js"></script>
   <script type="text/javascript">
-
   var pexit2 = document.getElementById('pexit2')
   var c2 = document.getElementById('c2')
   var p2 = document.getElementById('p2')
@@ -110,7 +114,6 @@
   uploadbutton.onclick = function () {
     uploadbut(1, acceptableFileArr, 'http://localhost:8080/ajax')
   }
-
   </script>
 </body>
 

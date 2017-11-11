@@ -91,10 +91,11 @@ body {
 
 .dataImportPanel{
   width: 1200px;
-  height: 700px;
+  /* height: 700px; */
   transform: translate(-50%, -50%) scale(.55, .55);
-   visibility : hidden;
-   opacity: 0;
+  visibility : hidden;
+  opacity: 0;
+  overflow: hidden;
 }
 
 .subtitle{
@@ -112,13 +113,23 @@ body {
   display: block;
   line-height: 30px;
   margin: 10px auto 0;
-  height: 30px;
+  width: 900px;
   text-align: center;
   font-size: 18px;
 }
 
-#uploadbutton{
-  margin: 10px auto 0;
-  height: 30px;
-  width: 300px;
+.clearfix::after{
+  /*添加空白内容*/
+  content: "";
+  /*转换为块元素*/
+  display: block;
+  /*清除浮动*/
+  clear: both;
+}
+
+.tablemsg{
+  margin: 0 auto 20px;
+  width: 900px;
+  background-color: rgb(136,194,31);
+  transition: all .3s;
 }
