@@ -2,11 +2,16 @@ home = true
 currentSecondPanel = null
 
 var sidebut = document.getElementById('sidebut')
+var timer
 sidebut.onclick = function getHome () {
   if (!home) {
     changePanel(mainPanel, 'showPanel', 'hidePanel')
     changePanel(currentSecondPanel, 'showPanel', 'hidePanel')
     home = true
+    clearInterval(timer)
+    timer = setInterval(function () {
+      location.reload()
+    }, 360)
   }
 }
 
@@ -30,13 +35,13 @@ function msgPanelShow (msgPanel, title, msg, exitFunc, exitFuncParameter) {
   var pmessage = msgPanel.childNodes[3]
   ptitle.innerHTML = title
   pmessage.innerHTML = msg
-  p2.style.cssText = 'transform: scale(1, 1);'
+  changePanel(p2, 'showPanel', 'hidePanel')
   c2.style.cssText = 'visibility : visible; opacity: 1;'
 
   pexit2.onclick = function () {
     var msp = this.parentElement
     var cur = msp.parentElement
-    msp.style.cssText = 'transform: scale(.65, .65);'
+    changePanel(p2, 'showPanel', 'hidePanel')
     cur.style.cssText = 'visibility : hidden; opacity: 0;'
 
     if (exitFunc instanceof Function) {
@@ -48,26 +53,17 @@ function msgPanelShow (msgPanel, title, msg, exitFunc, exitFuncParameter) {
 function createTableMsg (table) {
   var tableName = table.tableName
   var tableColumns = table.tableColumns
-  var tablemsg = document.getElementById('tablemsg')
 
-  var form = document.createElement('form')
-  form.class = 'tablemmsgform'
-  form.method = 'POST'
-  form.action = '#'
-  form.innerHTML = form.innerHTML + tableName + '<br/>'
-  form.innerHTML = form.innerHTML + tableName + '<br/>'
-  form.innerHTML = form.innerHTML + tableName + '<br/>'
-  form.innerHTML = form.innerHTML + tableName + '<br/>'
-
-  var formHead = document.createElement('input')
-  formHead.type = 'text'
-  formHead.name = tableName
+  var tablemmsgform = document.getElementById('tablemmsgform')
 
 
   for (var column in tableColumns) {
 
   }
 
-  tablemsg.appendChild(form)
+}
 
+function unfold () {
+  var tablemmsgform = document.getElementById('tablemmsgform')
+  changePanel(tablemmsgform, 'fold', 'unfold')
 }

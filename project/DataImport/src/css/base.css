@@ -51,6 +51,10 @@ body {
   background-color: rgb(79, 199, 236);
   box-shadow: 0px 4px 0px 0px rgb(59, 148, 176);
   transition: all .3s;
+  /* 取消烦人的按钮立体样式 */
+  border: none;
+  /* 取消烦人的选中边框样式 */
+  outline:none;
 }
 
 .panel{
@@ -61,7 +65,6 @@ body {
   /* 面板适应屏幕居中 */
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   transition: all .3s;
 }
 
@@ -79,6 +82,8 @@ body {
   font-weight: bold;
   transition: all .3s;
   z-index: 80;
+  /* 取消烦人的选中边框样式 */
+  outline:none;
 }
 
 .sidebut:hover{
@@ -86,7 +91,7 @@ body {
 }
 
 .sidebut:active {
-  transform: translateY(10px);
+  transform: translateY(5px);
 }
 
 .dataImportPanel{
@@ -123,12 +128,25 @@ body {
 }
 
 .tablemsg{
-  display: block;
+  transition: all 1s;
+}
+
+.tablemmsgform{
   margin: 0 auto 0px;
-  height: 0;
   width: 900px;
   background-color: rgb(136,194,31);
+  transition: all 1s;
+}
+
+.fold{
   visibility : hidden;
   opacity: 0;
-  transition: all .3s;
+  height: 0px;
+  transition: all 1s;
+}
+
+.unfold{
+  visibility : visible;
+  opacity: 1;
+  transition: all 1s;
 }

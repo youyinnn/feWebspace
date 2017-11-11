@@ -16,6 +16,10 @@ var ajaxReq = function (url, func, method, form) {
   xmlhttp.open(method, url)
 
   xmlhttp.onreadystatechange = function () {
+    if (xmlhttp.readyState === 4 && xmlhttp.status === 0) {
+      msgPanelShow(p2, '错误', '服务器未启动', null, null)
+      return 0
+    }
     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
       func()
     }

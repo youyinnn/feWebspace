@@ -40,9 +40,9 @@
 
 <body>
 
-  <div id="sidebut" class="sidebut unselectable">
+  <button id="sidebut" class="sidebut unselectable">
     Home
-  </div>
+  </button>
 
   <div id="mainPanel" class="panel showPanel">
     <div id="title">
@@ -50,16 +50,16 @@
     </div>
     <div id="buttons">
       <div class="ar">
-        <a id="bt2" class="unselectable bt indexbt">数据库导出数据</a>
+        <button id="bt2" class="unselectable bt indexbt">数据库导出数据</button>
       </div>
       <div class="ar">
-        <a id="bt1" class="unselectable bt indexbt">导入至数据库</a>
+        <button id="bt1" class="unselectable bt indexbt">导入至数据库</button>
       </div>
       <div class="ar">
-        <a id="bt4" class="unselectable bt indexbt">文件格式转换</a>
+        <button id="bt4" class="unselectable bt indexbt">文件格式转换</button>
       </div>
       <div class="ar">
-        <a id="bt3" class="unselectable bt indexbt">数据库之间转换</a>
+        <button id="bt3" class="unselectable bt indexbt">数据库之间转换</button>
       </div>
     </div>
   </div>
@@ -70,14 +70,18 @@
       说明：请将xlsx、xls、csv格式文件导入MySql数据库表或者MongoDB数据库集合中。<br />
       然后系统会返回源文件中的列名，需要您手动建立映射关系。</span>
 
-    <a id="uploadbutton" class="unselectable bt funcbt">文件上传</a>
+    <button id="uploadbutton" class="unselectable bt funcbt">文件上传</button>
 
-    <div id="tablemsg" class="tablemsg clearfix">
+    <div id="tablemsg" class="tablemsg">
+      <form id="tablemmsgform" class="tablemmsgform fold" action="#" method="post">
+
+      </form>
     </div>
   </div>
 
+  <!-- 消息弹窗 -->
   <div class="curtain unselectable" id="c2">
-    <div class="msgpanel" id="p2">
+    <div class="msgpanel hidePanel" id="p2">
       <div class="ptitle">
 
       </div>

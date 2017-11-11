@@ -13,12 +13,12 @@ function uploadbut (maxSise, acceptableFileArr, url) {
     }
     if (maxSise && input.files[0].size > maxSise * 1024 * 1024) {
       console.log(input.files[0].size)
-      msgPanelShow(p2, '错误', '请上传小于' + maxSise + 'M的文件！')
+      msgPanelShow(p2, '错误', '请上传小于' + maxSise + 'M的文件！', null, null)
       return 0
     }
     var fileType = input.value.split('.').pop()
     if (acceptableFileArr.indexOf(fileType.toLocaleLowerCase()) === -1) {
-      msgPanelShow(p2, '错误', '不接受的文件类型' + fileType)
+      msgPanelShow(p2, '错误', '不接受的文件类型' + fileType, null, null)
       return 0
     }
     var fd = new FormData()
@@ -28,7 +28,7 @@ function uploadbut (maxSise, acceptableFileArr, url) {
     postReq(url, function () {
       var table = JSON.parse(xmlhttp.responseText)
       createTableMsg(table)
-      msgPanelShow(p2, '提示', '上传成功', null, null)
+      msgPanelShow(p2, '提示', '上传成功', unfold, null)
     }, fd)
   }
 }

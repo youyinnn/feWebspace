@@ -14,17 +14,19 @@
 }
 
 .msgpanel{
-  position: fixed;
+  position: absolute;
   margin: 0 auto;
-  top: 150px;
-  left: 0;
-  right: 0;
+  /* 面板适应屏幕居中 */
+  top: 50%;
+  left: 50%;
+  /* transform: translate(-50%, -50%); */
   width: 500px;
   height: 300px;
   border-radius: 20px;
   background-color: rgb(255,255,255);
   box-shadow: 3px 3px 5px 2px rgb(80,80,80);
   z-index: 100;
+  transition: all .3s;
 }
 
 .ptitle{
@@ -38,11 +40,6 @@
   width: 70%;
   height: 20%;
   border-bottom: black 3px solid;
-}
-
-#p2{
-  transition: all .25s;
-  transform: scale(.65, .65);
 }
 
 .pexit{
@@ -101,13 +98,19 @@
 
 
 .hidePanel{
-  transform: translate(-50%, -50%) scale(.55, .55);
+  transform: translate(-50%, -60%) scale(.55, .55);
   visibility : hidden;
   opacity: 0;
 }
 
 .showPanel{
-  transform: translate(-50%, -50%) scale(1, 1);
+  transform: translate(-50%, -60%) scale(1, 1);
   visibility : visible;
   opacity: 1;
+}
+
+.hideFormTable{
+  visibility : hidden;
+  opacity: 0;
+  transform: scaleY(0);
 }
