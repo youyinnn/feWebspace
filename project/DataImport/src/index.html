@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
   <title>DataImport</title>
   <link rel="stylesheet" href="./css/base.css">
   <link rel="stylesheet" href="./css/transform.css">
@@ -29,6 +27,12 @@
     margin: 20px auto 0;
     height: 300px;
     width: 700px;
+  }
+
+  #uploadbutton{
+    margin: 10px auto 0;
+    height: 30px;
+    width: 300px;
   }
   </style>
 </head>
@@ -59,11 +63,15 @@
     </div>
   </div>
 
-  <div id="dataImportPanel" class="panel dataImportPanel" style="aaa">
-    <span class="subtitle">导入至数据库</span>
-    <span class="introduce">说明：将xlsx、xls、csv格式文件导入MySql数据库表或者MongoDB数据库集合中。</span>
+  <div id="dataImportPanel" class="panel dataImportPanel">
+    <span class="subtitle unselectable">导入至数据库</span>
+    <span class="introduce unselectable">说明：将xlsx、xls、csv格式文件导入MySql数据库表或者MongoDB数据库集合中。</span>
 
     <a id="uploadbutton" class="unselectable bt funcbt">文件上传</a>
+
+    <div id="tablemsg">
+
+    </div>
   </div>
 
   <div class="curtain unselectable" id="c2">
@@ -92,7 +100,7 @@
   var bt1 = document.getElementById('bt1')
   var dataImportPanel = document.getElementById('dataImportPanel')
   var uploadbutton = document.getElementById('uploadbutton')
-  var acceptableFileArr = ['jpg']
+  var acceptableFileArr = ['jpg', 'png']
 
   bt1.onclick = function () {
     hideMainPanel(mainPanel)
@@ -100,7 +108,7 @@
   }
 
   uploadbutton.onclick = function () {
-    uploadbut(1, acceptableFileArr)
+    uploadbut(1, acceptableFileArr, 'http://localhost:8080/ajax')
   }
 
   </script>

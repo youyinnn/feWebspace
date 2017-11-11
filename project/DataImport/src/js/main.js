@@ -27,7 +27,7 @@ function hideMainPanel (mainPanel) {
   hidePanel(mainPanel)
 }
 
-function msgPanelShow (msgPanel,title,msg) {
+function msgPanelShow (msgPanel, title, msg) {
   var ptitle = msgPanel.childNodes[1]
   var pmessage = msgPanel.childNodes[3]
   ptitle.innerHTML = title

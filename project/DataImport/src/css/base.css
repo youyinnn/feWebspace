@@ -31,7 +31,6 @@ body {
 
 .funcbt{
   line-height: 30px;
-  margin: 10px auto 0;
   width: 150px;
   height: 30px;
 }
@@ -116,4 +115,10 @@ body {
   height: 30px;
   text-align: center;
   font-size: 18px;
+}
+
+#uploadbutton{
+  margin: 10px auto 0;
+  height: 30px;
+  width: 300px;
 }
