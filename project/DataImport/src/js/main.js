@@ -55,7 +55,17 @@ function createTableMsg (table) {
   var tableColumns = table.tableColumns
 
   var tablemmsgform = document.getElementById('tablemmsgform')
+  var rowDiv = document.createElement('div')
+  changeClass(rowDiv, 'rowDiv')
+  changeClass(rowDiv, 'clearfix')
+  rowDiv.style.textAlign = 'center'
+  var rowInput = document.createElement('input')
+  rowInput.type = 'text'
+  rowInput.name = 'tableName'
+  rowDiv.innerHTML = tableName + ' : '
+  rowDiv.appendChild(rowInput)
 
+  tablemmsgform.appendChild(rowDiv)
 
   for (var column in tableColumns) {
 
@@ -65,5 +75,6 @@ function createTableMsg (table) {
 
 function unfold () {
   var tablemmsgform = document.getElementById('tablemmsgform')
+  tablemmsgform.style.height = '40px'
   changePanel(tablemmsgform, 'fold', 'unfold')
 }
