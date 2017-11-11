@@ -91,11 +91,6 @@ body {
 
 .dataImportPanel{
   width: 1200px;
-  /* height: 700px; */
-  transform: translate(-50%, -50%) scale(.55, .55);
-  visibility : hidden;
-  opacity: 0;
-  overflow: hidden;
 }
 
 .subtitle{
@@ -128,8 +123,12 @@ body {
 }
 
 .tablemsg{
-  margin: 0 auto 20px;
+  display: block;
+  margin: 0 auto 0px;
+  height: 0;
   width: 900px;
   background-color: rgb(136,194,31);
+  visibility : hidden;
+  opacity: 0;
   transition: all .3s;
 }

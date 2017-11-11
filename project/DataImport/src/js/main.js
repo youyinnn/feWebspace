@@ -1,30 +1,28 @@
 home = true
 currentSecondPanel = null
+
 var sidebut = document.getElementById('sidebut')
 sidebut.onclick = function getHome () {
   if (!home) {
-    showPanel(mainPanel)
-    hidePanel(currentSecondPanel)
+    changePanel(mainPanel, 'showPanel', 'hidePanel')
+    changePanel(currentSecondPanel, 'showPanel', 'hidePanel')
     home = true
   }
 }
 
-function hidePanel (panel) {
-  panel.style.cssText = 'transform: translate(-50%, -50%) scale(.55, .55); visibility : hidden; opacity: 0;'
-}
-
-function showPanel (panel) {
-  panel.style.cssText = 'transform: translate(-50%, -50%) scale(1, 1); visibility : visible; opacity: 1;'
+function changePanel (panel, showClass, hideClass) {
+  changeClass(panel, showClass)
+  changeClass(panel, hideClass)
 }
 
 function showSecondPanel (secondPanel) {
   currentSecondPanel = secondPanel
-  showPanel(secondPanel)
+  changePanel(secondPanel, 'showPanel', 'hidePanel')
 }
 
 function hideMainPanel (mainPanel) {
   home = false
-  hidePanel(mainPanel)
+  changePanel(mainPanel, 'showPanel', 'hidePanel')
 }
 
 function msgPanelShow (msgPanel, title, msg, exitFunc, exitFuncParameter) {
@@ -40,7 +38,10 @@ function msgPanelShow (msgPanel, title, msg, exitFunc, exitFuncParameter) {
     var cur = msp.parentElement
     msp.style.cssText = 'transform: scale(.65, .65);'
     cur.style.cssText = 'visibility : hidden; opacity: 0;'
-    exitFunc(exitFuncParameter)
+
+    if (exitFunc instanceof Function) {
+      exitFunc(exitFuncParameter)
+    }
   }
 }
 
@@ -53,6 +54,10 @@ function createTableMsg (table) {
   form.class = 'tablemmsgform'
   form.method = 'POST'
   form.action = '#'
+  form.innerHTML = form.innerHTML + tableName + '<br/>'
+  form.innerHTML = form.innerHTML + tableName + '<br/>'
+  form.innerHTML = form.innerHTML + tableName + '<br/>'
+  form.innerHTML = form.innerHTML + tableName + '<br/>'
 
   var formHead = document.createElement('input')
   formHead.type = 'text'
