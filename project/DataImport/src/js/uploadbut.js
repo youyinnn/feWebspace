@@ -28,7 +28,7 @@ function uploadbut (maxSise, acceptableFileArr, url) {
     postReq(url, function () {
       var table = JSON.parse(xmlhttp.responseText)
       let formRowNumber = createTableMsg(table)
-      msgPanelShow(p2, '提示', '上传成功', '进入映射', showTableMappingPanel, formRowNumber)
+      msgPanelShow(p2, '提示', '上传成功', '进入映射', showTableMappingPanel, null)
     }, fd)
   }
 }

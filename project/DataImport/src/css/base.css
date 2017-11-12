@@ -30,7 +30,7 @@ body {
 }
 
 .funcbt{
-  margin: 10px auto 21px;
+  margin: 10px auto;
   line-height: 30px;
   width: 150px;
   height: 30px;
@@ -136,4 +136,12 @@ body {
   opacity: 1;
   height: 500px;
   transition: all .5s;
+}
+
+.mapRow{
+  display: inline-block;
+  margin: 5px;
+  width: 450px;
+  height: 30px;
+  font-size: 20px;
 }

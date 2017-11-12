@@ -37,16 +37,17 @@
 
   #tableMappingPanel{
     width: 1200px;
-    height: 600px;
+    height: 635px;
   }
 
   #mappingArea{
     width: 1000px;
-    height: 530px;
+    height: 535px;
     margin: 10px auto 0;
     position: absolute;
     left: 0;
     right: 0;
+    text-align: center;
   }
   </style>
 </head>
@@ -89,6 +90,7 @@
   <div id="tableMappingPanel" class="panel hidePanel">
     <span class="subtitle unselectable">Mapping</span>
     <div id="mappingArea" class="bootstrap-frm"></div>
+    <button id="mappingbut" type="button" class="funcbt bt pexit">确定映射</button>
   </div>
 
   <!-- 消息弹窗 -->
@@ -118,6 +120,16 @@
   var dataImportPanel = document.getElementById('dataImportPanel')
   var uploadbutton = document.getElementById('uploadbutton')
   var acceptableFileArr = ['jpg', 'png']
+
+  var mappingbut = document.getElementById('mappingbut')
+
+  mappingbut.onclick = function () {
+    let table = {
+      tableName: '你好',
+      tableColumns: ['a', 'a', 'a', 'a', 'a', 'a', 'a', 'a']
+    }
+    createTableMsg(table)
+  }
 
   bt1.onclick = function () {
     hideMainPanel(mainPanel)
