@@ -30,7 +30,7 @@ function hideMainPanel (mainPanel) {
   changePanel(mainPanel, 'showPanel', 'hidePanel')
 }
 
-function msgPanelShow (msgPanel, title, msg, exitFunc, exitFuncParameter) {
+function msgPanelShow (msgPanel, title, msg, exitText, exitFunc, exitFuncParameter) {
   var ptitle = msgPanel.childNodes[1]
   var pmessage = msgPanel.childNodes[3]
   ptitle.innerHTML = title
@@ -38,9 +38,15 @@ function msgPanelShow (msgPanel, title, msg, exitFunc, exitFuncParameter) {
   changePanel(p2, 'showPanel', 'hidePanel')
   c2.style.cssText = 'visibility : visible; opacity: 1;'
 
+  if (exitText === null || exitText === undefined) {
+    pexit2.innerHTML = '好的'
+  } else {
+    pexit2.innerHTML = exitText
+  }
   pexit2.onclick = function () {
     var msp = this.parentElement
     var cur = msp.parentElement
+    console.log(888)
     changePanel(p2, 'showPanel', 'hidePanel')
     cur.style.cssText = 'visibility : hidden; opacity: 0;'
 
@@ -54,27 +60,18 @@ function createTableMsg (table) {
   var tableName = table.tableName
   var tableColumns = table.tableColumns
 
-  var tablemmsgform = document.getElementById('tablemmsgform')
-  var rowDiv = document.createElement('div')
-  changeClass(rowDiv, 'rowDiv')
-  changeClass(rowDiv, 'clearfix')
-  rowDiv.style.textAlign = 'center'
-  var rowInput = document.createElement('input')
-  rowInput.type = 'text'
-  rowInput.name = 'tableName'
-  rowDiv.innerHTML = tableName + ' : '
-  rowDiv.appendChild(rowInput)
+  var mappingArea = document.getElementById('mappingArea')
 
-  tablemmsgform.appendChild(rowDiv)
+  var submit = document.createElement('button')
+  submit.innerHTML = '确定映射'
+  changeClass(submit, 'funcbt bt pexit')
 
-  for (var column in tableColumns) {
-
-  }
-
+  appendC(mappingArea, submit)
 }
 
-function unfold () {
-  var tablemmsgform = document.getElementById('tablemmsgform')
-  tablemmsgform.style.height = '40px'
-  changePanel(tablemmsgform, 'fold', 'unfold')
+function showTableMappingPanel (rowNumber) {
+  var tableMappingPanel = document.getElementById('tableMappingPanel')
+  changePanel(currentSecondPanel, 'showPanel', 'hidePanel')
+  showSecondPanel(tableMappingPanel, 'showPanel', 'hidePanel')
+
 }

@@ -93,3 +93,7 @@ function getFinalStyle (obj, attr) {
 
   return finalStyle[attr]
 }
+
+function appendC (parent, child) {
+  parent.appendChild(child)
+}

@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="./css/base.css">
   <link rel="stylesheet" href="./css/transform.css">
   <link rel="stylesheet" href="./css/msgpanel.css">
+  <link rel="stylesheet" href="./css/bootstrap-frm.css">
   <style media="screen">
   #mainPanel {
     height: 500px;
@@ -30,10 +31,22 @@
     width: 700px;
   }
 
-  #uploadbutton {
-    margin: 10px auto 20px;
-    height: 30px;
-    width: 300px;
+  #dataImportPanel{
+    width: 1000px;
+  }
+
+  #tableMappingPanel{
+    width: 1200px;
+    height: 600px;
+  }
+
+  #mappingArea{
+    width: 1000px;
+    height: 530px;
+    margin: 10px auto 0;
+    position: absolute;
+    left: 0;
+    right: 0;
   }
   </style>
 </head>
@@ -46,7 +59,7 @@
 
   <div id="mainPanel" class="panel showPanel">
     <div id="title">
-      <span>Data Import Tools</span>
+      <span>“ Data Import Tools ”</span>
     </div>
     <div id="buttons">
       <div class="ar">
@@ -71,10 +84,11 @@
       然后系统会返回源文件中的列名，需要您手动建立映射关系。</span>
 
     <button id="uploadbutton" class="unselectable bt funcbt">文件上传</button>
+  </div>
 
-    <div id="tablemsg" class="tablemsg">
-      <form id="tablemmsgform" class="clearfix tablemmsgform fold" action="#" method="post"></form>
-    </div>
+  <div id="tableMappingPanel" class="panel hidePanel">
+    <span class="subtitle unselectable">Mapping</span>
+    <div id="mappingArea" class="bootstrap-frm"></div>
   </div>
 
   <!-- 消息弹窗 -->
@@ -85,7 +99,7 @@
       </div>
       <div class="pmessage">
       </div>
-      <button class="pexit pbt" id="pexit2">好的</button>
+      <button class="bt funcbt pexit" id="pexit2">好的</button>
     </div>
   </div>
 

@@ -43,27 +43,10 @@
 }
 
 .pexit{
-  text-decoration: none;
   position: absolute;
-  color: white;
-  width: 90px;
-  height: 30px;
-  text-align: center;
-  line-height: 30px;
-  margin: 0 auto;
   left: 0;
   right: 0;
-  bottom: 20px;
-  background-color: rgb(131,49,49);
-  border-radius: 10px;
-  box-shadow: 0px 3px 0px 0px rgb(171,125,129);
-  transition: all .3s;
-}
-.pexit:hover{
-  background-color: rgb(187,83,83);
-}
-.pexit:active{
-  transform: translateY(5px);
+  bottom: 0;
 }
 .pmessage{
   font-size: 20px;
@@ -72,28 +55,6 @@
   left: 15%;
   width: 70%;
   text-align: center;
-}
-.pbt{
-  font-family: Microsoft YaHei Light;
-  text-align: center;
-  width: 150px;
-  margin: 10px auto;
-  color: white;
-  display: block;
-  background-color: rgb(79, 199, 236);
-  box-shadow: 0px 4px 0px 0px rgb(59, 148, 176);
-  border-radius: 10px;
-  transition: all .1s;
-  /* 取消烦人的按钮立体样式 */
-  border: none;
-  /* 取消烦人的选中边框样式 */
-  outline:none;
-}
-.pbt:hover{
-  background-color: rgb(48, 134, 161);
-}
-.pbt:active{
-  transform: translateY(4px);
 }
 
 
@@ -107,10 +68,4 @@
   transform: translate(-50%, -60%) scale(1, 1);
   visibility : visible;
   opacity: 1;
-}
-
-.hideFormTable{
-  visibility : hidden;
-  opacity: 0;
-  transform: scaleY(0);
 }
