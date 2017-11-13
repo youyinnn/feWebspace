@@ -56,32 +56,60 @@ function msgPanelShow (msgPanel, title, msg, exitText, exitFunc, exitFuncParamet
 }
 
 function createTableMsg (table) {
-  let tableName = table.tableName
   let tableColumns = table.tableColumns
 
   let mappingArea = document.getElementById('mappingArea')
-  let tableHead = createRow(tableName, true, tableName)
-  let div = createRow('', false, null)
+  let tableHead = createInputRow('表名', true, 'tableName', null)
+  let dbselect = createSelect('MySQL', 'MongoDB')
   appendC(mappingArea, tableHead)
-  appendC(mappingArea, div)
+  appendC(mappingArea, dbselect)
 
+  let line = createLine()
+  appendC(mappingArea, line)
+  for (var i = 0; i < tableColumns.length; i++) {
+    let columnMappingRow = createInputRow(tableColumns[i], true, tableColumns[i], i)
+    appendC(mappingArea, columnMappingRow)
+  }
+  if (tableColumns.length % 2 !== 0) {
+    let div = createInputRow('', false, null)
+    appendC(mappingArea, div)
+  }
+
+  let line2 = createLine()
+  appendC(mappingArea, line2)
+}
+
+function createLine () {
   let line = document.createElement('div')
   line.style.width = '777px'
   line.style.borderBottom = '2px black solid'
   line.style.margin = '5px auto'
-  appendC(mappingArea, line)
-
-  for (var i = 0; i < tableColumns.length; i++) {
-    let columnRow = createRow(tableColumns[i], true, tableColumns[i])
-    appendC(mappingArea, columnRow)
-  }
-  if (tableColumns.length % 2 !== 0) {
-    let div = createRow('', false, null)
-    appendC(mappingArea, div)
-  }
+  return line
 }
 
-function createRow (innerhtml, isinput, inputName) {
+function createSelect (name) {
+  let div = document.createElement('div')
+  changeClass(div, 'mapRow')
+
+  let select = document.createElement('select')
+  select.name = 'database'
+  select.id = 'dbselect'
+  let span = document.createElement('span')
+  span.innerHTML = '数据库选择：'
+  for (var i = 0; i < arguments.length; i++) {
+    let option = document.createElement('option')
+    option.value = arguments[i]
+    option.innerHTML = arguments[i]
+    appendC(select, option)
+  }
+
+  appendC(div, span)
+  appendC(div, select)
+  return div
+}
+
+
+function createInputRow (innerhtml, isinput, inputName, index) {
   let div = document.createElement('div')
   changeClass(div, 'mapRow')
 
@@ -93,6 +121,11 @@ function createRow (innerhtml, isinput, inputName) {
     input.value = ''
     span.innerHTML = innerhtml + ' : '
     input.name = inputName
+    if (index === null) {
+      input.id = 'tableName'
+    } else {
+      input.id = 'columnMappingRow_' + index
+    }
   } else {
     input.style.visibility = 'hidden'
   }
@@ -101,6 +134,11 @@ function createRow (innerhtml, isinput, inputName) {
   appendC(label, span)
   appendC(label, input)
   return div
+}
+
+function getMappingMsg () {
+  let tableName = document.getElementById('tableName')
+  console.log(tableName.value)
 }
 
 function showTableMappingPanel () {
