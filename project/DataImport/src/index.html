@@ -81,8 +81,7 @@
   <div id="dataImportPanel" class="panel dataImportPanel hidePanel">
     <span class="subtitle unselectable">导入至数据库</span>
     <span class="introduce unselectable">
-      说明：请将xlsx、xls、csv格式文件导入MySql数据库表或者MongoDB数据库集合中。<br />
-      然后系统会返回源文件中的列名，需要您手动建立映射关系。</span>
+      说明：请将xlsx、xls、csv格式文件导入，然后系统会返回源文件中的列名，然后需要您手动建立映射关系。</span>
 
     <button id="uploadbutton" class="unselectable bt funcbt">文件上传</button>
   </div>
@@ -129,8 +128,8 @@
     //   tableColumns: ['a', 'a', 'a', 'a', 'a', 'a', 'a', 'a']
     // }
     // createTableMsg(table)
-    getMappingMsg()
-  }
+    console.log(getMappingMsg())
+}
 
   bt1.onclick = function () {
     hideMainPanel(mainPanel)

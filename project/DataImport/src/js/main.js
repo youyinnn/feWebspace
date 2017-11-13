@@ -59,9 +59,9 @@ function createTableMsg (table) {
   let tableColumns = table.tableColumns
 
   let mappingArea = document.getElementById('mappingArea')
-  let tableHead = createInputRow('表名', true, 'tableName', null)
+  let tableName = createInputRow('表名', true, 'tableName', null)
   let dbselect = createSelect('MySQL', 'MongoDB')
-  appendC(mappingArea, tableHead)
+  appendC(mappingArea, tableName)
   appendC(mappingArea, dbselect)
 
   let line = createLine()
@@ -77,6 +77,9 @@ function createTableMsg (table) {
 
   let line2 = createLine()
   appendC(mappingArea, line2)
+
+  let tableNameElement = document.getElementById('tableName')
+  tableNameElement.xixi = i
 }
 
 function createLine () {
@@ -138,12 +141,21 @@ function createInputRow (innerhtml, isinput, inputName, index) {
 
 function getMappingMsg () {
   let tableName = document.getElementById('tableName')
-  console.log(tableName.value)
+  let dbselect = document.getElementById('dbselect')
+  let columnNumber = tableName.xixi
+  map = new Map()
+  map.set('tableName', tableName.value)
+  map.set('database', dbselect.value)
+  for (var i = 0; i < columnNumber; i++) {
+    let column = document.getElementById('columnMappingRow_' + i)
+    map.set(column.name, column.value)
+  }
+
+  return strMapToJson(map)
 }
 
 function showTableMappingPanel () {
   let tableMappingPanel = document.getElementById('tableMappingPanel')
   changePanel(currentSecondPanel, 'showPanel', 'hidePanel')
   showSecondPanel(tableMappingPanel, 'showPanel', 'hidePanel')
-
 }
