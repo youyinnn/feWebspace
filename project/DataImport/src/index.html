@@ -123,13 +123,13 @@
   var mappingbut = document.getElementById('mappingbut')
 
   mappingbut.onclick = function () {
-    // let table = {
-    //   tableName: '你好',
-    //   tableColumns: ['a', 'a', 'a', 'a', 'a', 'a', 'a', 'a']
-    // }
-    // createTableMsg(table)
-    console.log(getMappingMsg())
-}
+    let mappingJson = getMappingMsg()
+    let fd = new FormData()
+    fd.append('mapping', mappingJson)
+    postReq('http://localhost:8080/mapHandle', function () {
+      console.log(xmlhttp)
+    }, fd)
+  }
 
   bt1.onclick = function () {
     hideMainPanel(mainPanel)
