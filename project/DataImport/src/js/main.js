@@ -1,9 +1,9 @@
 home = true
 currentSecondPanel = null
 
-let sidebut = document.getElementById('sidebut')
+let homesidebut = document.getElementById('homesidebut')
 let timer
-sidebut.onclick = function getHome () {
+homesidebut.onclick = function getHome () {
   if (!home) {
     changePanel(mainPanel, 'showPanel', 'hidePanel')
     changePanel(currentSecondPanel, 'showPanel', 'hidePanel')
