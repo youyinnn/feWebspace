@@ -126,6 +126,16 @@ function createInputRow (innerhtml, isinput, inputName, index) {
     input.name = inputName
     if (index === null) {
       input.id = 'tableName'
+      bind(input, 'blur', function () {
+        let rgx = new RegExp('[a-z_]', 'g')
+        for (var i = 0; i < input.value.length; i++) {
+          let char = input.value.charAt(i)
+          if (char.search(rgx) !== 0) {
+            console.log(false)
+            break
+          }
+        }
+      })
     } else {
       input.id = 'columnMappingRow_' + index
     }
