@@ -121,7 +121,7 @@
   <script type="text/javascript" src="./js/tool.js"></script>
   <script type="text/javascript" src="./js/main.js"></script>
   <script type="text/javascript" src="./js/AjaxReq.js"></script>
-  <script type="text/javascript" src="./js/uploadbut.js"></script>
+  <script type="text/javascript" src="./js/butfunc.js"></script>
   <script type="text/javascript">
   var pexit2 = document.getElementById('pexit2')
   var c2 = document.getElementById('c2')
@@ -137,12 +137,7 @@
   var mappingbut = document.getElementById('mappingbut')
 
   mappingbut.onclick = function () {
-    let mappingJson = getMappingMsg()
-    let fd = new FormData()
-    fd.append('mapping', mappingJson)
-    postReq('http://localhost:8080/mapHandle', function () {
-      console.log(xmlhttp)
-    }, fd)
+    sendMapping()
   }
 
   bt1.onclick = function () {
