@@ -126,19 +126,16 @@ function createInputRow (innerhtml, isinput, inputName, index) {
     input.name = inputName
     if (index === null) {
       input.id = 'tableName'
-      bind(input, 'blur', function () {
-        let rgx = new RegExp('[a-z_]', 'g')
-        for (var i = 0; i < input.value.length; i++) {
-          let char = input.value.charAt(i)
-          if (char.search(rgx) !== 0) {
-            console.log(false)
-            break
-          }
-        }
-      })
     } else {
       input.id = 'columnMappingRow_' + index
     }
+    bind(input, 'blur', function () {
+      if (inputStrAllWrong()) {
+        changeMappingBut('error')
+      } else {
+        changeMappingBut('right')
+      }
+    })
   } else {
     input.style.visibility = 'hidden'
   }
@@ -147,6 +144,53 @@ function createInputRow (innerhtml, isinput, inputName, index) {
   appendC(label, span)
   appendC(label, input)
   return div
+}
+
+function changeMappingBut (check) {
+  let mappingbut = document.getElementById('mappingbut')
+  if (check === 'error') {
+    addClass(mappingbut, 'errorbut')
+    mappingbut.innerHTML = '命名只接受字母与下划线且不能为空'
+    mappingbut.onclick = null
+  } else if (check === 'right') {
+    removeClass(mappingbut, 'errorbut')
+    mappingbut.innerHTML = '确定映射'
+    mappingbut.onclick = function () {
+      sendMapping()
+    }
+  }
+}
+
+function inputStrWrong (input) {
+  let rgx = new RegExp('[a-zA-Z_]', 'g')
+  if (input.value.length === 0) {
+    return true
+  }
+  for (var i = 0; i < input.value.length; i++) {
+    let char = input.value.charAt(i)
+    if (char.search(rgx) !== 0) {
+      return true
+    }
+  }
+  return false
+}
+
+function inputStrAllWrong () {
+  let tableName = document.getElementById('tableName')
+  check = inputStrWrong(tableName)
+  if (check) {
+    return check
+  }
+  let columnNumber = tableName.xixi
+  for (var i = 0; i < columnNumber; i++) {
+    let column = document.getElementById('columnMappingRow_' + i)
+    check = inputStrWrong(column)
+    if (check) {
+      return check
+    }
+  }
+
+  return check
 }
 
 function getMappingMsg () {
