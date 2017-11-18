@@ -26,18 +26,32 @@ function uploadbut (maxSise, acceptableFileArr, url) {
     fd.append('msg', '你好')
 
     postReq(url, function () {
-      var table = JSON.parse(xmlhttp.responseText)
-      createTableMsg(table)
-      msgPanelShow(p2, '提示', '上传成功', '进入映射', showTableMappingPanel, null)
+      let respJson = JSON.parse(xmlhttp.responseText)
+      let code = respJson.code
+      if (code === 'H000') {
+        let filemark = respJson.filemark
+        let headers = respJson.headers
+        createTableMsg(headers)
+        msgPanelShow(p2, '提示', '上传成功', '进入映射', showTableMappingPanel, null)
+      } else {
+        msgPanelShow(p2, '提示', '上传失败', '好的', null, null)
+      }
     }, fd)
   }
 }
 
 function sendMapping () {
   let mappingJson = getMappingMsg()
+  msgPanelShow(p2, '提示', '映射发送成功，正在生成数据表文件...', '请稍等', downloadFile, null)
   let fd = new FormData()
   fd.append('mapping', mappingJson)
   postReq('http://localhost:8080/mapHandle', function () {
-    console.log(xmlhttp)
+    pexit2.disabled = 'true'
+    changeClass(pexit2, 'pexitUnable')
+    console.log(xmlhttp.responseText)
   }, fd)
+}
+
+function downloadFile () {
+
 }

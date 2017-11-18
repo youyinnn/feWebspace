@@ -55,8 +55,7 @@ function msgPanelShow (msgPanel, title, msg, exitText, exitFunc, exitFuncParamet
   }
 }
 
-function createTableMsg (table) {
-  let tableColumns = table.tableColumns
+function createTableMsg (tableColumns) {
 
   let mappingArea = document.getElementById('mappingArea')
   let tableName = createInputRow('表名', true, 'tableName', null)

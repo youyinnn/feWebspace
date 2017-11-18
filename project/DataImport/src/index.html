@@ -136,9 +136,7 @@
 
   var mappingbut = document.getElementById('mappingbut')
 
-  mappingbut.onclick = function () {
-    sendMapping()
-  }
+  mappingbut.onclick = sendMapping
 
   bt1.onclick = function () {
     hideMainPanel(mainPanel)
@@ -147,6 +145,7 @@
 
   uploadbutton.onclick = function () {
     uploadbut(1, acceptableFileArr, 'http://localhost:8080/ajax')
+    // uploadbut(1, acceptableFileArr, 'http://youyinnn.cn:8080/AjaxPratice-1.0-SNAPSHOT/ajax')
   }
   </script>
 </body>
