@@ -42,16 +42,33 @@ function uploadbut (maxSise, acceptableFileArr, url) {
 
 function sendMapping () {
   let mappingJson = getMappingMsg()
-  msgPanelShow(p2, '提示', '映射发送成功，正在生成数据表文件...', '请稍等', downloadFile, null)
+  pexit2.disabled = 'true'
+  addClass(pexit2, 'pexitUnable')
+  msgPanelShow(p2, '提示', '正在发送映射并等待生成数据库文件...', '请稍等', null, null)
   let fd = new FormData()
   fd.append('mapping', mappingJson)
   postReq('http://localhost:8080/mapHandle', function () {
-    pexit2.disabled = 'true'
-    changeClass(pexit2, 'pexitUnable')
-    console.log(xmlhttp.responseText)
+    let respJson = JSON.parse(xmlhttp.responseText)
+    if (respJson.code === 'I000') {
+      pexit2.disabled = null
+      removeClass(pexit2, 'pexitUnable')
+      pexit2.innerHTML = '下载'
+      p2.childNodes[3].innerHTML = '文件生成成功'
+      pexit2.onclick = function () {
+        changePanel(p2, 'showPanel', 'hidePanel')
+        c2.style.cssText = 'visibility : hidden; opacity: 0;'
+        downloadFile(respJson.token)
+      }
+    } else {
+      pexit2.disabled = null
+      removeClass(pexit2, 'pexitUnable')
+      pexit2.innerHTML = '返回'
+      p2.childNodes[3].innerHTML = '文件生成失败，请返回重试。'
+    }
   }, fd)
 }
 
-function downloadFile () {
-
+function downloadFile (token) {
+  // getReq('http://localhost:8080/download?token=' + token, null)
+  getReq('http://localhost:8080/images/hexo.png', null)
 }

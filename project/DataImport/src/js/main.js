@@ -44,10 +44,8 @@ function msgPanelShow (msgPanel, title, msg, exitText, exitFunc, exitFuncParamet
     pexit2.innerHTML = exitText
   }
   pexit2.onclick = function () {
-    let msp = this.parentElement
-    let cur = msp.parentElement
     changePanel(p2, 'showPanel', 'hidePanel')
-    cur.style.cssText = 'visibility : hidden; opacity: 0;'
+    c2.style.cssText = 'visibility : hidden; opacity: 0;'
 
     if (exitFunc instanceof Function) {
       exitFunc(exitFuncParameter)
@@ -218,6 +216,7 @@ function getMappingMsg () {
 
 function showTableMappingPanel () {
   let tableMappingPanel = document.getElementById('tableMappingPanel')
+  changeMappingBut('error')
   changePanel(currentSecondPanel, 'showPanel', 'hidePanel')
   showSecondPanel(tableMappingPanel, 'showPanel', 'hidePanel')
 }
