@@ -55,7 +55,7 @@ function msgPanelShow (msgPanel, title, msg, exitText, exitFunc, exitFuncParamet
   }
 }
 
-function createTableMsg (tableColumns) {
+function createTableMsg (tableColumns, filemark) {
 
   let mappingArea = document.getElementById('mappingArea')
   let tableName = createInputRow('表名', true, 'tableName', null)
@@ -79,6 +79,7 @@ function createTableMsg (tableColumns) {
 
   let tableNameElement = document.getElementById('tableName')
   tableNameElement.xixi = i
+  tableNameElement.haha = filemark
 }
 
 function createLine () {
@@ -100,7 +101,11 @@ function createSelect (name) {
   span.innerHTML = '数据库选择：'
   for (var i = 0; i < arguments.length; i++) {
     let option = document.createElement('option')
-    option.value = arguments[i]
+    if (arguments[i] === 'MySQL') {
+      option.value = 0
+    } else {
+      option.value = 1
+    }
     option.innerHTML = arguments[i]
     appendC(select, option)
   }
@@ -196,13 +201,17 @@ function getMappingMsg () {
   let tableName = document.getElementById('tableName')
   let dbselect = document.getElementById('dbselect')
   let columnNumber = tableName.xixi
+  let filemark = tableName.haha
   map = new Map()
-  map.set('tableName', tableName.value)
-  map.set('database', dbselect.value)
+  map.set('filemark', filemark)
+  map.set('table', tableName.value)
+  map.set('brand', dbselect.value)
+  let fields = new Array(columnNumber)
   for (var i = 0; i < columnNumber; i++) {
     let column = document.getElementById('columnMappingRow_' + i)
-    map.set(column.name, column.value)
+    fields[i] = column.value
   }
+  map.set('fields', fields)
 
   return strMapToJson(map)
 }
