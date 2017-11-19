@@ -74,6 +74,9 @@
       cache: false,
       contentType: false,
       processData: false,
+      headers: {
+        Origin: 'localhost'
+      },
       success: function (returndata) {
         console.log(returndata)
       },
