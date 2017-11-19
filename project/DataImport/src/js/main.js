@@ -53,7 +53,7 @@ function msgPanelShow (msgPanel, title, msg, exitText, exitFunc, exitFuncParamet
   }
 }
 
-function createTableMsg (tableColumns, filemark) {
+function createMappingPanel (tableColumns, filemark) {
 
   let functionArea = document.getElementById('functionArea')
   let tableName = createInputRow('表名', true, 'tableName', null)
@@ -218,5 +218,5 @@ function showTableMappingPanel () {
   let secondPanel = document.getElementById('secondPanel')
   changeMappingBut('error')
   changePanel(currentSecondPanel, 'showPanel', 'hidePanel')
-  showSecondPanel(secondPanel, 'showPanel', 'hidePanel')
+  showSecondPanel(secondPanel)
 }

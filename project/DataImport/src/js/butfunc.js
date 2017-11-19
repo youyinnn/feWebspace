@@ -68,7 +68,7 @@ function uploadOne () {
   if (code === 'H000') {
     let filemark = respJson.filemark
     let headers = respJson.headers
-    createTableMsg(headers, filemark)
+    createMappingPanel(headers, filemark)
     msgPanelShow(p2, '提示', '上传成功', '进入映射', showTableMappingPanel, null)
   } else {
     msgPanelShow(p2, '提示', '上传失败', '好的', null, null)
