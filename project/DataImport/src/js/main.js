@@ -55,25 +55,25 @@ function msgPanelShow (msgPanel, title, msg, exitText, exitFunc, exitFuncParamet
 
 function createTableMsg (tableColumns, filemark) {
 
-  let mappingArea = document.getElementById('mappingArea')
+  let functionArea = document.getElementById('functionArea')
   let tableName = createInputRow('表名', true, 'tableName', null)
   let dbselect = createSelect('MySQL', 'MongoDB')
-  appendC(mappingArea, tableName)
-  appendC(mappingArea, dbselect)
+  appendC(functionArea, tableName)
+  appendC(functionArea, dbselect)
 
   let line = createLine()
-  appendC(mappingArea, line)
+  appendC(functionArea, line)
   for (var i = 0; i < tableColumns.length; i++) {
     let columnMappingRow = createInputRow(tableColumns[i], true, tableColumns[i], i)
-    appendC(mappingArea, columnMappingRow)
+    appendC(functionArea, columnMappingRow)
   }
   if (tableColumns.length % 2 !== 0) {
     let div = createInputRow('', false, null)
-    appendC(mappingArea, div)
+    appendC(functionArea, div)
   }
 
   let line2 = createLine()
-  appendC(mappingArea, line2)
+  appendC(functionArea, line2)
 
   let tableNameElement = document.getElementById('tableName')
   tableNameElement.xixi = i
@@ -149,15 +149,15 @@ function createInputRow (innerhtml, isinput, inputName, index) {
 }
 
 function changeMappingBut (check) {
-  let mappingbut = document.getElementById('mappingbut')
+  let functionbut = document.getElementById('functionbut')
   if (check === 'error') {
-    addClass(mappingbut, 'errorbut')
-    mappingbut.innerHTML = '命名只接受字母与下划线且不能为空'
-    mappingbut.onclick = null
+    addClass(functionbut, 'errorbut')
+    functionbut.innerHTML = '命名只接受字母与下划线且不能为空'
+    functionbut.onclick = null
   } else if (check === 'right') {
-    removeClass(mappingbut, 'errorbut')
-    mappingbut.innerHTML = '确定映射'
-    mappingbut.onclick = function () {
+    removeClass(functionbut, 'errorbut')
+    functionbut.innerHTML = '确定映射'
+    functionbut.onclick = function () {
       sendMapping()
     }
   }

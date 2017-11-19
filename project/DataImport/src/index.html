@@ -40,7 +40,7 @@
     height: 635px;
   }
 
-  #mappingArea{
+  #functionArea{
     width: 1000px;
     height: 535px;
     margin: 10px auto 0;
@@ -101,9 +101,9 @@
 
   <!-- 映射面板 -->
   <div id="secondPanel" class="panel hidePanel">
-    <span class="subtitle unselectable">Mapping</span>
-    <div id="mappingArea" class="bootstrap-frm"></div>
-    <button id="mappingbut" type="button" class="funcbt bt pexit">确定映射</button>
+    <span id="secondpaneltitle" class="subtitle unselectable"></span>
+    <div id="functionArea" class="bootstrap-frm"></div>
+    <button id="functionbut" type="button" class="funcbt bt pexit"></button>
   </div>
 
   <!-- 消息弹窗 -->
@@ -136,8 +136,8 @@
   var panelIntroduce = document.getElementById('panelIntroduce')
   var acceptableFileArr
 
-  var mappingbut = document.getElementById('mappingbut')
-  mappingbut.onclick = sendMapping
+  var functionbut = document.getElementById('functionbut')
+  var secondpaneltitle = document.getElementById('secondpaneltitle')
 
   var bt2 = document.getElementById('bt2')
 
@@ -148,6 +148,9 @@
     '然后需要您手动建立映射关系。' + '<br/>' + '我们支持以上格式的文件数据转换至Mysql或者MongoDB里。'
     hideMainPanel(mainPanel)
     showSecondPanel(fileuploadPanel)
+    functionbut.onclick = sendMapping
+    functionbut.innerHTML = '确定映射'
+    secondpaneltitle.innerHTML = 'Mapping'
     uploadbutton.onclick = function () {
       upload(1024, acceptableFileArr, 'http://localhost:8080/ajax', uploadOne)
     }

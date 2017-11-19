@@ -58,6 +58,7 @@ function sendMapping () {
 }
 
 function downloadFile (token) {
+  console.log(token)
   getReq('http://localhost:8080/download?token=' + token, null)
 }
 
@@ -77,7 +78,7 @@ function uploadOne () {
 function uploadTwo () {
   let type = input.files[0].name.split('.').pop()
   if (type === 'sql') {
-    
+
   } else if (type === 'json') {
 
   }
