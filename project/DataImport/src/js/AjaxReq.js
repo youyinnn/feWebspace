@@ -12,18 +12,31 @@ var postReq = function (url, func, form) {
 }
 
 var ajaxReq = function (url, func, method, form) {
-  xmlhttp = new XMLHttpRequest()
-  xmlhttp.open(method, url)
-
+  xmlhttp = createCORS(method, url)
   xmlhttp.onreadystatechange = function () {
     if (xmlhttp.readyState === 4 && xmlhttp.status === 0) {
       msgPanelShow(p2, '错误', '服务器未启动', null, null)
       return 0
     }
     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-      func()
+      if (func !== null) {
+        func()
+      }
     }
   }
 
   xmlhttp.send(form)
+}
+
+function createCORS (method, url) {
+  var xhr = new XMLHttpRequest()
+  if ('withCredentials' in xhr) {
+    xhr.open(method, url, true)
+  } else if (typeof XDomainRequest !== 'undefined') {
+    xhr = new XDomainRequest()
+    xhr.open(method, url)
+  } else {
+    xhr = null
+  }
+  return xhr
 }

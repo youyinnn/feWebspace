@@ -31,7 +31,7 @@
     width: 700px;
   }
 
-  #dataImportPanel{
+  #fileuploadPanel{
     width: 1000px;
   }
 
@@ -71,7 +71,7 @@
     Home
   </button>
 
-
+  <!-- 主面板 -->
   <div id="mainPanel" class="panel showPanel">
     <div id="title">
       <span>“ Data Import Tools ”</span>
@@ -92,14 +92,14 @@
     </div>
   </div>
 
-  <div id="dataImportPanel" class="panel dataImportPanel hidePanel">
-    <span class="subtitle unselectable">导入至数据库</span>
-    <span class="introduce unselectable">
-      说明：请将xlsx、xls、csv格式文件导入，然后系统会返回源文件中的列名，然后需要您手动建立映射关系。</span>
-
+  <!-- 文件上传面板 -->
+  <div id="fileuploadPanel" class="panel hidePanel">
+    <span id="panelSubtitle" class="subtitle unselectable"></span>
+    <span id="panelIntroduce" class="introduce unselectable"></span>
     <button id="uploadbutton" class="unselectable bt funcbt">文件上传</button>
   </div>
 
+  <!-- 映射面板 -->
   <div id="tableMappingPanel" class="panel hidePanel">
     <span class="subtitle unselectable">Mapping</span>
     <div id="mappingArea" class="bootstrap-frm"></div>
@@ -130,23 +130,42 @@
 
   var mainPanel = document.getElementById('mainPanel')
   var bt1 = document.getElementById('bt1')
-  var dataImportPanel = document.getElementById('dataImportPanel')
+  var fileuploadPanel = document.getElementById('fileuploadPanel')
   var uploadbutton = document.getElementById('uploadbutton')
-  var acceptableFileArr = ['jpg', 'png']
+  var panelSubtitle = document.getElementById('panelSubtitle')
+  var panelIntroduce = document.getElementById('panelIntroduce')
+  var acceptableFileArr
 
   var mappingbut = document.getElementById('mappingbut')
-
   mappingbut.onclick = sendMapping
 
+  var bt2 = document.getElementById('bt2')
+
   bt1.onclick = function () {
+    acceptableFileArr = ['jpg', 'png']
+    panelSubtitle.innerHTML = '导入至数据库'
+    panelIntroduce.innerHTML = '说明：请将xlsx、xls、csv格式文件导入，然后系统会返回源文件中的列名，' +
+    '然后需要您手动建立映射关系。' + '<br/>' + '我们支持以上格式的文件数据转换至Mysql或者MongoDB里。'
     hideMainPanel(mainPanel)
-    showSecondPanel(dataImportPanel)
+    showSecondPanel(fileuploadPanel)
+    uploadbutton.onclick = function () {
+      upload(1024, acceptableFileArr, 'http://localhost:8080/ajax', uploadOne)
+    }
   }
 
-  uploadbutton.onclick = function () {
-    uploadbut(1, acceptableFileArr, 'http://localhost:8080/ajax')
-    // uploadbut(1, acceptableFileArr, 'http://youyinnn.cn:8080/AjaxPratice-1.0-SNAPSHOT/ajax')
+  bt2.onclick = function () {
+    // acceptableFileArr = ['xls', 'xlsx', 'csv']
+    acceptableFileArr = ['sql', 'json']
+    panelSubtitle.innerHTML = '数据库导出数据'
+    panelIntroduce.innerHTML = '说明：请将MySQL数据库导出的.sql文件或者MongoDB数据库导出的.json文件上传。' +
+    '<br/>' + ''
+    hideMainPanel(mainPanel)
+    showSecondPanel(fileuploadPanel)
+    uploadbutton.onclick = function () {
+      upload(1024, acceptableFileArr, 'http://localhost:8080/ajax', uploadTwo)
+    }
   }
+
   </script>
 </body>
 

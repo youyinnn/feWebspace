@@ -5,7 +5,7 @@ input.setAttribute('value', null)
 input.style.display = 'none'
 
 /* global postReq xmlhttp input msgPanelShow p2 */
-function uploadbut (maxSise, acceptableFileArr, url) {
+function upload (maxSise, acceptableFileArr, url, func) {
   input.click()
   input.onchange = function (event) {
     if (!input.value) {
@@ -25,18 +25,7 @@ function uploadbut (maxSise, acceptableFileArr, url) {
     fd.append('myfile', input.files[0])
     fd.append('msg', '你好')
 
-    postReq(url, function () {
-      let respJson = JSON.parse(xmlhttp.responseText)
-      let code = respJson.code
-      if (code === 'H000') {
-        let filemark = respJson.filemark
-        let headers = respJson.headers
-        createTableMsg(headers, filemark)
-        msgPanelShow(p2, '提示', '上传成功', '进入映射', showTableMappingPanel, null)
-      } else {
-        msgPanelShow(p2, '提示', '上传失败', '好的', null, null)
-      }
-    }, fd)
+    postReq(url, func, fd)
   }
 }
 
@@ -69,6 +58,27 @@ function sendMapping () {
 }
 
 function downloadFile (token) {
-  // getReq('http://localhost:8080/download?token=' + token, null)
-  getReq('http://localhost:8080/images/hexo.png', null)
+  getReq('http://localhost:8080/download?token=' + token, null)
+}
+
+function uploadOne () {
+  let respJson = JSON.parse(xmlhttp.responseText)
+  let code = respJson.code
+  if (code === 'H000') {
+    let filemark = respJson.filemark
+    let headers = respJson.headers
+    createTableMsg(headers, filemark)
+    msgPanelShow(p2, '提示', '上传成功', '进入映射', showTableMappingPanel, null)
+  } else {
+    msgPanelShow(p2, '提示', '上传失败', '好的', null, null)
+  }
+}
+
+function uploadTwo () {
+  let type = input.files[0].name.split('.').pop()
+  if (type === 'sql') {
+    
+  } else if (type === 'json') {
+
+  }
 }
