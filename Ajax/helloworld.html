@@ -11,7 +11,7 @@
   <div id="myDiv">
 
   </div>
-  <button type="button" onclick="postF()">getF</button>
+  <button type="button" onclick="getFF3()">getF</button>
 
   <script type="text/javascript" src="./AjaxReq.js"></script>
   <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
@@ -104,6 +104,12 @@
       var person = JSON.parse(xmlhttp.responseText)
       // console.log(xmlhttp)
       console.log(person)
+    })
+  }
+
+  var getFF3 = function () {
+    getReq('http://localhost:8080/images/hexo.png', function () {
+      // document.getElementById('myDiv').innerHTML = xmlhttp.responseText
     })
   }
   </script>
