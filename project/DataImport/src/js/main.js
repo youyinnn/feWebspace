@@ -215,8 +215,8 @@ function getMappingMsg () {
 }
 
 function showTableMappingPanel () {
-  let tableMappingPanel = document.getElementById('tableMappingPanel')
+  let secondPanel = document.getElementById('secondPanel')
   changeMappingBut('error')
   changePanel(currentSecondPanel, 'showPanel', 'hidePanel')
-  showSecondPanel(tableMappingPanel, 'showPanel', 'hidePanel')
+  showSecondPanel(secondPanel, 'showPanel', 'hidePanel')
 }
