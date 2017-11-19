@@ -20,9 +20,9 @@ function changePanel (panel, showClass, hideClass) {
   changeClass(panel, hideClass)
 }
 
-function showSecondPanel (secondPanel) {
-  currentSecondPanel = secondPanel
-  changePanel(secondPanel, 'showPanel', 'hidePanel')
+function showSecondPanel (functionPanel) {
+  currentSecondPanel = functionPanel
+  changePanel(functionPanel, 'showPanel', 'hidePanel')
 }
 
 function hideMainPanel (mainPanel) {
@@ -214,9 +214,8 @@ function getMappingMsg () {
   return strMapToJson(map)
 }
 
-function showTableMappingPanel () {
-  let secondPanel = document.getElementById('secondPanel')
-  changeMappingBut('error')
+function showFunctionPanel () {
+  let functionPanel = document.getElementById('functionPanel')
   changePanel(currentSecondPanel, 'showPanel', 'hidePanel')
-  showSecondPanel(secondPanel)
+  showSecondPanel(functionPanel)
 }

@@ -69,7 +69,8 @@ function uploadOne () {
     let filemark = respJson.filemark
     let headers = respJson.headers
     createMappingPanel(headers, filemark)
-    msgPanelShow(p2, '提示', '上传成功', '进入映射', showTableMappingPanel, null)
+    changeMappingBut('error')
+    msgPanelShow(p2, '提示', '上传成功', '进入映射', showFunctionPanel, null)
   } else {
     msgPanelShow(p2, '提示', '上传失败', '好的', null, null)
   }

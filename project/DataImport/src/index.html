@@ -35,7 +35,7 @@
     width: 1000px;
   }
 
-  #secondPanel{
+  #functionPanel{
     width: 1200px;
     height: 635px;
   }
@@ -99,9 +99,9 @@
     <button id="uploadbutton" class="unselectable bt funcbt">文件上传</button>
   </div>
 
-  <!-- 映射面板 -->
-  <div id="secondPanel" class="panel hidePanel">
-    <span id="secondpaneltitle" class="subtitle unselectable"></span>
+  <!-- 功能面板 -->
+  <div id="functionPanel" class="panel hidePanel">
+    <span id="functionpaneltitle" class="subtitle unselectable"></span>
     <div id="functionArea" class="bootstrap-frm"></div>
     <button id="functionbut" type="button" class="funcbt bt pexit"></button>
   </div>
@@ -137,7 +137,7 @@
   var acceptableFileArr
 
   var functionbut = document.getElementById('functionbut')
-  var secondpaneltitle = document.getElementById('secondpaneltitle')
+  var functionpaneltitle = document.getElementById('functionpaneltitle')
 
   var bt2 = document.getElementById('bt2')
 
@@ -150,7 +150,7 @@
     showSecondPanel(fileuploadPanel)
     functionbut.onclick = sendMapping
     functionbut.innerHTML = '确定映射'
-    secondpaneltitle.innerHTML = 'Mapping'
+    functionpaneltitle.innerHTML = 'Mapping'
     uploadbutton.onclick = function () {
       upload(1024, acceptableFileArr, 'http://localhost:8080/ajax', uploadOne)
     }
@@ -164,6 +164,8 @@
     '<br/>' + ''
     hideMainPanel(mainPanel)
     showSecondPanel(fileuploadPanel)
+    functionbut.innerHTML = '确定导出'
+    functionpaneltitle.innerHTML = 'Setting'
     uploadbutton.onclick = function () {
       upload(1024, acceptableFileArr, 'http://localhost:8080/ajax', uploadTwo)
     }
