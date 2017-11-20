@@ -57,7 +57,10 @@ function createMappingPanel (tableColumns, filemark) {
 
   let functionArea = document.getElementById('functionArea')
   let tableName = createInputRow('表名', true, 'tableName', null)
-  let dbselect = createSelect('MySQL', 'MongoDB')
+  let optionmap = new Map()
+  optionmap.set('MySQL', 0)
+  optionmap.set('MongoDB', 1)
+  let dbselect = createSelect('dbselect', 'database', '数据库选择：', optionmap)
   appendC(functionArea, tableName)
   appendC(functionArea, dbselect)
 
@@ -80,6 +83,18 @@ function createMappingPanel (tableColumns, filemark) {
   tableNameElement.haha = filemark
 }
 
+function createSettingPanel () {
+  let functionArea = document.getElementById('functionArea')
+  let tableName = createInputRow('表名', true, 'tableName', null)
+  let optionmap = new Map()
+  optionmap.set('.xlsx', '.xlsx')
+  optionmap.set('.xls', '.xls')
+  optionmap.set('.csv', '.csv')
+  let dbselect = createSelect('format', 'format', '导出格式：', optionmap)
+  appendC(functionArea, tableName)
+  appendC(functionArea, dbselect)
+}
+
 function createLine () {
   let line = document.createElement('div')
   line.style.width = '777px'
@@ -88,25 +103,21 @@ function createLine () {
   return line
 }
 
-function createSelect (name) {
+function createSelect (selectid, selectname, selecttext, optionmap) {
   let div = document.createElement('div')
   changeClass(div, 'mapRow')
 
   let select = document.createElement('select')
-  select.name = 'database'
-  select.id = 'dbselect'
+  select.name = selectname
+  select.id = selectid
   let span = document.createElement('span')
-  span.innerHTML = '数据库选择：'
-  for (var i = 0; i < arguments.length; i++) {
+  span.innerHTML = selecttext
+  optionmap.forEach(function (value, key, mapObj) {
     let option = document.createElement('option')
-    if (arguments[i] === 'MySQL') {
-      option.value = 0
-    } else {
-      option.value = 1
-    }
-    option.innerHTML = arguments[i]
+    option.value = value
+    option.innerHTML = key.toString()
     appendC(select, option)
-  }
+  })
 
   appendC(div, span)
   appendC(div, select)
@@ -214,8 +225,9 @@ function getMappingMsg () {
   return strMapToJson(map)
 }
 
-function showFunctionPanel () {
+function showFunctionPanel (panelheight) {
   let functionPanel = document.getElementById('functionPanel')
+  functionPanel.style.height = panelheight + 'px'
   changePanel(currentSecondPanel, 'showPanel', 'hidePanel')
   showSecondPanel(functionPanel)
 }

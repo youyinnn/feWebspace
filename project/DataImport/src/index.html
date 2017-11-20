@@ -37,12 +37,11 @@
 
   #functionPanel{
     width: 1200px;
-    height: 635px;
   }
 
   #functionArea{
     width: 1000px;
-    height: 535px;
+    height: 79%;
     margin: 10px auto 0;
     position: absolute;
     left: 0;
@@ -165,7 +164,6 @@
     hideMainPanel(mainPanel)
     showSecondPanel(fileuploadPanel)
     functionbut.innerHTML = '确定导出'
-    functionpaneltitle.innerHTML = 'Setting'
     uploadbutton.onclick = function () {
       upload(1024, acceptableFileArr, 'http://localhost:8080/ajax', uploadTwo)
     }

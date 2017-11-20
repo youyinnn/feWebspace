@@ -59,13 +59,13 @@
 
 
 .hidePanel{
-  transform: translate(-50%, -60%) scale(.55, .55);
+  transform: translate(-50%, -50%) scale(.55, .55);
   visibility : hidden;
   opacity: 0;
 }
 
 .showPanel{
-  transform: translate(-50%, -60%) scale(1, 1);
+  transform: translate(-50%, -50%) scale(1, 1);
   visibility : visible;
   opacity: 1;
 }
