@@ -41,7 +41,6 @@
 
   #functionArea{
     width: 1000px;
-    height: 79%;
     margin: 10px auto 0;
     position: absolute;
     left: 0;
@@ -136,6 +135,7 @@
   var acceptableFileArr
 
   var functionbut = document.getElementById('functionbut')
+  functionbut.innerHTML = '确定'
   var functionpaneltitle = document.getElementById('functionpaneltitle')
 
   var bt2 = document.getElementById('bt2')
@@ -147,8 +147,6 @@
     '然后需要您手动建立映射关系。' + '<br/>' + '我们支持以上格式的文件数据转换至Mysql或者MongoDB里。'
     hideMainPanel(mainPanel)
     showSecondPanel(fileuploadPanel)
-    functionbut.onclick = sendMapping
-    functionbut.innerHTML = '确定映射'
     functionpaneltitle.innerHTML = 'Mapping'
     uploadbutton.onclick = function () {
       upload(1024, acceptableFileArr, 'http://localhost:8080/ajax', uploadOne)
@@ -160,10 +158,9 @@
     acceptableFileArr = ['sql', 'json']
     panelSubtitle.innerHTML = '数据库导出数据'
     panelIntroduce.innerHTML = '说明：请将MySQL数据库导出的.sql文件或者MongoDB数据库导出的.json文件上传。' +
-    '<br/>' + ''
+    '<br/>' + '我们支持这两种数据库文件导出为xlsx、xls、csv格式文件。'
     hideMainPanel(mainPanel)
     showSecondPanel(fileuploadPanel)
-    functionbut.innerHTML = '确定导出'
     uploadbutton.onclick = function () {
       upload(1024, acceptableFileArr, 'http://localhost:8080/ajax', uploadTwo)
     }

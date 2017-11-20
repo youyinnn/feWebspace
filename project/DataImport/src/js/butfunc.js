@@ -69,8 +69,15 @@ function uploadOne () {
     let filemark = respJson.filemark
     let headers = respJson.headers
     createMappingPanel(headers, filemark)
-    changeMappingBut('error')
-    msgPanelShow(p2, '提示', '上传成功', '进入映射', showFunctionPanel, 635)
+    chackFunctioPanelBut('error', null)
+    let panelheight = 300
+    let headerslength = headers.length
+    if (headerslength > 4 && headerslength <= 14) {
+      panelheight = 480
+    } else if (headerslength > 14 && headerslength <= 20) {
+      panelheight = 650
+    }
+    msgPanelShow(p2, '提示', '上传成功', '进入映射', showFunctionPanel, panelheight)
   } else {
     msgPanelShow(p2, '提示', '上传失败', '好的', null, null)
   }
@@ -80,8 +87,9 @@ function uploadTwo () {
   let type = input.files[0].name.split('.').pop()
   if (type === 'sql') {
     functionpaneltitle.innerHTML = 'Setting：sql文件转换导出'
+    chackFunctioPanelBut('error', null)
     createSettingPanel()
-    showFunctionPanel(500)
+    showFunctionPanel(150)
   } else if (type === 'json') {
     functionpaneltitle.innerHTML = 'Setting：json文件转换导出'
   }

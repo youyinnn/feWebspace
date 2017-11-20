@@ -56,7 +56,7 @@ function msgPanelShow (msgPanel, title, msg, exitText, exitFunc, exitFuncParamet
 function createMappingPanel (tableColumns, filemark) {
 
   let functionArea = document.getElementById('functionArea')
-  let tableName = createInputRow('表名', true, 'tableName', null)
+  let tableName = createInputRow('表名', true, 'tableName', null, sendMapping)
   let optionmap = new Map()
   optionmap.set('MySQL', 0)
   optionmap.set('MongoDB', 1)
@@ -67,11 +67,11 @@ function createMappingPanel (tableColumns, filemark) {
   let line = createLine()
   appendC(functionArea, line)
   for (var i = 0; i < tableColumns.length; i++) {
-    let columnMappingRow = createInputRow(tableColumns[i], true, tableColumns[i], i)
+    let columnMappingRow = createInputRow(tableColumns[i], true, tableColumns[i], i, sendMapping)
     appendC(functionArea, columnMappingRow)
   }
   if (tableColumns.length % 2 !== 0) {
-    let div = createInputRow('', false, null)
+    let div = createInputRow('', false, null, null)
     appendC(functionArea, div)
   }
 
@@ -85,7 +85,7 @@ function createMappingPanel (tableColumns, filemark) {
 
 function createSettingPanel () {
   let functionArea = document.getElementById('functionArea')
-  let tableName = createInputRow('表名', true, 'tableName', null)
+  let tableName = createInputRow('表名', true, 'tableName', null, null)
   let optionmap = new Map()
   optionmap.set('.xlsx', '.xlsx')
   optionmap.set('.xls', '.xls')
@@ -125,7 +125,7 @@ function createSelect (selectid, selectname, selecttext, optionmap) {
 }
 
 
-function createInputRow (innerhtml, isinput, inputName, index) {
+function createInputRow (innerhtml, isinput, inputName, index, butfunc) {
   let div = document.createElement('div')
   changeClass(div, 'mapRow')
 
@@ -144,9 +144,9 @@ function createInputRow (innerhtml, isinput, inputName, index) {
     }
     bind(input, 'blur', function () {
       if (inputStrAllWrong()) {
-        changeMappingBut('error')
+        chackFunctioPanelBut('error', butfunc)
       } else {
-        changeMappingBut('right')
+        chackFunctioPanelBut('right', butfunc)
       }
     })
   } else {
@@ -159,7 +159,7 @@ function createInputRow (innerhtml, isinput, inputName, index) {
   return div
 }
 
-function changeMappingBut (check) {
+function chackFunctioPanelBut (check, butfun) {
   let functionbut = document.getElementById('functionbut')
   if (check === 'error') {
     addClass(functionbut, 'errorbut')
@@ -167,10 +167,8 @@ function changeMappingBut (check) {
     functionbut.onclick = null
   } else if (check === 'right') {
     removeClass(functionbut, 'errorbut')
-    functionbut.innerHTML = '确定映射'
-    functionbut.onclick = function () {
-      sendMapping()
-    }
+    functionbut.innerHTML = '确定'
+    functionbut.onclick = butfun
   }
 }
 
@@ -228,6 +226,8 @@ function getMappingMsg () {
 function showFunctionPanel (panelheight) {
   let functionPanel = document.getElementById('functionPanel')
   functionPanel.style.height = panelheight + 'px'
+  let functionArea = document.getElementById('functionArea')
+  functionArea.style.height = (panelheight - 100) + 'px'
   changePanel(currentSecondPanel, 'showPanel', 'hidePanel')
   showSecondPanel(functionPanel)
 }
