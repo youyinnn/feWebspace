@@ -35,7 +35,9 @@ function sendMapping () {
   addClass(pexit2, 'pexitUnable')
   msgPanelShow(p2, '提示', '正在发送映射并等待生成数据库文件...', '请稍等', null, null)
   let fd = new FormData()
-  fd.append('mapping', mappingJson)
+  mappingJson.forEach(function (value, key, mapObj) {
+    fd.append(key, value)
+  })
   postReq('http://localhost:8080/mapHandle', function () {
     let respJson = JSON.parse(xmlhttp.responseText)
     if (respJson.code === 'I000') {
@@ -69,7 +71,7 @@ function uploadOne () {
     let filemark = respJson.filemark
     let headers = respJson.headers
     createMappingPanel(headers, filemark)
-    chackFunctioPanelBut('error', null)
+    chackFunctioPanelBut('error')
     let panelheight = 300
     let headerslength = headers.length
     if (headerslength > 4 && headerslength <= 14) {
@@ -87,10 +89,14 @@ function uploadTwo () {
   let type = input.files[0].name.split('.').pop()
   if (type === 'sql') {
     functionpaneltitle.innerHTML = 'Setting：sql文件转换导出'
-    chackFunctioPanelBut('error', null)
+    chackFunctioPanelBut('error')
     createSettingPanel()
     showFunctionPanel(150)
   } else if (type === 'json') {
     functionpaneltitle.innerHTML = 'Setting：json文件转换导出'
   }
+}
+
+function sendFormat () {
+  console.log(555)
 }

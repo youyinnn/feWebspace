@@ -85,7 +85,7 @@ function createMappingPanel (tableColumns, filemark) {
 
 function createSettingPanel () {
   let functionArea = document.getElementById('functionArea')
-  let tableName = createInputRow('表名', true, 'tableName', null, null)
+  let tableName = createInputRow('表名', true, 'tableName', null, sendFormat)
   let optionmap = new Map()
   optionmap.set('.xlsx', '.xlsx')
   optionmap.set('.xls', '.xls')
@@ -220,7 +220,7 @@ function getMappingMsg () {
   }
   map.set('fields', fields)
 
-  return strMapToJson(map)
+  return map
 }
 
 function showFunctionPanel (panelheight) {
