@@ -54,7 +54,6 @@ function msgPanelShow (msgPanel, title, msg, exitText, exitFunc, exitFuncParamet
 }
 
 function createMappingPanel (tableColumns, filemark) {
-
   let functionArea = document.getElementById('functionArea')
   let tableName = createInputRow('表名', true, 'tableName', null, sendMapping)
   let optionmap = new Map()
@@ -83,7 +82,7 @@ function createMappingPanel (tableColumns, filemark) {
   tableNameElement.haha = filemark
 }
 
-function createSettingPanel () {
+function createSettingPanel (type) {
   let functionArea = document.getElementById('functionArea')
   let tableName = createInputRow('表名', true, 'tableName', null, sendFormat)
   let optionmap = new Map()
@@ -93,6 +92,39 @@ function createSettingPanel () {
   let dbselect = createSelect('format', 'format', '导出格式：', optionmap)
   appendC(functionArea, tableName)
   appendC(functionArea, dbselect)
+  let tableNameElement = document.getElementById('tableName')
+  tableNameElement.xixi = 0
+  if (type === 'json') {
+    tableNameElement.heihei = 1
+    let num = new Map()
+    for (let i = 0; i < 23; ++i) {
+      num.set(i + 1, i + 1)
+    }
+    let columnNumRow = createSelect('columnNum', 'columnNum', '表中一共多少字段：', num)
+    columnNumRow.style.width = '700px'
+    appendC(functionArea, columnNumRow)
+    let columnNum = document.getElementById('columnNum')
+    bind(columnNum, 'change', function () {
+      console.log(tableNameElement.xixi)
+      let columnNumVal = columnNum.value
+      if (tableNameElement.xixi < columnNumVal) {
+        for (let i = tableNameElement.xixi; i < columnNumVal; ++i) {
+          let columnMappingRow = createInputRow('第' + i + '列', true, 'columnMappingRow_' + i, i, sendFormat)
+          appendC(functionArea, columnMappingRow)
+        }
+        tableNameElement.xixi = columnNumVal
+      } else if (tableNameElement.xixi > columnNumVal) {
+        for (let i = tableNameElement.xixi; i === columnNumVal; --i) {
+          removeLastC(functionArea)
+        }
+        tableNameElement.xixi = columnNumVal
+      }
+    })
+    let line = createLine()
+    appendC(functionArea, line)
+  } else {
+    tableNameElement.heihei = 0
+  }
 }
 
 function createLine () {
@@ -193,11 +225,13 @@ function inputStrAllWrong () {
     return check
   }
   let columnNumber = tableName.xixi
-  for (var i = 0; i < columnNumber; i++) {
-    let column = document.getElementById('columnMappingRow_' + i)
-    check = inputStrWrong(column)
-    if (check) {
-      return check
+  if (columnNumber !== 0) {
+    for (var i = 0; i < columnNumber; i++) {
+      let column = document.getElementById('columnMappingRow_' + i)
+      check = inputStrWrong(column)
+      if (check) {
+        return check
+      }
     }
   }
 

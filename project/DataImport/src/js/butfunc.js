@@ -87,13 +87,14 @@ function uploadOne () {
 
 function uploadTwo () {
   let type = input.files[0].name.split('.').pop()
+  chackFunctioPanelBut('error')
+  createSettingPanel(type)
   if (type === 'sql') {
     functionpaneltitle.innerHTML = 'Setting：sql文件转换导出'
-    chackFunctioPanelBut('error')
-    createSettingPanel()
     showFunctionPanel(150)
   } else if (type === 'json') {
     functionpaneltitle.innerHTML = 'Setting：json文件转换导出'
+    showFunctionPanel(190)
   }
 }
 

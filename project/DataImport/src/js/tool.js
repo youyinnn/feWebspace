@@ -98,6 +98,10 @@ function appendC (parent, child) {
   parent.appendChild(child)
 }
 
+function removeLastC (parent) {
+  parent.removeChild(parent.lastChild)
+}
+
 function strMapToObj (strMap) {
   let obj = Object.create(null)
   for (let [k, v] of strMap) {
