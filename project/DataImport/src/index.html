@@ -143,8 +143,10 @@
   var functionpaneltitle = document.getElementById('functionpaneltitle')
 
   var bt2 = document.getElementById('bt2')
+  var bt3 = document.getElementById('bt3')
 
   bt1.onclick = function () {
+    // acceptableFileArr = ['xls', 'xlsx', 'csv']
     acceptableFileArr = ['jpg', 'png']
     panelSubtitle.innerHTML = '导入至数据库'
     panelIntroduce.innerHTML = '说明：请将xlsx、xls、csv格式文件导入，然后系统会返回源文件中的列名，' +
@@ -153,20 +155,33 @@
     showSecondPanel(fileuploadPanel)
     functionpaneltitle.innerHTML = 'Mapping'
     uploadbutton.onclick = function () {
-      upload(1024, acceptableFileArr, 'http://localhost:8080/ajax', uploadOne)
+      upload(1024, acceptableFileArr, 'http://localhost:8080/ajax', mapping)
     }
   }
 
   bt2.onclick = function () {
-    // acceptableFileArr = ['xls', 'xlsx', 'csv']
     acceptableFileArr = ['sql', 'json']
     panelSubtitle.innerHTML = '数据库导出数据'
     panelIntroduce.innerHTML = '说明：请将MySQL数据库导出的.sql文件或者MongoDB数据库导出的.json文件上传。' +
-    '<br/>' + '我们支持这两种数据库文件导出为xlsx、xls、csv格式文件。'
+    '<br/>' + '我们支持这两种数据库文件导出为xlsx、xls、csv格式文件。' +
+    '<br/>' + '如果是转换MongoDB数据库，你需要提供要转换的列名。'
     hideMainPanel(mainPanel)
     showSecondPanel(fileuploadPanel)
     uploadbutton.onclick = function () {
-      upload(1024, acceptableFileArr, null, uploadTwo)
+      upload(1024, acceptableFileArr, null, format)
+    }
+  }
+
+  bt3.onclick = function () {
+    acceptableFileArr = ['sql', 'json']
+    panelSubtitle.innerHTML = '数据库之间转换'
+    panelIntroduce.innerHTML = '说明：请将MySQL数据库导出的.sql文件或者MongoDB数据库导出的.json文件上传。' +
+    '<br/>' + '我们支持这两种数据库文件互相转换。' +
+    '<br/>' + '如果是转换MongoDB数据库，你需要提供要转换的'
+    hideMainPanel(mainPanel)
+    showSecondPanel(fileuploadPanel)
+    uploadbutton.onclick = function () {
+      upload(1024, acceptableFileArr, null, transfer)
     }
   }
 

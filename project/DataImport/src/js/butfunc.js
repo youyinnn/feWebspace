@@ -22,7 +22,7 @@ function upload (maxSise, acceptableFileArr, url, func) {
       return 0
     }
     var fd = new FormData()
-    fd.append('myfile', input.files[0])
+    fd.append('file', input.files[0])
     fd.append('msg', '你好')
 
     if (url !== null) {
@@ -61,7 +61,7 @@ function downloadFile (token) {
   getReq('http://localhost:8080/download?token=' + token, null)
 }
 
-function uploadOne () {
+function mapping () {
   let respJson = JSON.parse(xmlhttp.responseText)
   let code = respJson.code
   if (code === 'H000') {
@@ -77,17 +77,62 @@ function uploadOne () {
   }
 }
 
-function uploadTwo () {
+function format () {
   let type = input.files[0].name.split('.').pop()
   chackFunctioPanelBut('error')
-  createSettingPanel(type)
+  createFormatPanel(type)
   if (type === 'sql') {
-    functionpaneltitle.innerHTML = 'Setting：sql文件转换导出'
+    functionpaneltitle.innerHTML = 'Format：sql文件转换导出'
     showFunctionPanel(150)
   } else if (type === 'json') {
-    functionpaneltitle.innerHTML = 'Setting：json文件转换导出'
+    functionpaneltitle.innerHTML = 'Format：json文件转换导出'
     showFunctionPanel(190)
   }
+}
+
+function transfer () {
+  let type = input.files[0].name.split('.').pop()
+  chackFunctioPanelBut('error')
+  createTransferPanel(type)
+  if (type === 'sql') {
+    functionpaneltitle.innerHTML = 'MySQL转MongoDB'
+    showFunctionPanel(150)
+  } else if (type === 'json') {
+    functionpaneltitle.innerHTML = 'MongoDB转MySQL'
+    showFunctionPanel(190)
+  }
+}
+
+function sendTransfer () {
+  let columnNum = document.getElementById('columnNum')
+  if (columnNum !== null) {
+    if (columnNum.value === '0') {
+      addClass(functionbut, 'errorbut')
+      functionbut.innerHTML = 'MongoDB数据必须填入你要导出的字段名'
+      functionbut.onclick = null
+      return
+    }
+  }
+  let fd = getTransferMsg()
+  pexit2.disabled = 'true'
+  addClass(pexit2, 'pexitUnable')
+  msgPanelShow(p2, '提示', '正在发送映射并等待生成数据库文件...', '请稍等', null, null)
+  postReq('http://localhost:8080/transferHandle', function () {
+    let respJson = JSON.parse(xmlhttp.responseText)
+    if (respJson.code === 'C000') {
+      pexit2.disabled = null
+      removeClass(pexit2, 'pexitUnable')
+      pexit2.innerHTML = '下载'
+      p2.childNodes[3].innerHTML = '文件生成成功'
+      pexit2.onclick = function () {
+        changePanel(p2, 'showPanel', 'hidePanel')
+        c2.style.cssText = 'visibility : hidden; opacity: 0;'
+        downloadFile(respJson.token)
+      }
+    } else {
+      pexit2Retry()
+    }
+  }, fd)
 }
 
 function sendFormat () {
@@ -97,12 +142,13 @@ function sendFormat () {
       addClass(functionbut, 'errorbut')
       functionbut.innerHTML = 'MongoDB数据必须填入你要导出的字段名'
       functionbut.onclick = null
+      return
     }
   }
   let fd = getFormatMsg()
   pexit2.disabled = 'true'
   addClass(pexit2, 'pexitUnable')
-  msgPanelShow(p2, '提示', '正在发送映射并等待生成数据库文件...', '请稍等', null, null)
+  msgPanelShow(p2, '提示', '正在发送数据库文件并生成目标文件...', '请稍等', null, null)
   postReq('http://localhost:8080/formatHandle', function () {
     let respJson = JSON.parse(xmlhttp.responseText)
     if (respJson.code === 'E000') {

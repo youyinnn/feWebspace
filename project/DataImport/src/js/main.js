@@ -79,7 +79,7 @@ function createMappingPanel (tableColumns, filemark) {
   tableNameElement.haha = filemark
 }
 
-function createSettingPanel (type) {
+function createFormatPanel (type) {
   let functionArea = document.getElementById('functionArea')
   let tableName = createInputRow('表名', true, 'tableName', null, sendFormat)
   let optionmap = new Map()
@@ -106,6 +106,45 @@ function createSettingPanel (type) {
       if (tableNameElement.xixi < columnNumVal) {
         for (let i = tableNameElement.xixi; i < columnNumVal; ++i) {
           let columnMappingRow = createInputRow('第' + (i + 1) + '列', true, 'columnMappingRow_' + i, i, sendFormat)
+          appendC(functionArea, columnMappingRow)
+        }
+      } else if (tableNameElement.xixi > columnNumVal) {
+        for (let i = tableNameElement.xixi; i > columnNumVal; --i) {
+          removeLastC(functionArea)
+        }
+      }
+      let add = (Math.round((columnNumVal) / 2)) * 43
+      resetFunctionPanelHeight(190 + add)
+      tableNameElement.xixi = columnNumVal
+    })
+    let line = createLine()
+    appendC(functionArea, line)
+  } else {
+    tableNameElement.heihei = 0
+  }
+}
+
+function createTransferPanel (type) {
+  let functionArea = document.getElementById('functionArea')
+  let tableName = createInputRow('表名', true, 'tableName', null, sendTransfer)
+  appendC(functionArea, tableName)
+  let tableNameElement = document.getElementById('tableName')
+  tableNameElement.xixi = 0
+  if (type === 'json') {
+    tableNameElement.heihei = 1
+    let num = new Map()
+    for (let i = 0; i < 23; ++i) {
+      num.set(i, i)
+    }
+    let columnNumRow = createSelect('columnNum', 'columnNum', '表中一共多少字段：', num)
+    columnNumRow.style.width = '700px'
+    appendC(functionArea, columnNumRow)
+    let columnNum = document.getElementById('columnNum')
+    bind(columnNum, 'change', function () {
+      let columnNumVal = parseInt(columnNum.value)
+      if (tableNameElement.xixi < columnNumVal) {
+        for (let i = tableNameElement.xixi; i < columnNumVal; ++i) {
+          let columnMappingRow = createInputRow('第' + (i + 1) + '列', true, 'columnMappingRow_' + i, i, sendTransfer)
           appendC(functionArea, columnMappingRow)
         }
       } else if (tableNameElement.xixi > columnNumVal) {
@@ -200,6 +239,24 @@ function getFormatMsg () {
   fd.append('file', file)
   fd.append('table', tableName.value)
   fd.append('format', format.value)
+  let fields = new Array(columnNumber)
+  for (var i = 0; i < columnNumber; i++) {
+    let column = document.getElementById('columnMappingRow_' + i)
+    fields[i] = column.value
+  }
+  fd.append('fields', fields)
+  return fd
+}
+
+function getTransferMsg () {
+  let fd = new FormData()
+  let tableName = document.getElementById('tableName')
+  let columnNumber = tableName.xixi
+  let brand = tableName.heihei
+  let file = input.files[0]
+  fd.append('brand', brand)
+  fd.append('file', file)
+  fd.append('table', tableName.value)
   let fields = new Array(columnNumber)
   for (var i = 0; i < columnNumber; i++) {
     let column = document.getElementById('columnMappingRow_' + i)
