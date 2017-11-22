@@ -20,15 +20,9 @@ function changePanel (panel, showClass, hideClass) {
   changeClass(panel, hideClass)
 }
 
-function showSecondPanel (panel, showStyle, hideStyle) {
+function showSecondPanel (panel) {
   currentSecondPanel = panel
-  if (showStyle === undefined || showStyle === null) {
-    showStyle = 'showPanel'
-  }
-  if (hideStyle === undefined || hideStyle === null) {
-    hideStyle = 'hidePanel'
-  }
-  changePanel(panel, showStyle, hideStyle)
+  changePanel(panel, 'showPanel', 'hidePanel')
 }
 
 function hideMainPanel (mainPanel) {
@@ -114,7 +108,7 @@ function createSettingPanel (type) {
       let columnNumVal = parseInt(columnNum.value)
       if (tableNameElement.xixi < columnNumVal) {
         for (let i = tableNameElement.xixi; i < columnNumVal; ++i) {
-          let columnMappingRow = createInputRow('第' + i + '列', true, 'columnMappingRow_' + i, i, sendFormat)
+          let columnMappingRow = createInputRow('第' + (i + 1) + '列', true, 'columnMappingRow_' + i, i, sendFormat)
           appendC(functionArea, columnMappingRow)
         }
       } else if (tableNameElement.xixi > columnNumVal) {
@@ -122,6 +116,8 @@ function createSettingPanel (type) {
           removeLastC(functionArea)
         }
       }
+      let add = (Math.round((columnNumVal) / 2)) * 43
+      resetFunctionPanelHeight(190 + add)
       tableNameElement.xixi = columnNumVal
     })
     let line = createLine()
@@ -262,10 +258,12 @@ function getMappingMsg () {
 }
 
 function showFunctionPanel (panelheight) {
-  let functionPanel = document.getElementById('functionPanel')
-  functionPanel.style.height = panelheight + 'px'
-  let functionArea = document.getElementById('functionArea')
-  functionArea.style.height = (panelheight - 100) + 'px'
+  resetFunctionPanelHeight(panelheight)
   changePanel(currentSecondPanel, 'showPanel', 'hidePanel')
-  showSecondPanel(functionPanel, 'showSettingPanel', null)
+  showSecondPanel(functionPanel)
+}
+
+function resetFunctionPanelHeight (height) {
+  functionPanel.style.height = height + 'px'
+  functionArea.style.height = (height - 100) + 'px'
 }

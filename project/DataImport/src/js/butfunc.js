@@ -72,13 +72,9 @@ function uploadOne () {
     let headers = respJson.headers
     createMappingPanel(headers, filemark)
     chackFunctioPanelBut('error')
-    let panelheight = 300
     let headerslength = headers.length
-    if (headerslength > 4 && headerslength <= 14) {
-      panelheight = 480
-    } else if (headerslength > 14 && headerslength <= 20) {
-      panelheight = 650
-    }
+    let panelheight = 165 + Math.round(headerslength / 2) * 43
+    console.log(panelheight)
     msgPanelShow(p2, '提示', '上传成功', '进入映射', showFunctionPanel, panelheight)
   } else {
     msgPanelShow(p2, '提示', '上传失败', '好的', null, null)
