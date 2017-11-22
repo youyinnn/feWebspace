@@ -20,9 +20,9 @@ function changePanel (panel, showClass, hideClass) {
   changeClass(panel, hideClass)
 }
 
-function showSecondPanel (functionPanel) {
-  currentSecondPanel = functionPanel
-  changePanel(functionPanel, 'showPanel', 'hidePanel')
+function showSecondPanel (panel) {
+  currentSecondPanel = panel
+  changePanel(panel, 'showPanel', 'hidePanel')
 }
 
 function hideMainPanel (mainPanel) {
@@ -105,20 +105,18 @@ function createSettingPanel (type) {
     appendC(functionArea, columnNumRow)
     let columnNum = document.getElementById('columnNum')
     bind(columnNum, 'change', function () {
-      console.log(tableNameElement.xixi)
-      let columnNumVal = columnNum.value
+      let columnNumVal = parseInt(columnNum.value)
       if (tableNameElement.xixi < columnNumVal) {
         for (let i = tableNameElement.xixi; i < columnNumVal; ++i) {
           let columnMappingRow = createInputRow('第' + i + '列', true, 'columnMappingRow_' + i, i, sendFormat)
           appendC(functionArea, columnMappingRow)
         }
-        tableNameElement.xixi = columnNumVal
       } else if (tableNameElement.xixi > columnNumVal) {
-        for (let i = tableNameElement.xixi; i === columnNumVal; --i) {
+        for (let i = tableNameElement.xixi; i > columnNumVal; --i) {
           removeLastC(functionArea)
         }
-        tableNameElement.xixi = columnNumVal
       }
+      tableNameElement.xixi = columnNumVal
     })
     let line = createLine()
     appendC(functionArea, line)
