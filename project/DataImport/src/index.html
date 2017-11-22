@@ -120,6 +120,7 @@
   <script type="text/javascript" src="./js/main.js"></script>
   <script type="text/javascript" src="./js/AjaxReq.js"></script>
   <script type="text/javascript" src="./js/butfunc.js"></script>
+  <script type="text/javascript" src="./js/elementCreate.js"></script>
   <script type="text/javascript">
 
   var pexit2 = document.getElementById('pexit2')
@@ -165,7 +166,7 @@
     hideMainPanel(mainPanel)
     showSecondPanel(fileuploadPanel)
     uploadbutton.onclick = function () {
-      upload(1024, acceptableFileArr, 'http://localhost:8080/ajax', uploadTwo)
+      upload(1024, acceptableFileArr, null, uploadTwo)
     }
   }
 

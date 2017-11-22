@@ -25,19 +25,19 @@ function upload (maxSise, acceptableFileArr, url, func) {
     fd.append('myfile', input.files[0])
     fd.append('msg', '你好')
 
-    postReq(url, func, fd)
+    if (url !== null) {
+      postReq(url, func, fd)
+    } else {
+      func()
+    }
   }
 }
 
 function sendMapping () {
-  let mappingJson = getMappingMsg()
+  let fd = getMappingMsg()
   pexit2.disabled = 'true'
   addClass(pexit2, 'pexitUnable')
   msgPanelShow(p2, '提示', '正在发送映射并等待生成数据库文件...', '请稍等', null, null)
-  let fd = new FormData()
-  mappingJson.forEach(function (value, key, mapObj) {
-    fd.append(key, value)
-  })
   postReq('http://localhost:8080/mapHandle', function () {
     let respJson = JSON.parse(xmlhttp.responseText)
     if (respJson.code === 'I000') {
@@ -74,7 +74,6 @@ function uploadOne () {
     chackFunctioPanelBut('error')
     let headerslength = headers.length
     let panelheight = 165 + Math.round(headerslength / 2) * 43
-    console.log(panelheight)
     msgPanelShow(p2, '提示', '上传成功', '进入映射', showFunctionPanel, panelheight)
   } else {
     msgPanelShow(p2, '提示', '上传失败', '好的', null, null)
@@ -95,5 +94,33 @@ function uploadTwo () {
 }
 
 function sendFormat () {
-  console.log(555)
+  let columnNum = document.getElementById('columnNum')
+  if (columnNum.value === '0') {
+    addClass(functionbut, 'errorbut')
+    functionbut.innerHTML = 'MongoDB数据必须填入你要导出的字段名'
+    functionbut.onclick = null
+  }
+  let fd = getFormatMsg()
+  pexit2.disabled = 'true'
+  addClass(pexit2, 'pexitUnable')
+  msgPanelShow(p2, '提示', '正在发送映射并等待生成数据库文件...', '请稍等', null, null)
+  postReq('http://localhost:8080/formatHandle', function () {
+    let respJson = JSON.parse(xmlhttp.responseText)
+    if (respJson.code === 'E000') {
+      pexit2.disabled = null
+      removeClass(pexit2, 'pexitUnable')
+      pexit2.innerHTML = '下载'
+      p2.childNodes[3].innerHTML = '文件生成成功'
+      pexit2.onclick = function () {
+        changePanel(p2, 'showPanel', 'hidePanel')
+        c2.style.cssText = 'visibility : hidden; opacity: 0;'
+        downloadFile(respJson.token)
+      }
+    } else {
+      pexit2.disabled = null
+      removeClass(pexit2, 'pexitUnable')
+      pexit2.innerHTML = '返回'
+      p2.childNodes[3].innerHTML = '文件生成失败，请返回重试。'
+    }
+  }, fd)
 }

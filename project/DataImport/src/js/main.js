@@ -74,9 +74,6 @@ function createMappingPanel (tableColumns, filemark) {
     appendC(functionArea, div)
   }
 
-  let line2 = createLine()
-  appendC(functionArea, line2)
-
   let tableNameElement = document.getElementById('tableName')
   tableNameElement.xixi = i
   tableNameElement.haha = filemark
@@ -98,7 +95,7 @@ function createSettingPanel (type) {
     tableNameElement.heihei = 1
     let num = new Map()
     for (let i = 0; i < 23; ++i) {
-      num.set(i + 1, i + 1)
+      num.set(i, i)
     }
     let columnNumRow = createSelect('columnNum', 'columnNum', '表中一共多少字段：', num)
     columnNumRow.style.width = '700px'
@@ -125,70 +122,6 @@ function createSettingPanel (type) {
   } else {
     tableNameElement.heihei = 0
   }
-}
-
-function createLine () {
-  let line = document.createElement('div')
-  line.style.width = '777px'
-  line.style.borderBottom = '2px black solid'
-  line.style.margin = '5px auto'
-  return line
-}
-
-function createSelect (selectid, selectname, selecttext, optionmap) {
-  let div = document.createElement('div')
-  changeClass(div, 'mapRow')
-
-  let select = document.createElement('select')
-  select.name = selectname
-  select.id = selectid
-  let span = document.createElement('span')
-  span.innerHTML = selecttext
-  optionmap.forEach(function (value, key, mapObj) {
-    let option = document.createElement('option')
-    option.value = value
-    option.innerHTML = key.toString()
-    appendC(select, option)
-  })
-
-  appendC(div, span)
-  appendC(div, select)
-  return div
-}
-
-
-function createInputRow (innerhtml, isinput, inputName, index, butfunc) {
-  let div = document.createElement('div')
-  changeClass(div, 'mapRow')
-
-  let label = document.createElement('label')
-  let input = document.createElement('input')
-  let span = document.createElement('span')
-  if (isinput) {
-    input.type = 'text'
-    input.value = ''
-    span.innerHTML = innerhtml + ' : '
-    input.name = inputName
-    if (index === null) {
-      input.id = 'tableName'
-    } else {
-      input.id = 'columnMappingRow_' + index
-    }
-    bind(input, 'blur', function () {
-      if (inputStrAllWrong()) {
-        chackFunctioPanelBut('error', butfunc)
-      } else {
-        chackFunctioPanelBut('right', butfunc)
-      }
-    })
-  } else {
-    input.style.visibility = 'hidden'
-  }
-
-  appendC(div, label)
-  appendC(label, span)
-  appendC(label, input)
-  return div
 }
 
 function chackFunctioPanelBut (check, butfun) {
@@ -239,22 +172,41 @@ function inputStrAllWrong () {
 }
 
 function getMappingMsg () {
+  let fd = new FormData()
   let tableName = document.getElementById('tableName')
   let dbselect = document.getElementById('dbselect')
   let columnNumber = tableName.xixi
   let filemark = tableName.haha
-  map = new Map()
-  map.set('filemark', filemark)
-  map.set('table', tableName.value)
-  map.set('brand', dbselect.value)
+  fd.append('filemark', filemark)
+  fd.append('table', tableName.value)
+  fd.append('brand', dbselect.value)
   let fields = new Array(columnNumber)
   for (var i = 0; i < columnNumber; i++) {
     let column = document.getElementById('columnMappingRow_' + i)
     fields[i] = column.value
   }
-  map.set('fields', fields)
+  fd.append('fields', fields)
+  return fd
+}
 
-  return map
+function getFormatMsg () {
+  let fd = new FormData()
+  let tableName = document.getElementById('tableName')
+  let format = document.getElementById('format')
+  let columnNumber = tableName.xixi
+  let brand = tableName.heihei
+  let file = input.files[0]
+  fd.append('brand', brand)
+  fd.append('file', file)
+  fd.append('table', tableName.value)
+  fd.append('format', format.value)
+  let fields = new Array(columnNumber)
+  for (var i = 0; i < columnNumber; i++) {
+    let column = document.getElementById('columnMappingRow_' + i)
+    fields[i] = column.value
+  }
+  fd.append('fields', fields)
+  return fd
 }
 
 function showFunctionPanel (panelheight) {

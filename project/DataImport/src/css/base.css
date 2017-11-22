@@ -86,7 +86,7 @@ body {
   /* 面板适应屏幕居中 */
   top: 50%;
   left: 50%;
-  transition: all .3s;
+  transition: all .35s;
 }
 
 .sidebut{
