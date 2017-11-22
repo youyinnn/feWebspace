@@ -31,7 +31,9 @@ margin: 0px 0px 5px;
 }
 .bootstrap-frm span {
 float: left;
-margin: 4px auto;
+height: 30px;
+line-height: 30px
+/* margin: 4px auto; */
 display: inline-block;
 width: 30%;
 text-align: center;
