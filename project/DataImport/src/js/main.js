@@ -20,9 +20,15 @@ function changePanel (panel, showClass, hideClass) {
   changeClass(panel, hideClass)
 }
 
-function showSecondPanel (panel) {
+function showSecondPanel (panel, showStyle, hideStyle) {
   currentSecondPanel = panel
-  changePanel(panel, 'showPanel', 'hidePanel')
+  if (showStyle === undefined || showStyle === null) {
+    showStyle = 'showPanel'
+  }
+  if (hideStyle === undefined || hideStyle === null) {
+    hideStyle = 'hidePanel'
+  }
+  changePanel(panel, showStyle, hideStyle)
 }
 
 function hideMainPanel (mainPanel) {
@@ -261,5 +267,5 @@ function showFunctionPanel (panelheight) {
   let functionArea = document.getElementById('functionArea')
   functionArea.style.height = (panelheight - 100) + 'px'
   changePanel(currentSecondPanel, 'showPanel', 'hidePanel')
-  showSecondPanel(functionPanel)
+  showSecondPanel(functionPanel, 'showSettingPanel', null)
 }
