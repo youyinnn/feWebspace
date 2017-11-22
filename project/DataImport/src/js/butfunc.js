@@ -51,10 +51,7 @@ function sendMapping () {
         downloadFile(respJson.token)
       }
     } else {
-      pexit2.disabled = null
-      removeClass(pexit2, 'pexitUnable')
-      pexit2.innerHTML = '返回'
-      p2.childNodes[3].innerHTML = '文件生成失败，请返回重试。'
+      pexit2Retry()
     }
   }, fd)
 }
@@ -95,10 +92,12 @@ function uploadTwo () {
 
 function sendFormat () {
   let columnNum = document.getElementById('columnNum')
-  if (columnNum.value === '0') {
-    addClass(functionbut, 'errorbut')
-    functionbut.innerHTML = 'MongoDB数据必须填入你要导出的字段名'
-    functionbut.onclick = null
+  if (columnNum !== null) {
+    if (columnNum.value === '0') {
+      addClass(functionbut, 'errorbut')
+      functionbut.innerHTML = 'MongoDB数据必须填入你要导出的字段名'
+      functionbut.onclick = null
+    }
   }
   let fd = getFormatMsg()
   pexit2.disabled = 'true'
@@ -117,10 +116,14 @@ function sendFormat () {
         downloadFile(respJson.token)
       }
     } else {
-      pexit2.disabled = null
-      removeClass(pexit2, 'pexitUnable')
-      pexit2.innerHTML = '返回'
-      p2.childNodes[3].innerHTML = '文件生成失败，请返回重试。'
+      pexit2Retry()
     }
   }, fd)
+}
+
+function pexit2Retry () {
+  pexit2.disabled = null
+  removeClass(pexit2, 'pexitUnable')
+  pexit2.innerHTML = '返回'
+  p2.childNodes[3].innerHTML = '文件生成失败，请返回重试。'
 }

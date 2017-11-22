@@ -15,7 +15,11 @@ var ajaxReq = function (url, func, method, form) {
   xmlhttp = createCORS(method, url)
   xmlhttp.onreadystatechange = function () {
     if (xmlhttp.readyState === 4 && xmlhttp.status === 0) {
-      msgPanelShow(p2, '错误', '服务器未启动', null, null)
+      if (hasClass(p2, 'hidePanel')) {
+        msgPanelShow(p2, '错误', '服务器未启动', null, null)
+      } else {
+        pexit2Retry()
+      }
       return 0
     }
     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
