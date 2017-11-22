@@ -163,6 +163,28 @@ function createTransferPanel (type) {
   }
 }
 
+function createTransferPanel2 (type) {
+  let functionArea = document.getElementById('functionArea')
+  let columnNumRow
+  let num = new Map()
+  if (type === 'csv') {
+    num.set('.csv转为.xls', 0)
+    num.set('.csv转为.xlsx', 1)
+  }
+  if (type === 'xls') {
+    num.set('.xls转.csv', 2)
+    num.set('.xls转.xlsx', 3)
+  }
+
+  if (type === 'xlsx') {
+    num.set('.xlsx转为.csv', 4)
+    num.set('.xlsx转为.xls', 5)
+  }
+  columnNumRow = createSelect('operation', 'operation', '转换目标：', num)
+  columnNumRow.style.width = '700px'
+  appendC(functionArea, columnNumRow)
+}
+
 function chackFunctioPanelBut (check, butfun) {
   let functionbut = document.getElementById('functionbut')
   if (check === 'error') {
@@ -263,6 +285,15 @@ function getTransferMsg () {
     fields[i] = column.value
   }
   fd.append('fields', fields)
+  return fd
+}
+
+function getTransfer2Msg () {
+  let fd = new FormData()
+  let operation = document.getElementById('operation')
+  let file = input.files[0]
+  fd.append('operation', operation.value)
+  fd.append('file', file)
   return fd
 }
 

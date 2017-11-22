@@ -103,6 +103,43 @@ function transfer () {
   }
 }
 
+function transfer2 () {
+  let type = input.files[0].name.split('.').pop()
+  createTransferPanel2(type)
+  if (type === 'csv') {
+    functionpaneltitle.innerHTML = 'CSV转其他'
+  } else if (type === 'xls') {
+    functionpaneltitle.innerHTML = 'XLS转其他'
+  } else if (type === 'xlsx') {
+    functionpaneltitle.innerHTML = 'XLSX转其他'
+  }
+  functionbut.onclick = sendTransfer2
+  showFunctionPanel(150)
+}
+
+function sendTransfer2 () {
+  let fd = getTransfer2Msg()
+  pexit2.disabled = 'true'
+  addClass(pexit2, 'pexitUnable')
+  msgPanelShow(p2, '提示', '正在发送映射并等待生成数据库文件...', '请稍等', null, null)
+  postReq('http://localhost:8080/transfer2Handle', function () {
+    let respJson = JSON.parse(xmlhttp.responseText)
+    if (respJson.code === 'F000') {
+      pexit2.disabled = null
+      removeClass(pexit2, 'pexitUnable')
+      pexit2.innerHTML = '下载'
+      p2.childNodes[3].innerHTML = '文件生成成功'
+      pexit2.onclick = function () {
+        changePanel(p2, 'showPanel', 'hidePanel')
+        c2.style.cssText = 'visibility : hidden; opacity: 0;'
+        downloadFile(respJson.token)
+      }
+    } else {
+      pexit2Retry()
+    }
+  }, fd)
+}
+
 function sendTransfer () {
   let columnNum = document.getElementById('columnNum')
   if (columnNum !== null) {
