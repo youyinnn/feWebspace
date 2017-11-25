@@ -26,7 +26,8 @@ function upload (maxSise, acceptableFileArr, url, func) {
     fd.append('msg', '你好')
 
     if (url !== null) {
-      postReq(url, func, fd)
+      createCORS('POST', url)
+      postReq(func, fd)
     } else {
       func()
     }
@@ -34,11 +35,14 @@ function upload (maxSise, acceptableFileArr, url, func) {
 }
 
 function sendMapping () {
-  let fd = getMappingMsg()
+  let form = getMappingMsg()
   pexit2.disabled = 'true'
   addClass(pexit2, 'pexitUnable')
   msgPanelShow(p2, '提示', '正在发送映射并等待生成数据库文件...', '请稍等', null, null)
-  postReq('http://localhost:8080/mapHandle', function () {
+  openPost(host + '/sf/dataimoprt/doimport')
+  xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+  // postReq('http://localhost:8080/mapHandle', function () {
+  postReq(function () {
     let respJson = JSON.parse(xmlhttp.responseText)
     if (respJson.code === 'I000') {
       pexit2.disabled = null
@@ -53,15 +57,17 @@ function sendMapping () {
     } else {
       pexit2Retry()
     }
-  }, fd)
+  }, form)
 }
 
 function downloadFile (token) {
   console.log(token)
-  getReq('http://localhost:8080/download?token=' + token, null)
+  openGet(host + '/pf/downloadfile?token=' + token)
+  getReq()
 }
 
 function mapping () {
+  console.log(xmlhttp.responseText)
   let respJson = JSON.parse(xmlhttp.responseText)
   let code = respJson.code
   if (code === 'H000') {
@@ -122,7 +128,9 @@ function sendTransfer2 () {
   pexit2.disabled = 'true'
   addClass(pexit2, 'pexitUnable')
   msgPanelShow(p2, '提示', '正在发送映射并等待生成数据库文件...', '请稍等', null, null)
-  postReq('http://localhost:8080/transfer2Handle', function () {
+  openPost(host + '/sf/changefileformat')
+  // postReq('http://localhost:8080/transfer2Handle', function () {
+  postReq(function () {
     let respJson = JSON.parse(xmlhttp.responseText)
     if (respJson.code === 'F000') {
       pexit2.disabled = null
@@ -154,7 +162,9 @@ function sendTransfer () {
   pexit2.disabled = 'true'
   addClass(pexit2, 'pexitUnable')
   msgPanelShow(p2, '提示', '正在发送映射并等待生成数据库文件...', '请稍等', null, null)
-  postReq('http://localhost:8080/transferHandle', function () {
+  openPost(host + '/sf/changebrand')
+  // postReq('http://localhost:8080/transferHandle', function () {
+  postReq(function () {
     let respJson = JSON.parse(xmlhttp.responseText)
     if (respJson.code === 'C000') {
       pexit2.disabled = null
@@ -186,7 +196,9 @@ function sendFormat () {
   pexit2.disabled = 'true'
   addClass(pexit2, 'pexitUnable')
   msgPanelShow(p2, '提示', '正在发送数据库文件并生成目标文件...', '请稍等', null, null)
-  postReq('http://localhost:8080/formatHandle', function () {
+  // postReq('http://localhost:8080/formatHandle', function () {
+  openPost(host + '/sf/exportformdb')
+  postReq(function () {
     let respJson = JSON.parse(xmlhttp.responseText)
     if (respJson.code === 'E000') {
       pexit2.disabled = null

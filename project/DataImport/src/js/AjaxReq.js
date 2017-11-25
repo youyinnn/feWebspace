@@ -3,16 +3,16 @@
 */
 var xmlhttp
 
-var getReq = function (url, func) {
-  ajaxReq(url, func, 'GET', null, null)
+var getReq = function () {
+  ajaxReq(null, null)
 }
 
-var postReq = function (url, func, form) {
-  ajaxReq(url, func, 'POST', form)
+var postReq = function (func, form) {
+  ajaxReq(func, form)
 }
 
-var ajaxReq = function (url, func, method, form) {
-  xmlhttp = createCORS(method, url)
+var ajaxReq = function (func, form) {
+  // xmlhttp = createCORS(method, url)
   xmlhttp.onreadystatechange = function () {
     if (xmlhttp.readyState === 4 && xmlhttp.status === 0) {
       if (hasClass(p2, 'hidePanel')) {
@@ -42,5 +42,13 @@ function createCORS (method, url) {
   } else {
     xhr = null
   }
-  return xhr
+  xmlhttp = xhr
+}
+
+function openPost (url) {
+  createCORS('POST', url)
+}
+
+function openGet (url) {
+  createCORS('GET', url)
 }

@@ -233,21 +233,16 @@ function inputStrAllWrong () {
 }
 
 function getMappingMsg () {
-  let fd = new FormData()
   let tableName = document.getElementById('tableName')
   let dbselect = document.getElementById('dbselect')
   let columnNumber = tableName.xixi
   let filemark = tableName.haha
-  fd.append('filemark', filemark)
-  fd.append('table', tableName.value)
-  fd.append('brand', dbselect.value)
-  let fields = new Array(columnNumber)
+  let form = 'filemark=' + filemark + '&table=' + tableName.value + '&brand=' + dbselect.value
   for (var i = 0; i < columnNumber; i++) {
     let column = document.getElementById('columnMappingRow_' + i)
-    fields[i] = column.value
+    form += '&fields=' + column.value
   }
-  fd.append('fields', fields)
-  return fd
+  return form
 }
 
 function getFormatMsg () {
