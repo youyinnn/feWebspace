@@ -51,14 +51,18 @@ function createInputRow (innerhtml, isinput, inputName, index, butfunc) {
         lockFunctioPanelBut('不能为空')
         return
       }
-
-      console.log(inputTextDuplicate())
-
       if (inputStrPatternAllWrong()) {
         lockFunctioPanelBut('命名只接受字母与下划线')
-      } else {
-        unlockFunctioPanelBut(butfunc)
+        return
       }
+
+      if (inputTextDuplicate()) {
+        lockFunctioPanelBut('不允许有重复列名')
+        return
+      }
+
+      unlockFunctioPanelBut(butfunc)
+
     })
   } else {
     input.style.visibility = 'hidden'
@@ -72,12 +76,13 @@ function createInputRow (innerhtml, isinput, inputName, index, butfunc) {
 
 function inputTextNull () {
   let tableName = document.getElementById('tableName')
-  if (tableName.value === '') {
+  let columnNum = tableName.xixi
+  if (tableName.value.length === 0) {
     return true
   }
   for (let i = 0; i < columnNum; ++i) {
     let c = document.getElementById('columnMappingRow_' + i)
-    if (c.value === '') {
+    if (c.value.length === 0) {
       return true
     }
   }
@@ -93,7 +98,7 @@ function inputTextDuplicate () {
   } else {
     for (let i = 0; i < columnNum; ++i) {
       let c1 = document.getElementById('columnMappingRow_' + i)
-      for (let j = i; j < columnNum; ++j) {
+      for (let j = i + 1; j < columnNum; ++j) {
         let c2 = document.getElementById('columnMappingRow_' + j)
         if (c1.value === c2.value) {
           return true
