@@ -74,7 +74,7 @@ function mapping () {
     let filemark = respJson.filemark
     let headers = respJson.headers
     createMappingPanel(headers, filemark)
-    chackFunctioPanelBut('error')
+    lockFunctioPanelBut('请填写信息')
     let headerslength = headers.length
     let panelheight = 165 + Math.round(headerslength / 2) * 43
     msgPanelShow(p2, '提示', '上传成功', '进入映射', showFunctionPanel, panelheight)
@@ -85,7 +85,7 @@ function mapping () {
 
 function format () {
   let type = input.files[0].name.split('.').pop()
-  chackFunctioPanelBut('error')
+  lockFunctioPanelBut('请填写信息')
   createFormatPanel(type)
   if (type === 'sql') {
     functionpaneltitle.innerHTML = 'Format：sql文件转换导出'
@@ -98,7 +98,7 @@ function format () {
 
 function transfer () {
   let type = input.files[0].name.split('.').pop()
-  chackFunctioPanelBut('error')
+  lockFunctioPanelBut('请填写信息')
   createTransferPanel(type)
   if (type === 'sql') {
     functionpaneltitle.innerHTML = 'MySQL转MongoDB'

@@ -1,5 +1,5 @@
-home = true
-currentSecondPanel = null
+let home = true
+let currentSecondPanel = null
 
 let homesidebut = document.getElementById('homesidebut')
 let timer
@@ -125,6 +125,7 @@ function createFormatPanel (type) {
 }
 
 function createTransferPanel (type) {
+  console.log(666)
   let functionArea = document.getElementById('functionArea')
   let tableName = createInputRow('表名', true, 'tableName', null, sendTransfer)
   appendC(functionArea, tableName)
@@ -185,53 +186,6 @@ function createTransferPanel2 (type) {
   appendC(functionArea, columnNumRow)
 }
 
-function chackFunctioPanelBut (check, butfun) {
-  let functionbut = document.getElementById('functionbut')
-  if (check === 'error') {
-    addClass(functionbut, 'errorbut')
-    functionbut.innerHTML = '命名只接受字母与下划线且不能为空'
-    functionbut.onclick = null
-  } else if (check === 'right') {
-    removeClass(functionbut, 'errorbut')
-    functionbut.innerHTML = '确定'
-    functionbut.onclick = butfun
-  }
-}
-
-function inputStrWrong (input) {
-  let rgx = new RegExp('[a-zA-Z_]', 'g')
-  if (input.value.length === 0) {
-    return true
-  }
-  for (var i = 0; i < input.value.length; i++) {
-    let char = input.value.charAt(i)
-    if (char.search(rgx) !== 0) {
-      return true
-    }
-  }
-  return false
-}
-
-function inputStrAllWrong () {
-  let tableName = document.getElementById('tableName')
-  check = inputStrWrong(tableName)
-  if (check) {
-    return check
-  }
-  let columnNumber = tableName.xixi
-  if (columnNumber !== 0) {
-    for (var i = 0; i < columnNumber; i++) {
-      let column = document.getElementById('columnMappingRow_' + i)
-      check = inputStrWrong(column)
-      if (check) {
-        return check
-      }
-    }
-  }
-
-  return check
-}
-
 function getMappingMsg () {
   let tableName = document.getElementById('tableName')
   let dbselect = document.getElementById('dbselect')
@@ -269,17 +223,16 @@ function getTransferMsg () {
   let fd = new FormData()
   let tableName = document.getElementById('tableName')
   let columnNumber = tableName.xixi
-  let brand = tableName.heihei
+  let operation = tableName.heihei
   let file = input.files[0]
-  fd.append('brand', brand)
+  fd.append('operation', operation)
   fd.append('file', file)
   fd.append('table', tableName.value)
   let fields = new Array(columnNumber)
   for (var i = 0; i < columnNumber; i++) {
     let column = document.getElementById('columnMappingRow_' + i)
-    fields[i] = column.value
+    fd.append('fields', column.value)
   }
-  fd.append('fields', fields)
   return fd
 }
 
