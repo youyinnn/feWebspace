@@ -211,6 +211,7 @@ function getFormatMsg () {
   let columnNumber = tableName.xixi
   let brand = tableName.heihei
   let file = input.files[0]
+  tableName.lualua = tableName.value + format.value
   fd.append('brand', brand)
   fd.append('file', file)
   fd.append('table', tableName.value)
@@ -230,6 +231,11 @@ function getTransferMsg () {
   let columnNumber = tableName.xixi
   let operation = tableName.heihei
   let file = input.files[0]
+  if (operation === 0) {
+    tableName.lualua = tableName.value + '.json'
+  } else {
+    tableName.lualua = tableName.value + '.sql'
+  }
   fd.append('operation', operation)
   fd.append('file', file)
   fd.append('table', tableName.value)

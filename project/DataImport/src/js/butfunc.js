@@ -36,7 +36,7 @@ function upload (maxSise, acceptableFileArr, url, func) {
 
 function sendMapping () {
   let form = getMappingMsg()
-  console.log(form)
+  // console.log(form)
   pexit2.disabled = 'true'
   addClass(pexit2, 'pexitUnable')
   msgPanelShow(p2, '提示', '正在发送映射并等待生成数据库文件...', '请稍等', null, null)
@@ -62,7 +62,7 @@ function sendMapping () {
 }
 
 function downloadFile (token) {
-  console.log(token)
+  // console.log(token)
   openGet(host + '/pf/downloadfile?token=' + token)
   getReq(downloadBinaryFile)
 }
