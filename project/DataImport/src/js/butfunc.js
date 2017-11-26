@@ -36,6 +36,7 @@ function upload (maxSise, acceptableFileArr, url, func) {
 
 function sendMapping () {
   let form = getMappingMsg()
+  console.log(form)
   pexit2.disabled = 'true'
   addClass(pexit2, 'pexitUnable')
   msgPanelShow(p2, '提示', '正在发送映射并等待生成数据库文件...', '请稍等', null, null)
@@ -63,11 +64,26 @@ function sendMapping () {
 function downloadFile (token) {
   console.log(token)
   openGet(host + '/pf/downloadfile?token=' + token)
-  getReq()
+  getReq(downloadBinaryFile)
+}
+
+function downloadBinaryFile () {
+  let tableName = document.getElementById('tableName')
+  let filename = tableName.lualua
+  var blob = new Blob([xmlhttp.response])
+  var href = URL.createObjectURL(blob)
+  download(href, filename)
+  URL.revokeObjectURL(href)
+}
+
+function download (href, title) {
+  const a = document.createElement('a')
+  a.setAttribute('href', href)
+  a.setAttribute('download', title)
+  a.click()
 }
 
 function mapping () {
-  console.log(xmlhttp.responseText)
   let respJson = JSON.parse(xmlhttp.responseText)
   let code = respJson.code
   if (code === 'H000') {

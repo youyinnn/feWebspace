@@ -191,6 +191,11 @@ function getMappingMsg () {
   let dbselect = document.getElementById('dbselect')
   let columnNumber = tableName.xixi
   let filemark = tableName.haha
+  if (dbselect.value === '0') {
+    tableName.lualua = tableName.value + '.sql'
+  } else {
+    tableName.lualua = tableName.value + '.json'
+  }
   let form = 'filemark=' + filemark + '&table=' + tableName.value + '&brand=' + dbselect.value
   for (var i = 0; i < columnNumber; i++) {
     let column = document.getElementById('columnMappingRow_' + i)

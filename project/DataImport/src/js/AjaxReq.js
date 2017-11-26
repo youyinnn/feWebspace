@@ -3,8 +3,8 @@
 */
 var xmlhttp
 
-var getReq = function () {
-  ajaxReq(null, null)
+var getReq = function (func) {
+  ajaxReq(func, null)
 }
 
 var postReq = function (func, form) {
