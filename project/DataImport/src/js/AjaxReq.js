@@ -15,20 +15,12 @@ var ajaxReq = function (func, form) {
   // xmlhttp = createCORS(method, url)
   xmlhttp.onreadystatechange = function () {
     if (xmlhttp.readyState === 4 && xmlhttp.status === 0) {
-      if (hasClass(p2, 'hidePanel')) {
-        msgPanelShow(p2, '错误', '服务器未启动 请联系管理员', null, null)
-      } else {
-        pexit2Retry()
-      }
-      return 0
+      serverUnreachabled()
+      return
     }
     if (xmlhttp.readyState === 4 && xmlhttp.status === 500) {
-      if (hasClass(p2, 'hidePanel')) {
-        msgPanelShow(p2, '错误', '服务器内部错误 请联系管理员', null, null)
-      } else {
-        pexit2Retry()
-      }
-      return 0
+      serverWrong()
+      return
     }
     if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
       if (func !== null) {

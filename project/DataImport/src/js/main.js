@@ -261,3 +261,24 @@ function resetFunctionPanelHeight (height) {
   functionPanel.style.height = height + 'px'
   functionArea.style.height = (height - 100) + 'px'
 }
+
+function serverUnreachabled () {
+  fixMsgPanel()
+  msgPanelShow(p2, '错误', '服务器未启动 请联系管理员', null, null)
+}
+
+function serverWrong () {
+  fixMsgPanel()
+  msgPanelShow(p2, '错误', '服务器内部错误 请联系管理员', null, null)
+}
+
+function fixMsgPanel () {
+  if (hasClass(p2, 'showPanel')) {
+    changePanel(p2, 'showPanel', 'hidePanel')
+    c2.style.cssText = 'visibility : hidden; opacity: 0;'
+  }
+  if (hasClass(pexit2, 'pexitUnable')) {
+    removeClass(pexit2, 'pexitUnable')
+    pexit2.disabled = null
+  }
+}
