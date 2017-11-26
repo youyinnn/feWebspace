@@ -54,7 +54,6 @@ function msgPanelShow (msgPanel, title, msg, exitText, exitFunc, exitFuncParamet
 }
 
 function createMappingPanel (tableColumns, filemark) {
-  let functionArea = document.getElementById('functionArea')
   let tableName = createInputRow('表名', true, 'tableName', null, sendMapping)
   let optionmap = new Map()
   optionmap.set('MySQL', 0)
@@ -80,7 +79,6 @@ function createMappingPanel (tableColumns, filemark) {
 }
 
 function createFormatPanel (type) {
-  let functionArea = document.getElementById('functionArea')
   let tableName = createInputRow('表名', true, 'tableName', null, sendFormat)
   let optionmap = new Map()
   optionmap.set('.xlsx', '.xlsx')
@@ -125,8 +123,6 @@ function createFormatPanel (type) {
 }
 
 function createTransferPanel (type) {
-  console.log(666)
-  let functionArea = document.getElementById('functionArea')
   let tableName = createInputRow('表名', true, 'tableName', null, sendTransfer)
   appendC(functionArea, tableName)
   let tableNameElement = document.getElementById('tableName')
@@ -165,7 +161,6 @@ function createTransferPanel (type) {
 }
 
 function createTransferPanel2 (type) {
-  let functionArea = document.getElementById('functionArea')
   let columnNumRow
   let num = new Map()
   if (type === 'csv') {
