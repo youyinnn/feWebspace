@@ -74,8 +74,8 @@ function createMappingPanel (tableColumns, filemark) {
   }
 
   let tableNameElement = document.getElementById('tableName')
-  tableNameElement.xixi = i
-  tableNameElement.haha = filemark
+  functionArea.xixi = i
+  functionArea.haha = filemark
 }
 
 function createFormatPanel (type) {
@@ -88,7 +88,7 @@ function createFormatPanel (type) {
   appendC(functionArea, tableName)
   appendC(functionArea, dbselect)
   let tableNameElement = document.getElementById('tableName')
-  tableNameElement.xixi = 0
+  functionArea.xixi = 0
   if (type === 'json') {
     tableNameElement.heihei = 1
     let num = new Map()
@@ -101,19 +101,19 @@ function createFormatPanel (type) {
     let columnNum = document.getElementById('columnNum')
     bind(columnNum, 'change', function () {
       let columnNumVal = parseInt(columnNum.value)
-      if (tableNameElement.xixi < columnNumVal) {
-        for (let i = tableNameElement.xixi; i < columnNumVal; ++i) {
+      if (functionArea.xixi < columnNumVal) {
+        for (let i = functionArea.xixi; i < columnNumVal; ++i) {
           let columnMappingRow = createInputRow('第' + (i + 1) + '列', true, 'columnMappingRow_' + i, i, sendFormat)
           appendC(functionArea, columnMappingRow)
         }
-      } else if (tableNameElement.xixi > columnNumVal) {
-        for (let i = tableNameElement.xixi; i > columnNumVal; --i) {
+      } else if (functionArea.xixi > columnNumVal) {
+        for (let i = functionArea.xixi; i > columnNumVal; --i) {
           removeLastC(functionArea)
         }
       }
       let add = (Math.round((columnNumVal) / 2)) * 43
       resetFunctionPanelHeight(190 + add)
-      tableNameElement.xixi = columnNumVal
+      functionArea.xixi = columnNumVal
     })
     let line = createLine()
     appendC(functionArea, line)
@@ -126,7 +126,7 @@ function createTransferPanel (type) {
   let tableName = createInputRow('表名', true, 'tableName', null, sendTransfer)
   appendC(functionArea, tableName)
   let tableNameElement = document.getElementById('tableName')
-  tableNameElement.xixi = 0
+  functionArea.xixi = 0
   if (type === 'json') {
     tableNameElement.heihei = 1
     let num = new Map()
@@ -139,19 +139,19 @@ function createTransferPanel (type) {
     let columnNum = document.getElementById('columnNum')
     bind(columnNum, 'change', function () {
       let columnNumVal = parseInt(columnNum.value)
-      if (tableNameElement.xixi < columnNumVal) {
-        for (let i = tableNameElement.xixi; i < columnNumVal; ++i) {
+      if (functionArea.xixi < columnNumVal) {
+        for (let i = functionArea.xixi; i < columnNumVal; ++i) {
           let columnMappingRow = createInputRow('第' + (i + 1) + '列', true, 'columnMappingRow_' + i, i, sendTransfer)
           appendC(functionArea, columnMappingRow)
         }
-      } else if (tableNameElement.xixi > columnNumVal) {
-        for (let i = tableNameElement.xixi; i > columnNumVal; --i) {
+      } else if (functionArea.xixi > columnNumVal) {
+        for (let i = functionArea.xixi; i > columnNumVal; --i) {
           removeLastC(functionArea)
         }
       }
       let add = (Math.round((columnNumVal) / 2)) * 43
       resetFunctionPanelHeight(190 + add)
-      tableNameElement.xixi = columnNumVal
+      functionArea.xixi = columnNumVal
     })
     let line = createLine()
     appendC(functionArea, line)
@@ -184,12 +184,12 @@ function createTransferPanel2 (type) {
 function getMappingMsg () {
   let tableName = document.getElementById('tableName')
   let dbselect = document.getElementById('dbselect')
-  let columnNumber = tableName.xixi
+  let columnNumber = functionArea.xixi
   let filemark = tableName.haha
   if (dbselect.value === '0') {
-    tableName.lualua = tableName.value + '.sql'
+    functionArea.lualua = tableName.value + '.sql'
   } else {
-    tableName.lualua = tableName.value + '.json'
+    functionArea.lualua = tableName.value + '.json'
   }
   let form = 'filemark=' + filemark + '&table=' + tableName.value + '&brand=' + dbselect.value
   for (var i = 0; i < columnNumber; i++) {
@@ -203,10 +203,10 @@ function getFormatMsg () {
   let fd = new FormData()
   let tableName = document.getElementById('tableName')
   let format = document.getElementById('format')
-  let columnNumber = tableName.xixi
-  let brand = tableName.heihei
+  let columnNumber = functionArea.xixi
+  let brand = functionArea.heihei
   let file = input.files[0]
-  tableName.lualua = tableName.value + format.value
+  functionArea.lualua = tableName.value + format.value
   fd.append('brand', brand)
   fd.append('file', file)
   fd.append('table', tableName.value)
@@ -223,13 +223,13 @@ function getFormatMsg () {
 function getTransferMsg () {
   let fd = new FormData()
   let tableName = document.getElementById('tableName')
-  let columnNumber = tableName.xixi
-  let operation = tableName.heihei
+  let columnNumber = functionArea.xixi
+  let operation = functionArea.heihei
   let file = input.files[0]
   if (operation === 0) {
-    tableName.lualua = tableName.value + '.json'
+    functionArea.lualua = tableName.value + '.json'
   } else {
-    tableName.lualua = tableName.value + '.sql'
+    functionArea.lualua = tableName.value + '.sql'
   }
   fd.append('operation', operation)
   fd.append('file', file)

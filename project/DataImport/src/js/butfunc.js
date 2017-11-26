@@ -69,7 +69,7 @@ function downloadFile (token) {
 
 function downloadBinaryFile () {
   let tableName = document.getElementById('tableName')
-  let filename = tableName.lualua
+  let filename = functionArea.lualua
   var blob = new Blob([xmlhttp.response])
   var href = URL.createObjectURL(blob)
   download(href, filename)
@@ -143,7 +143,7 @@ function sendTransfer2 () {
   let fd = getTransfer2Msg()
   pexit2.disabled = 'true'
   addClass(pexit2, 'pexitUnable')
-  msgPanelShow(p2, '提示', '正在发送映射并等待生成数据库文件...', '请稍等', null, null)
+  msgPanelShow(p2, '提示', '正在转换文件...', '请稍等', null, null)
   openPost(host + '/sf/changefileformat')
   // postReq('http://localhost:8080/transfer2Handle', function () {
   postReq(function () {
@@ -177,7 +177,7 @@ function sendTransfer () {
   let fd = getTransferMsg()
   pexit2.disabled = 'true'
   addClass(pexit2, 'pexitUnable')
-  msgPanelShow(p2, '提示', '正在发送映射并等待生成数据库文件...', '请稍等', null, null)
+  msgPanelShow(p2, '提示', '正在转换数据库文件...', '请稍等', null, null)
   openPost(host + '/sf/changebrand')
   // postReq('http://localhost:8080/transferHandle', function () {
   postReq(function () {
@@ -211,7 +211,7 @@ function sendFormat () {
   let fd = getFormatMsg()
   pexit2.disabled = 'true'
   addClass(pexit2, 'pexitUnable')
-  msgPanelShow(p2, '提示', '正在发送数据库文件并生成目标文件...', '请稍等', null, null)
+  msgPanelShow(p2, '提示', '正在导出为数据库文件...', '请稍等', null, null)
   // postReq('http://localhost:8080/formatHandle', function () {
   openPost(host + '/sf/exportformdb')
   postReq(function () {
