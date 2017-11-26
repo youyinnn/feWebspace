@@ -76,7 +76,7 @@ function createInputRow (innerhtml, isinput, inputName, index, butfunc) {
 
 function inputTextNull () {
   let tableName = document.getElementById('tableName')
-  let columnNum = input.xixi
+  let columnNum = functionArea.xixi
   if (tableName.value.length === 0) {
     return true
   }
@@ -91,7 +91,7 @@ function inputTextNull () {
 
 function inputTextDuplicate () {
   let tableName = document.getElementById('tableName')
-  let columnNum = input.xixi
+  let columnNum = functionArea.xixi
 
   if (columnNum === 1) {
     return false
@@ -143,7 +143,7 @@ function inputStrPatternAllWrong () {
   if (check) {
     return check
   }
-  let columnNumber = input.xixi
+  let columnNumber = functionArea.xixi
   if (columnNumber !== 0) {
     for (var i = 0; i < columnNumber; i++) {
       let column = document.getElementById('columnMappingRow_' + i)
