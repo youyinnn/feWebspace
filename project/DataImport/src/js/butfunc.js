@@ -26,8 +26,7 @@ function upload (maxSise, acceptableFileArr, url, func) {
     fd.append('msg', '你好')
 
     if (url !== null) {
-      pexit2.disabled = 'true'
-      addClass(pexit2, 'pexitUnable')
+      disablePexit2But()
       msgPanelShow(p2, '提示', '正在上传文件至数据库并等待返回需要映射的字段头部...', '请稍等', null, null)
       createCORS('POST', url)
       postReq(func, fd)
@@ -39,9 +38,7 @@ function upload (maxSise, acceptableFileArr, url, func) {
 
 function sendMapping () {
   let form = getMappingMsg()
-  // console.log(form)
-  pexit2.disabled = 'true'
-  addClass(pexit2, 'pexitUnable')
+  disablePexit2But()
   msgPanelShow(p2, '提示', '正在发送映射并等待生成数据库文件...', '请稍等', null, null)
   openPost(host + '/sf/dataimoprt/doimport')
   xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
@@ -86,10 +83,7 @@ function mapping () {
     lockFunctioPanelBut('请填写信息')
     let headerslength = headers.length
     let panelheight = 165 + Math.round(headerslength / 2) * 43
-    pexit2.disabled = null
-    removeClass(pexit2, 'pexitUnable')
-    pexit2.innerHTML = '进入映射'
-    p2.childNodes[3].innerHTML = '上传成功'
+    enablePexit2But('进入映射', '上传成功')
     pexit2.onclick = function () {
       changePanel(p2, 'showPanel', 'hidePanel')
       c2.style.cssText = 'visibility : hidden; opacity: 0;'
@@ -142,8 +136,7 @@ function transfer2 () {
 
 function sendTransfer2 () {
   let fd = getTransfer2Msg()
-  pexit2.disabled = 'true'
-  addClass(pexit2, 'pexitUnable')
+  disablePexit2But()
   msgPanelShow(p2, '提示', '正在转换文件...', '请稍等', null, null)
   openPost(host + '/sf/changefileformat')
   postReq(function () {
@@ -167,8 +160,7 @@ function sendTransfer () {
     }
   }
   let fd = getTransferMsg()
-  pexit2.disabled = 'true'
-  addClass(pexit2, 'pexitUnable')
+  disablePexit2But()
   msgPanelShow(p2, '提示', '正在转换数据库文件...', '请稍等', null, null)
   openPost(host + '/sf/changebrand')
   postReq(function () {
@@ -192,8 +184,7 @@ function sendFormat () {
     }
   }
   let fd = getFormatMsg()
-  pexit2.disabled = 'true'
-  addClass(pexit2, 'pexitUnable')
+  disablePexit2But()
   msgPanelShow(p2, '提示', '正在导出为数据库文件...', '请稍等', null, null)
   openPost(host + '/sf/exportformdb')
   postReq(function () {
@@ -234,4 +225,9 @@ function enablePexit2But (butText, msgPanelText) {
   removeClass(pexit2, 'pexitUnable')
   pexit2.innerHTML = butText
   p2.childNodes[3].innerHTML = msgPanelText
+}
+
+function disablePexit2But () {
+  pexit2.disabled = 'true'
+  addClass(pexit2, 'pexitUnable')
 }
