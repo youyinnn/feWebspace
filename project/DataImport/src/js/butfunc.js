@@ -48,15 +48,7 @@ function sendMapping () {
   postReq(function () {
     let respJson = JSON.parse(xmlhttp.responseText)
     if (respJson.code === 'I000') {
-      pexit2.disabled = null
-      removeClass(pexit2, 'pexitUnable')
-      pexit2.innerHTML = '下载'
-      p2.childNodes[3].innerHTML = '文件生成成功'
-      pexit2.onclick = function () {
-        changePanel(p2, 'showPanel', 'hidePanel')
-        c2.style.cssText = 'visibility : hidden; opacity: 0;'
-        downloadFile(respJson.token)
-      }
+      clickDownload(respJson.token, true)
     } else {
       pexit2Retry()
     }
@@ -157,7 +149,7 @@ function sendTransfer2 () {
   postReq(function () {
     let respJson = JSON.parse(xmlhttp.responseText)
     if (respJson.code === 'F000') {
-      clickDownload(respJson.token)
+      clickDownload(respJson.token, false)
     } else {
       pexit2Retry()
     }
@@ -182,7 +174,7 @@ function sendTransfer () {
   postReq(function () {
     let respJson = JSON.parse(xmlhttp.responseText)
     if (respJson.code === 'C000') {
-      clickDownload(respJson.token)
+      clickDownload(respJson.token, false)
     } else {
       pexit2Retry()
     }
@@ -207,7 +199,7 @@ function sendFormat () {
   postReq(function () {
     let respJson = JSON.parse(xmlhttp.responseText)
     if (respJson.code === 'E000') {
-      clickDownload(respJson.token)
+      clickDownload(respJson.token, false)
     } else {
       pexit2Retry()
     }
@@ -221,14 +213,28 @@ function pexit2Retry () {
   p2.childNodes[3].innerHTML = '文件生成失败，请返回重试。'
 }
 
-function clickDownload (token) {
+function clickDownload (token, returnHome) {
   pexit2.disabled = null
   removeClass(pexit2, 'pexitUnable')
   pexit2.innerHTML = '下载'
   p2.childNodes[3].innerHTML = '文件生成成功'
   pexit2.onclick = function () {
-    changePanel(p2, 'showPanel', 'hidePanel')
-    c2.style.cssText = 'visibility : hidden; opacity: 0;'
     downloadFile(token)
+    if (returnHome) {
+      pexit2.innerHTML = '返回主界面'
+      p2.childNodes[3].innerHTML = '下载成功！你需要返回主界面才能进行其他操作！'
+      pexit2.onclick = function () {
+        changePanel(p2, 'showPanel', 'hidePanel')
+        c2.style.cssText = 'visibility : hidden; opacity: 0;'
+        homesidebut.onclick()
+      }
+    } else {
+      pexit2.innerHTML = '继续下载'
+      p2.childNodes[3].innerHTML = '下载成功！你可以在当前面板继续下载！'
+      pexit2.onclick = function () {
+        changePanel(p2, 'showPanel', 'hidePanel')
+        c2.style.cssText = 'visibility : hidden; opacity: 0;'
+      }
+    }
   }
 }
