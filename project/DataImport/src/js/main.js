@@ -90,7 +90,7 @@ function createFormatPanel (type) {
   let tableNameElement = document.getElementById('tableName')
   functionArea.xixi = 0
   if (type === 'json') {
-    tableNameElement.heihei = 1
+    functionArea.heihei = 1
     let num = new Map()
     for (let i = 0; i < 23; ++i) {
       num.set(i, i)
@@ -118,7 +118,7 @@ function createFormatPanel (type) {
     let line = createLine()
     appendC(functionArea, line)
   } else {
-    tableNameElement.heihei = 0
+    functionArea.heihei = 0
   }
 }
 
@@ -128,7 +128,7 @@ function createTransferPanel (type) {
   let tableNameElement = document.getElementById('tableName')
   functionArea.xixi = 0
   if (type === 'json') {
-    tableNameElement.heihei = 1
+    functionArea.heihei = 1
     let num = new Map()
     for (let i = 0; i < 23; ++i) {
       num.set(i, i)
@@ -156,7 +156,7 @@ function createTransferPanel (type) {
     let line = createLine()
     appendC(functionArea, line)
   } else {
-    tableNameElement.heihei = 0
+    functionArea.heihei = 0
   }
 }
 
