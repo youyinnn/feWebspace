@@ -65,13 +65,12 @@ function sendMapping () {
 }
 
 function downloadFile (token) {
-  // console.log(token)
   openGet(host + '/pf/downloadfile?token=' + token)
+  xmlhttp.responseType = 'arraybuffer'
   getReq(downloadBinaryFile)
 }
 
 function downloadBinaryFile () {
-  let tableName = document.getElementById('tableName')
   let filename = functionArea.lualua
   var blob = new Blob([xmlhttp.response])
   var href = URL.createObjectURL(blob)
