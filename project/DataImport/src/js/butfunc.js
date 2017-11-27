@@ -50,7 +50,7 @@ function sendMapping () {
     if (respJson.code === 'I000') {
       clickDownload(respJson.token, true)
     } else {
-      pexit2Retry()
+      enablePexit2But('返回', '文件生成失败，请返回重试。')
     }
   }, form)
 }
@@ -151,7 +151,7 @@ function sendTransfer2 () {
     if (respJson.code === 'F000') {
       clickDownload(respJson.token, false)
     } else {
-      pexit2Retry()
+      enablePexit2But('返回', '文件生成失败，请返回重试。')
     }
   }, fd)
 }
@@ -176,7 +176,7 @@ function sendTransfer () {
     if (respJson.code === 'C000') {
       clickDownload(respJson.token, false)
     } else {
-      pexit2Retry()
+      enablePexit2But('返回', '文件生成失败，请返回重试。')
     }
   }, fd)
 }
@@ -201,23 +201,13 @@ function sendFormat () {
     if (respJson.code === 'E000') {
       clickDownload(respJson.token, false)
     } else {
-      pexit2Retry()
+      enablePexit2But('返回', '文件生成失败，请返回重试。')
     }
   }, fd)
 }
 
-function pexit2Retry () {
-  pexit2.disabled = null
-  removeClass(pexit2, 'pexitUnable')
-  pexit2.innerHTML = '返回'
-  p2.childNodes[3].innerHTML = '文件生成失败，请返回重试。'
-}
-
 function clickDownload (token, returnHome) {
-  pexit2.disabled = null
-  removeClass(pexit2, 'pexitUnable')
-  pexit2.innerHTML = '下载'
-  p2.childNodes[3].innerHTML = '文件生成成功'
+  enablePexit2But('下载', '文件生成成功')
   pexit2.onclick = function () {
     downloadFile(token)
     if (returnHome) {
@@ -237,4 +227,11 @@ function clickDownload (token, returnHome) {
       }
     }
   }
+}
+
+function enablePexit2But (butText, msgPanelText) {
+  pexit2.disabled = null
+  removeClass(pexit2, 'pexitUnable')
+  pexit2.innerHTML = butText
+  p2.childNodes[3].innerHTML = msgPanelText
 }
