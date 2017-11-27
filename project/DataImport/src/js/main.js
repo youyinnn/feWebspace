@@ -185,7 +185,7 @@ function getMappingMsg () {
   let tableName = document.getElementById('tableName')
   let dbselect = document.getElementById('dbselect')
   let columnNumber = functionArea.xixi
-  let filemark = tableName.haha
+  let filemark = functionArea.haha
   if (dbselect.value === '0') {
     functionArea.lualua = tableName.value + '.sql'
   } else {
