@@ -1,7 +1,6 @@
 let home = true
 let currentSecondPanel = null
 
-let homesidebut = document.getElementById('homesidebut')
 let timer
 homesidebut.onclick = function getHome () {
   if (!home) {

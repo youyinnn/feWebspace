@@ -101,7 +101,7 @@
   <div id="functionPanel" class="panel hidePanel">
     <span id="functionpaneltitle" class="subtitle unselectable"></span>
     <div id="functionArea" class="bootstrap-frm"></div>
-    <button id="functionbut" type="button" class="funcbt bt pexit"></button>
+    <button id="functionbut" type="button" class="funcbt bt pexit">确定</button>
   </div>
 
   <!-- 消息弹窗 -->
@@ -128,24 +128,24 @@
   var p2 = document.getElementById('p2')
   var host = 'http://119.29.166.13:8080'
 
+  var bt1 = document.getElementById('bt1')
+  var bt2 = document.getElementById('bt2')
+  var bt3 = document.getElementById('bt3')
+  var bt4 = document.getElementById('bt4')
 
   var mainPanel = document.getElementById('mainPanel')
-  var bt1 = document.getElementById('bt1')
   var fileuploadPanel = document.getElementById('fileuploadPanel')
   var uploadbutton = document.getElementById('uploadbutton')
   var panelSubtitle = document.getElementById('panelSubtitle')
   var panelIntroduce = document.getElementById('panelIntroduce')
+  var homesidebut = document.getElementById('homesidebut')
+
   var functionPanel = document.getElementById('functionPanel')
   var functionArea = document.getElementById('functionArea')
-  var acceptableFileArr
-
   var functionbut = document.getElementById('functionbut')
-  functionbut.innerHTML = '确定'
   var functionpaneltitle = document.getElementById('functionpaneltitle')
 
-  var bt2 = document.getElementById('bt2')
-  var bt3 = document.getElementById('bt3')
-  var bt4 = document.getElementById('bt4')
+  var acceptableFileArr
 
   bt1.onclick = function () {
     acceptableFileArr = ['xls', 'xlsx', 'csv']

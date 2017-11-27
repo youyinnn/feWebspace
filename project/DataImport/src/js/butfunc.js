@@ -160,15 +160,7 @@ function sendTransfer2 () {
   postReq(function () {
     let respJson = JSON.parse(xmlhttp.responseText)
     if (respJson.code === 'F000') {
-      pexit2.disabled = null
-      removeClass(pexit2, 'pexitUnable')
-      pexit2.innerHTML = '下载'
-      p2.childNodes[3].innerHTML = '文件生成成功'
-      pexit2.onclick = function () {
-        changePanel(p2, 'showPanel', 'hidePanel')
-        c2.style.cssText = 'visibility : hidden; opacity: 0;'
-        downloadFile(respJson.token)
-      }
+      clickDownload(respJson.token)
     } else {
       pexit2Retry()
     }
@@ -194,15 +186,7 @@ function sendTransfer () {
   postReq(function () {
     let respJson = JSON.parse(xmlhttp.responseText)
     if (respJson.code === 'C000') {
-      pexit2.disabled = null
-      removeClass(pexit2, 'pexitUnable')
-      pexit2.innerHTML = '下载'
-      p2.childNodes[3].innerHTML = '文件生成成功'
-      pexit2.onclick = function () {
-        changePanel(p2, 'showPanel', 'hidePanel')
-        c2.style.cssText = 'visibility : hidden; opacity: 0;'
-        downloadFile(respJson.token)
-      }
+      clickDownload(respJson.token)
     } else {
       pexit2Retry()
     }
@@ -228,15 +212,7 @@ function sendFormat () {
   postReq(function () {
     let respJson = JSON.parse(xmlhttp.responseText)
     if (respJson.code === 'E000') {
-      pexit2.disabled = null
-      removeClass(pexit2, 'pexitUnable')
-      pexit2.innerHTML = '下载'
-      p2.childNodes[3].innerHTML = '文件生成成功'
-      pexit2.onclick = function () {
-        changePanel(p2, 'showPanel', 'hidePanel')
-        c2.style.cssText = 'visibility : hidden; opacity: 0;'
-        downloadFile(respJson.token)
-      }
+      clickDownload(respJson.token)
     } else {
       pexit2Retry()
     }
@@ -248,4 +224,16 @@ function pexit2Retry () {
   removeClass(pexit2, 'pexitUnable')
   pexit2.innerHTML = '返回'
   p2.childNodes[3].innerHTML = '文件生成失败，请返回重试。'
+}
+
+function clickDownload (token) {
+  pexit2.disabled = null
+  removeClass(pexit2, 'pexitUnable')
+  pexit2.innerHTML = '下载'
+  p2.childNodes[3].innerHTML = '文件生成成功'
+  pexit2.onclick = function () {
+    changePanel(p2, 'showPanel', 'hidePanel')
+    c2.style.cssText = 'visibility : hidden; opacity: 0;'
+    downloadFile(token)
+  }
 }
