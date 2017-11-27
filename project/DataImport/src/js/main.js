@@ -243,9 +243,19 @@ function getTransferMsg () {
 
 function getTransfer2Msg () {
   let fd = new FormData()
-  let operation = document.getElementById('operation')
+  let operationVal = document.getElementById('operation').value
   let file = input.files[0]
-  fd.append('operation', operation.value)
+  let fileName = file.name.split('.')[0]
+  if (operationVal === '0' || operationVal === '5') {
+    functionArea.lualua = fileName + '.xls'
+  }
+  if (operationVal === '1' || operationVal === '3') {
+    functionArea.lualua = fileName + '.xlsx'
+  }
+  if (operationVal === '2' || operationVal === '4') {
+    functionArea.lualua = fileName + '.csv'
+  }
+  fd.append('operation', operationVal)
   fd.append('file', file)
   return fd
 }
