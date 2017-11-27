@@ -55,18 +55,32 @@ function sendMapping () {
 function downloadFile (token) {
   openGet(host + '/pf/downloadfile?token=' + token)
   xmlhttp.responseType = 'arraybuffer'
-  getReq(downloadBinaryFile)
+  getReq(outputBinaryFile)
 }
 
-function downloadBinaryFile () {
+function outputBinaryFile () {
+  if (functionArea.baba) {
+    enablePexit2But('返回主界面', '下载成功！你需要返回主界面才能进行其他操作！')
+    pexit2.onclick = function () {
+      changePanel(p2, 'showPanel', 'hidePanel')
+      c2.style.cssText = 'visibility : hidden; opacity: 0;'
+      homesidebut.onclick()
+    }
+  } else {
+    enablePexit2But('继续下载', '下载成功！你可以在当前面板继续下载！')
+    pexit2.onclick = function () {
+      changePanel(p2, 'showPanel', 'hidePanel')
+      c2.style.cssText = 'visibility : hidden; opacity: 0;'
+    }
+  }
   let filename = functionArea.lualua
   var blob = new Blob([xmlhttp.response])
   var href = URL.createObjectURL(blob)
-  download(href, filename)
+  Adownload(href, filename)
   URL.revokeObjectURL(href)
 }
 
-function download (href, title) {
+function Adownload (href, title) {
   const a = document.createElement('a')
   a.setAttribute('href', href)
   a.setAttribute('download', title)
@@ -200,23 +214,11 @@ function sendFormat () {
 function clickDownload (token, returnHome) {
   enablePexit2But('下载', '文件生成成功')
   pexit2.onclick = function () {
+    disablePexit2But()
+    pexit2.innerHTML = '请稍等'
+    p2.childNodes[3].innerHTML = '正在下载....'
     downloadFile(token)
-    if (returnHome) {
-      pexit2.innerHTML = '返回主界面'
-      p2.childNodes[3].innerHTML = '下载成功！你需要返回主界面才能进行其他操作！'
-      pexit2.onclick = function () {
-        changePanel(p2, 'showPanel', 'hidePanel')
-        c2.style.cssText = 'visibility : hidden; opacity: 0;'
-        homesidebut.onclick()
-      }
-    } else {
-      pexit2.innerHTML = '继续下载'
-      p2.childNodes[3].innerHTML = '下载成功！你可以在当前面板继续下载！'
-      pexit2.onclick = function () {
-        changePanel(p2, 'showPanel', 'hidePanel')
-        c2.style.cssText = 'visibility : hidden; opacity: 0;'
-      }
-    }
+    functionArea.baba = returnHome
   }
 }
 
