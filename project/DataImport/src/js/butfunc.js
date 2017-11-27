@@ -45,7 +45,6 @@ function sendMapping () {
   msgPanelShow(p2, '提示', '正在发送映射并等待生成数据库文件...', '请稍等', null, null)
   openPost(host + '/sf/dataimoprt/doimport')
   xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-  // postReq('http://localhost:8080/mapHandle', function () {
   postReq(function () {
     let respJson = JSON.parse(xmlhttp.responseText)
     if (respJson.code === 'I000') {
@@ -95,7 +94,6 @@ function mapping () {
     lockFunctioPanelBut('请填写信息')
     let headerslength = headers.length
     let panelheight = 165 + Math.round(headerslength / 2) * 43
-    // msgPanelShow(p2, '提示', '上传成功', '进入映射', showFunctionPanel, panelheight)
     pexit2.disabled = null
     removeClass(pexit2, 'pexitUnable')
     pexit2.innerHTML = '进入映射'
@@ -156,7 +154,6 @@ function sendTransfer2 () {
   addClass(pexit2, 'pexitUnable')
   msgPanelShow(p2, '提示', '正在转换文件...', '请稍等', null, null)
   openPost(host + '/sf/changefileformat')
-  // postReq('http://localhost:8080/transfer2Handle', function () {
   postReq(function () {
     let respJson = JSON.parse(xmlhttp.responseText)
     if (respJson.code === 'F000') {
@@ -182,7 +179,6 @@ function sendTransfer () {
   addClass(pexit2, 'pexitUnable')
   msgPanelShow(p2, '提示', '正在转换数据库文件...', '请稍等', null, null)
   openPost(host + '/sf/changebrand')
-  // postReq('http://localhost:8080/transferHandle', function () {
   postReq(function () {
     let respJson = JSON.parse(xmlhttp.responseText)
     if (respJson.code === 'C000') {
@@ -207,7 +203,6 @@ function sendFormat () {
   pexit2.disabled = 'true'
   addClass(pexit2, 'pexitUnable')
   msgPanelShow(p2, '提示', '正在导出为数据库文件...', '请稍等', null, null)
-  // postReq('http://localhost:8080/formatHandle', function () {
   openPost(host + '/sf/exportformdb')
   postReq(function () {
     let respJson = JSON.parse(xmlhttp.responseText)
