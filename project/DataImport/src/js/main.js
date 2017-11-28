@@ -63,7 +63,8 @@ function createMappingPanel (tableColumns, filemark) {
 
   let line = createLine()
   appendC(functionArea, line)
-  for (let i = 0; i < tableColumns.length; i++) {
+  let i = 0
+  for (; i < tableColumns.length; i++) {
     let columnMappingRow = createInputRow(tableColumns[i], true, tableColumns[i], i, sendMapping)
     appendC(functionArea, columnMappingRow)
   }
