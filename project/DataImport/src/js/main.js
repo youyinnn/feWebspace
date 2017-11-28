@@ -63,7 +63,7 @@ function createMappingPanel (tableColumns, filemark) {
 
   let line = createLine()
   appendC(functionArea, line)
-  for (var i = 0; i < tableColumns.length; i++) {
+  for (let i = 0; i < tableColumns.length; i++) {
     let columnMappingRow = createInputRow(tableColumns[i], true, tableColumns[i], i, sendMapping)
     appendC(functionArea, columnMappingRow)
   }
@@ -191,7 +191,7 @@ function getMappingMsg () {
     functionArea.lualua = tableName.value + '.json'
   }
   let form = 'filemark=' + filemark + '&table=' + tableName.value + '&brand=' + dbselect.value
-  for (var i = 0; i < columnNumber; i++) {
+  for (let i = 0; i < columnNumber; i++) {
     let column = document.getElementById('columnMappingRow_' + i)
     form += '&fields=' + column.value
   }
@@ -211,7 +211,7 @@ function getFormatMsg () {
   fd.append('table', tableName.value)
   fd.append('format', format.value)
   let fields = new Array(columnNumber)
-  for (var i = 0; i < columnNumber; i++) {
+  for (let i = 0; i < columnNumber; i++) {
     let column = document.getElementById('columnMappingRow_' + i)
     fields[i] = column.value
   }
@@ -234,7 +234,7 @@ function getTransferMsg () {
   fd.append('file', file)
   fd.append('table', tableName.value)
   let fields = new Array(columnNumber)
-  for (var i = 0; i < columnNumber; i++) {
+  for (let i = 0; i < columnNumber; i++) {
     let column = document.getElementById('columnMappingRow_' + i)
     fd.append('fields', column.value)
   }

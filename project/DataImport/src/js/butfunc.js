@@ -9,19 +9,20 @@ function upload (maxSise, acceptableFileArr, url, func) {
   input.click()
   input.onchange = function (event) {
     if (!input.value) {
-      return 0
+      return
     }
     if (maxSise && input.files[0].size > maxSise * 1024 * 1024) {
       console.log(input.files[0].size)
       msgPanelShow(p2, '错误', '请上传小于' + maxSise + 'M的文件！', null, null, null)
-      return 0
+      return
     }
-    var fileType = input.value.split('.').pop()
+    let fileType = input.value.split('.').pop()
     if (acceptableFileArr.indexOf(fileType.toLocaleLowerCase()) === -1) {
       msgPanelShow(p2, '错误', '不接受的文件类型' + fileType, null, null, null)
-      return 0
+      return
     }
-    var fd = new FormData()
+
+    let fd = new FormData()
     fd.append('file', input.files[0])
     fd.append('msg', '你好')
 
@@ -74,8 +75,8 @@ function outputBinaryFile () {
     }
   }
   let filename = functionArea.lualua
-  var blob = new Blob([xmlhttp.response])
-  var href = URL.createObjectURL(blob)
+  let blob = new Blob([xmlhttp.response])
+  let href = URL.createObjectURL(blob)
   Adownload(href, filename)
   URL.revokeObjectURL(href)
 }

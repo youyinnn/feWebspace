@@ -33,7 +33,7 @@ var ajaxReq = function (func, form) {
 }
 
 function createCORS (method, url) {
-  var xhr = new XMLHttpRequest()
+  let xhr = new XMLHttpRequest()
   if ('withCredentials' in xhr) {
     xhr.open(method, url, true)
   } else if (typeof XDomainRequest !== 'undefined') {

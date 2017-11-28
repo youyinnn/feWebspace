@@ -125,10 +125,7 @@ function unlockFunctioPanelBut (butfun) {
 
 function inputStrPatternWrong (input) {
   let rgx = new RegExp('[a-zA-Z_]', 'g')
-  // if (input.value.length === 0) {
-  //   return true
-  // }
-  for (var i = 0; i < input.value.length; i++) {
+  for (let i = 0; i < input.value.length; i++) {
     let char = input.value.charAt(i)
     if (char.search(rgx) !== 0) {
       return true
@@ -145,7 +142,7 @@ function inputStrPatternAllWrong () {
   }
   let columnNumber = functionArea.xixi
   if (columnNumber !== 0) {
-    for (var i = 0; i < columnNumber; i++) {
+    for (let i = 0; i < columnNumber; i++) {
       let column = document.getElementById('columnMappingRow_' + i)
       check = inputStrPatternWrong(column)
       if (check) {
