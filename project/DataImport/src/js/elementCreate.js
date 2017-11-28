@@ -123,10 +123,10 @@ function unlockFunctioPanelBut (butfun) {
   functionbut.onclick = butfun
 }
 
-function inputStrPatternWrong (input) {
+function inputStrPatternWrong (inputText) {
   let rgx = new RegExp('[a-zA-Z_]', 'g')
-  for (let i = 0; i < input.value.length; i++) {
-    let char = input.value.charAt(i)
+  for (let i = 0; i < inputText.value.length; i++) {
+    let char = inputText.value.charAt(i)
     if (char.search(rgx) !== 0) {
       return true
     }

@@ -16,10 +16,26 @@ function upload (maxSise, acceptableFileArr, url, func) {
       msgPanelShow(p2, '错误', '请上传小于' + maxSise + 'M的文件！', null, null, null)
       return
     }
-    let fileType = input.value.split('.').pop()
+    let fileType = input.files[0].name.split('.')[1]
     if (acceptableFileArr.indexOf(fileType.toLocaleLowerCase()) === -1) {
       msgPanelShow(p2, '错误', '不接受的文件类型' + fileType, null, null, null)
       return
+    }
+    let fileName = input.files[0].name.split('.')[0]
+    if (fileType.toLocaleLowerCase() === 'sql') {
+      let rgx = new RegExp('[a-zA-Z]', 'g')
+      let fileNameIllegal = false
+      for (let i = 0; i < fileName.length; i++) {
+        let char = fileName.charAt(i)
+        if (char.search(rgx) !== 0) {
+          fileNameIllegal = true
+          break
+        }
+      }
+      if (fileNameIllegal) {
+        msgPanelShow(p2, '错误', 'SQL文件必须全英文命名' + fileType, null, null, null)
+        return
+      }
     }
 
     let fd = new FormData()
