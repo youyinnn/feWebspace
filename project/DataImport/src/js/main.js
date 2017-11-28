@@ -57,7 +57,7 @@ function createMappingPanel (tableColumns, filemark) {
   let optionmap = new Map()
   optionmap.set('MySQL', 0)
   optionmap.set('MongoDB', 1)
-  let dbselect = createSelect('dbselect', 'database', '数据库选择：', optionmap)
+  let dbselect = createSelect('dbselect', 'database', '数据库选择', optionmap)
   appendC(functionArea, tableName)
   appendC(functionArea, dbselect)
 
@@ -78,12 +78,12 @@ function createMappingPanel (tableColumns, filemark) {
 }
 
 function createFormatPanel (type) {
-  let tableName = createInputRow('表名', true, 'tableName', null, sendFormat)
+  let tableName = createInputRow('数据表名', true, 'tableName', null, sendFormat)
   let optionmap = new Map()
   optionmap.set('.xlsx', '.xlsx')
   optionmap.set('.xls', '.xls')
   optionmap.set('.csv', '.csv')
-  let dbselect = createSelect('format', 'format', '导出格式：', optionmap)
+  let dbselect = createSelect('format', 'format', '导出格式', optionmap)
   appendC(functionArea, tableName)
   appendC(functionArea, dbselect)
   let tableNameElement = document.getElementById('tableName')
@@ -94,7 +94,7 @@ function createFormatPanel (type) {
     for (let i = 0; i < 23; ++i) {
       num.set(i, i)
     }
-    let columnNumRow = createSelect('columnNum', 'columnNum', '表中一共多少字段：', num)
+    let columnNumRow = createSelect('columnNum', 'columnNum', '表中一共多少字段', num)
     columnNumRow.style.width = '700px'
     appendC(functionArea, columnNumRow)
     let columnNum = document.getElementById('columnNum')
@@ -122,7 +122,7 @@ function createFormatPanel (type) {
 }
 
 function createTransferPanel (type) {
-  let tableName = createInputRow('表名', true, 'tableName', null, sendTransfer)
+  let tableName = createInputRow('数据表名', true, 'tableName', null, sendTransfer)
   appendC(functionArea, tableName)
   let tableNameElement = document.getElementById('tableName')
   functionArea.xixi = 0
@@ -132,7 +132,7 @@ function createTransferPanel (type) {
     for (let i = 0; i < 23; ++i) {
       num.set(i, i)
     }
-    let columnNumRow = createSelect('columnNum', 'columnNum', '表中一共多少字段：', num)
+    let columnNumRow = createSelect('columnNum', 'columnNum', '表中一共多少字段', num)
     columnNumRow.style.width = '700px'
     appendC(functionArea, columnNumRow)
     let columnNum = document.getElementById('columnNum')
@@ -175,7 +175,7 @@ function createTransferPanel2 (type) {
     num.set('.xlsx转为.csv', 4)
     num.set('.xlsx转为.xls', 5)
   }
-  columnNumRow = createSelect('operation', 'operation', '转换目标：', num)
+  columnNumRow = createSelect('operation', 'operation', '转换目标', num)
   columnNumRow.style.width = '700px'
   appendC(functionArea, columnNumRow)
 }

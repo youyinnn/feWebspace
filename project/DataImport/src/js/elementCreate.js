@@ -14,7 +14,7 @@ function createSelect (selectid, selectname, selecttext, optionmap) {
   select.name = selectname
   select.id = selectid
   let span = document.createElement('span')
-  span.innerHTML = selecttext
+  span.innerHTML = selecttext + '：'
   optionmap.forEach(function (value, key, mapObj) {
     let option = document.createElement('option')
     option.value = value
@@ -38,7 +38,7 @@ function createInputRow (innerhtml, isinput, inputName, index, butfunc) {
   if (isinput) {
     input.type = 'text'
     input.value = ''
-    span.innerHTML = innerhtml + ' : '
+    span.innerHTML = innerhtml + '：'
     input.name = inputName
     if (index === null) {
       input.id = 'tableName'

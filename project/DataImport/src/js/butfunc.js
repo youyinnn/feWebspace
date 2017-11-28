@@ -180,7 +180,7 @@ function sendTransfer () {
   postReq(function () {
     let respJson = JSON.parse(xmlhttp.responseText)
     if (respJson.code === 'C000') {
-      clickDownload(respJson.token, false)
+      clickDownload(respJson.token, true)
     } else {
       enablePexit2But('返回', '文件生成失败，请返回重试。')
     }
