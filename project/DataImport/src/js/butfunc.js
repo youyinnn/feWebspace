@@ -1,11 +1,10 @@
 var input = document.createElement('input')
-input.setAttribute('id', 'uploadFile')
 input.setAttribute('type', 'file')
-input.setAttribute('value', null)
 input.style.display = 'none'
 
 /* global postReq xmlhttp input msgPanelShow p2 */
 function upload (maxSise, acceptableFileArr, url, func) {
+  input.value = null
   input.click()
   input.onchange = function (event) {
     if (!input.value) {
