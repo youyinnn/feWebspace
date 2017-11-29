@@ -6,7 +6,7 @@
   /* 这个渲染比较耗费性能 */
   /* background-color: rgba(200,200,200, .7); */
   position: absolute;
-  transition: all .4s;
+  transition: all .35s;
   z-index: 50;
 }
 
