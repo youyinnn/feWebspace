@@ -29,9 +29,9 @@ function hideMainPanel (mainPanel) {
   changePanel(mainPanel, 'showPanel', 'hidePanel')
 }
 
-function msgPanelShow (msgPanel, title, msg, exitText, exitFunc, exitFuncParameter) {
-  let ptitle = msgPanel.childNodes[1]
-  let pmessage = msgPanel.childNodes[3]
+function msgPanelShow (title, msg, exitText) {
+  let ptitle = p2.childNodes[1]
+  let pmessage = p2.childNodes[3]
   ptitle.innerHTML = title
   pmessage.innerHTML = msg
   changePanel(c2, 'showPanel', 'hidePanel')
@@ -43,10 +43,6 @@ function msgPanelShow (msgPanel, title, msg, exitText, exitFunc, exitFuncParamet
   }
   pexit2.onclick = function () {
     changePanel(c2, 'showPanel', 'hidePanel')
-
-    if (exitFunc instanceof Function) {
-      exitFunc(exitFuncParameter)
-    }
   }
 }
 
@@ -272,12 +268,12 @@ function resetFunctionPanelHeight (height) {
 
 function serverUnreachabled () {
   fixMsgPanel()
-  msgPanelShow(p2, '错误', '服务器未启动 请联系管理员', null, null)
+  msgPanelShow('错误', '服务器未启动 请联系管理员', null)
 }
 
 function serverWrong () {
   fixMsgPanel()
-  msgPanelShow(p2, '错误', '服务器内部错误 请联系管理员', null, null)
+  msgPanelShow('错误', '服务器内部错误 请联系管理员', null)
 }
 
 function fixMsgPanel () {

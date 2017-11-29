@@ -12,12 +12,12 @@ function upload (maxSise, acceptableFileArr, url, func) {
     }
     if (maxSise && input.files[0].size > maxSise * 1024 * 1024) {
       console.log(input.files[0].size)
-      msgPanelShow(p2, '错误', '请上传小于' + maxSise + 'M的文件！', null, null, null)
+      msgPanelShow('错误', '请上传小于' + maxSise + 'M的文件！', null)
       return
     }
     let fileType = input.files[0].name.split('.')[1]
     if (acceptableFileArr.indexOf(fileType.toLocaleLowerCase()) === -1) {
-      msgPanelShow(p2, '错误', '不接受的文件类型' + fileType, null, null, null)
+      msgPanelShow('错误', '不接受的文件类型' + fileType, null)
       return
     }
     let fileName = input.files[0].name.split('.')[0]
@@ -32,7 +32,7 @@ function upload (maxSise, acceptableFileArr, url, func) {
         }
       }
       if (fileNameIllegal) {
-        msgPanelShow(p2, '错误', 'SQL文件必须全英文命名' + fileType, null, null, null)
+        msgPanelShow('错误', 'SQL文件必须全英文命名' + fileType, null)
         return
       }
     }
@@ -43,7 +43,7 @@ function upload (maxSise, acceptableFileArr, url, func) {
 
     if (url !== null) {
       disablePexit2But()
-      msgPanelShow(p2, '提示', '正在上传文件至数据库并等待返回需要映射的字段头部...', '请稍等', null, null)
+      msgPanelShow('提示', '正在上传文件至数据库并等待返回需要映射的字段头部...', '请稍等')
       createCORS('POST', url)
       postReq(func, fd)
     } else {
@@ -55,7 +55,7 @@ function upload (maxSise, acceptableFileArr, url, func) {
 function sendMapping () {
   let form = getMappingMsg()
   disablePexit2But()
-  msgPanelShow(p2, '提示', '正在发送映射并等待生成数据库文件...', '请稍等', null, null)
+  msgPanelShow('提示', '正在发送映射并等待生成数据库文件...', '请稍等')
   openPost(host + '/sf/dataimoprt/doimport')
   xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
   postReq(function () {
@@ -117,7 +117,7 @@ function mapping () {
       showFunctionPanel(panelheight)
     }
   } else {
-    msgPanelShow(p2, '提示', '上传失败', '好的', null, null)
+    msgPanelShow('提示', '上传失败', null)
   }
 }
 
@@ -164,7 +164,7 @@ function transfer2 () {
 function sendTransfer2 () {
   let fd = getTransfer2Msg()
   disablePexit2But()
-  msgPanelShow(p2, '提示', '正在转换文件...', '请稍等', null, null)
+  msgPanelShow('提示', '正在转换文件...', '请稍等')
   openPost(host + '/sf/changefileformat')
   postReq(function () {
     let respJson = JSON.parse(xmlhttp.responseText)
@@ -188,7 +188,7 @@ function sendTransfer () {
   }
   let fd = getTransferMsg()
   disablePexit2But()
-  msgPanelShow(p2, '提示', '正在转换数据库文件...', '请稍等', null, null)
+  msgPanelShow('提示', '正在转换数据库文件...', '请稍等')
   openPost(host + '/sf/changebrand')
   postReq(function () {
     let respJson = JSON.parse(xmlhttp.responseText)
@@ -212,7 +212,7 @@ function sendFormat () {
   }
   let fd = getFormatMsg()
   disablePexit2But()
-  msgPanelShow(p2, '提示', '正在导出为数据库文件...', '请稍等', null, null)
+  msgPanelShow('提示', '正在导出为数据库文件...', '请稍等')
   openPost(host + '/sf/exportformdb')
   postReq(function () {
     let respJson = JSON.parse(xmlhttp.responseText)
