@@ -34,8 +34,7 @@ function msgPanelShow (msgPanel, title, msg, exitText, exitFunc, exitFuncParamet
   let pmessage = msgPanel.childNodes[3]
   ptitle.innerHTML = title
   pmessage.innerHTML = msg
-  changePanel(p2, 'showPanel', 'hidePanel')
-  c2.style.cssText = 'visibility : visible; opacity: 1;'
+  changePanel(c2, 'showPanel', 'hidePanel')
 
   if (exitText === null || exitText === undefined) {
     pexit2.innerHTML = '好的'
@@ -43,8 +42,7 @@ function msgPanelShow (msgPanel, title, msg, exitText, exitFunc, exitFuncParamet
     pexit2.innerHTML = exitText
   }
   pexit2.onclick = function () {
-    changePanel(p2, 'showPanel', 'hidePanel')
-    c2.style.cssText = 'visibility : hidden; opacity: 0;'
+    changePanel(c2, 'showPanel', 'hidePanel')
 
     if (exitFunc instanceof Function) {
       exitFunc(exitFuncParameter)
@@ -283,9 +281,8 @@ function serverWrong () {
 }
 
 function fixMsgPanel () {
-  if (hasClass(p2, 'showPanel')) {
-    changePanel(p2, 'showPanel', 'hidePanel')
-    c2.style.cssText = 'visibility : hidden; opacity: 0;'
+  if (hasClass(c2, 'showPanel')) {
+    changePanel(c2, 'showPanel', 'hidePanel')
   }
   if (hasClass(pexit2, 'pexitUnable')) {
     removeClass(pexit2, 'pexitUnable')

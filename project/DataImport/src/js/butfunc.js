@@ -78,15 +78,13 @@ function outputBinaryFile () {
   if (functionArea.baba) {
     enablePexit2But('返回主界面', '下载成功！你需要返回主界面才能进行其他操作！')
     pexit2.onclick = function () {
-      changePanel(p2, 'showPanel', 'hidePanel')
-      c2.style.cssText = 'visibility : hidden; opacity: 0;'
+      changePanel(c2, 'showPanel', 'hidePanel')
       homesidebut.onclick()
     }
   } else {
     enablePexit2But('继续下载', '下载成功！你可以在当前面板继续下载！')
     pexit2.onclick = function () {
-      changePanel(p2, 'showPanel', 'hidePanel')
-      c2.style.cssText = 'visibility : hidden; opacity: 0;'
+      changePanel(c2, 'showPanel', 'hidePanel')
     }
   }
   let filename = functionArea.lualua
@@ -115,8 +113,7 @@ function mapping () {
     let panelheight = 165 + Math.round(headerslength / 2) * 43
     enablePexit2But('进入映射', '上传成功')
     pexit2.onclick = function () {
-      changePanel(p2, 'showPanel', 'hidePanel')
-      c2.style.cssText = 'visibility : hidden; opacity: 0;'
+      changePanel(c2, 'showPanel', 'hidePanel')
       showFunctionPanel(panelheight)
     }
   } else {
