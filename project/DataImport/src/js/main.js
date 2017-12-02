@@ -49,8 +49,9 @@ function msgPanelShow (title, msg, exitText) {
 function createMappingPanel (tableColumns, filemark) {
   let tableName = createInputRow('表名', true, 'tableName', null, sendMapping)
   let optionmap = new Map()
-  optionmap.set('MySQL', 0)
-  optionmap.set('MongoDB', 1)
+  optionmap.set('MySQL——导出一张完整的表', 0)
+  optionmap.set('MySQL——将数据导入已有表', 1)
+  optionmap.set('MongoDB', 2)
   let dbselect = createSelect('dbselect', 'database', '数据库选择', optionmap)
   appendC(functionArea, tableName)
   appendC(functionArea, dbselect)
@@ -180,7 +181,7 @@ function getMappingMsg () {
   let dbselect = document.getElementById('dbselect')
   let columnNumber = functionArea.xixi
   let filemark = functionArea.haha
-  if (dbselect.value === '0') {
+  if (dbselect.value === '0' || dbselect.value === '1') {
     functionArea.lualua = tableName.value + '.sql'
   } else {
     functionArea.lualua = tableName.value + '.json'
