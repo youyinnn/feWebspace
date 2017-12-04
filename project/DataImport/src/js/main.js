@@ -56,7 +56,7 @@ function createMappingPanel (tableColumns, filemark) {
   optionmap.set('MySQL——导出一张完整的表', 0)
   optionmap.set('MySQL——将数据导入已有表', 1)
   optionmap.set('MongoDB', 2)
-  let dbselect = createSelect('dbselect', 'database', '数据库选择', optionmap)
+  let dbselect = createSelect('dbselect', 'database', '目标', optionmap)
   appendC(functionArea, tableName)
   appendC(functionArea, dbselect)
 
