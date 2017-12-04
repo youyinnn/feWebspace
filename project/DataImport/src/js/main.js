@@ -130,7 +130,20 @@ function createTransferPanel (type) {
   let tableNameElement = document.getElementById('tableName')
   functionArea.xixi = 0
   if (type === 'json') {
+    let opMap = new Map()
+    opMap.set('导出为一张新表', 1)
+    opMap.set('导入到已有的表', 2)
+    let opSelectRow = createSelect('opSelect', 'opSelect', '目标', opMap)
+    appendC(functionArea, opSelectRow)
+    let opSelect = document.getElementById('opSelect')
     functionArea.heihei = 1
+    bind(opSelect, 'change', function () {
+      if (opSelect.value === '1') {
+        functionArea.heihei = 1
+      } else {
+        functionArea.heihei = 2
+      }
+    })
     let num = new Map()
     for (let i = 0; i < 23; ++i) {
       num.set(i, i)
@@ -191,10 +204,10 @@ function getMappingMsg () {
   let dbselect = document.getElementById('dbselect')
   let columnNumber = functionArea.xixi
   let filemark = functionArea.haha
-  if (dbselect.value === '0' || dbselect.value === '1') {
-    functionArea.lualua = tableName.value + '.sql'
-  } else {
+  if (dbselect.value === '2') {
     functionArea.lualua = tableName.value + '.json'
+  } else {
+    functionArea.lualua = tableName.value + '.sql'
   }
   let form = 'filemark=' + filemark + '&table=' + tableName.value + '&brand=' + dbselect.value
   for (let i = 0; i < columnNumber; i++) {
