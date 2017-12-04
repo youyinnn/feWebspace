@@ -195,7 +195,7 @@ function sendTransfer () {
     if (respJson.code === 'C000') {
       clickDownload(respJson.token, true)
     } else {
-      enablePexit2But('返回', '文件生成失败，请确保您上传的SQL文件编码为UTF-8，并且填写和SQL文件中一致的表名。')
+      enablePexit2But('返回', '文件生成失败，请确保您填写的集合名称是否和源文件中的集合名称对应。')
     }
   }, fd)
 }
