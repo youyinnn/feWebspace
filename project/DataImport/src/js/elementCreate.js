@@ -48,7 +48,7 @@ function createInputRow (innerhtml, isinput, inputName, index, butfunc) {
     bind(input, 'blur', function () {
 
       if (inputTextNull()) {
-        lockFunctioPanelBut('不能为空')
+        lockFunctioPanelBut('不能有为空的输入')
         return
       }
       if (inputStrPatternAllWrong()) {
