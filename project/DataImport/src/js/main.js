@@ -113,6 +113,9 @@ function createFormatPanel (type) {
       let add = (Math.round((columnNumVal) / 2)) * 43
       resetFunctionPanelHeight(190 + add)
       functionArea.xixi = columnNumVal
+      if (!checkInputButIsWrong()) {
+        unlockFunctioPanelBut(sendFormat)
+      }
     })
     let line = createLine()
     appendC(functionArea, line)
@@ -151,6 +154,9 @@ function createTransferPanel (type) {
       let add = (Math.round((columnNumVal) / 2)) * 43
       resetFunctionPanelHeight(190 + add)
       functionArea.xixi = columnNumVal
+      if (!checkInputButIsWrong()) {
+        unlockFunctioPanelBut(sendTransfer)
+      }
     })
     let line = createLine()
     appendC(functionArea, line)

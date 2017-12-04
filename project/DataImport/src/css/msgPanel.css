@@ -6,7 +6,7 @@
   /* 这个渲染比较耗费性能 */
   /* background-color: rgba(200,200,200, .7); */
   position: absolute;
-  transition: all .35s;
+  transition: all .4s;
   z-index: 50;
 }
 
@@ -62,12 +62,6 @@
 
 .showPanel{
   transform: translate(-50%, -50%) scale(1, 1);
-  visibility : visible;
-  opacity: 1;
-}
-
-.showSettingPanel{
-  transform: translate(-50%, -150%) scale(1, 1);
   visibility : visible;
   opacity: 1;
 }

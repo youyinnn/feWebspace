@@ -47,17 +47,7 @@ function createInputRow (innerhtml, isinput, inputName, index, butfunc) {
     }
     bind(input, 'blur', function () {
 
-      if (inputTextNull()) {
-        lockFunctioPanelBut('不能有为空的输入')
-        return
-      }
-      if (inputStrPatternAllWrong()) {
-        lockFunctioPanelBut('命名只接受字母与下划线')
-        return
-      }
-
-      if (inputTextDuplicate()) {
-        lockFunctioPanelBut('不允许有重复列名')
+      if (checkInputButIsWrong()) {
         return
       }
 
@@ -72,6 +62,23 @@ function createInputRow (innerhtml, isinput, inputName, index, butfunc) {
   appendC(label, span)
   appendC(label, input)
   return div
+}
+
+function checkInputButIsWrong () {
+  if (inputTextNull()) {
+    lockFunctioPanelBut('不能有为空的输入')
+    return true
+  }
+  if (inputStrPatternAllWrong()) {
+    lockFunctioPanelBut('命名只接受字母与下划线')
+    return true
+  }
+
+  if (inputTextDuplicate()) {
+    lockFunctioPanelBut('不允许有重复列名')
+    return true
+  }
+  return false
 }
 
 function inputTextNull () {

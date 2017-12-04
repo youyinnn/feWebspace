@@ -62,7 +62,7 @@ body {
   width: 300px;
   background-color : rgb(233,72,85);
   box-shadow : 0px 4px 0px 0px rgb(156,23,33);
-    transition: all .6s;
+  transition: all .6s;
 }
 
 .errorbut:hover {
@@ -86,7 +86,7 @@ body {
   /* 面板适应屏幕居中 */
   top: 50%;
   left: 50%;
-  transition: all .35s;
+  transition: all .4s;
 }
 
 .sidebut{
@@ -124,30 +124,6 @@ body {
   width: 900px;
   text-align: center;
   font-size: 18px;
-}
-
-.clearfix::after{
-  /*添加空白内容*/
-  content: "";
-  /*转换为块元素*/
-  display: block;
-  /*清除浮动*/
-  clear: both;
-}
-
-
-.fold{
-  visibility : hidden;
-  opacity: 0;
-  height: 0px;
-  transition: all .5s;
-}
-
-.unfold{
-  visibility : visible;
-  opacity: 1;
-  height: 500px;
-  transition: all .5s;
 }
 
 .mapRow{
