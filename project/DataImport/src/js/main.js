@@ -42,7 +42,11 @@ function msgPanelShow (title, msg, exitText) {
     pexit2.innerHTML = exitText
   }
   pexit2.onclick = function () {
-    changePanel(c2, 'showPanel', 'hidePanel')
+    if (title === '错误') {
+      input.value = null
+    }
+    removeClass(c2, 'showPanel')
+    addClass(c2, 'hidePanel')
   }
 }
 
