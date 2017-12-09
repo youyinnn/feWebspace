@@ -27,7 +27,6 @@ function createSelect (selectid, selectname, selecttext, optionmap) {
   return div
 }
 
-
 function createInputRow (innerhtml, isinput, inputName, index, butfunc) {
   let div = document.createElement('div')
   changeClass(div, 'mapRow')
