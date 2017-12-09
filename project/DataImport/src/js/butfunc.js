@@ -127,11 +127,10 @@ function format () {
   createFormatPanel(type)
   if (type === 'sql') {
     functionpaneltitle.innerHTML = 'Format：sql文件转换导出'
-    showFunctionPanel(150)
   } else if (type === 'json') {
     functionpaneltitle.innerHTML = 'Format：json文件转换导出'
-    showFunctionPanel(190)
   }
+  showFunctionPanel(150)
 }
 
 function transfer () {

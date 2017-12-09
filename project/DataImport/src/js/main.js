@@ -87,36 +87,12 @@ function createFormatPanel (type) {
   appendC(functionArea, tableName)
   appendC(functionArea, dbselect)
   let tableNameElement = document.getElementById('tableName')
-  functionArea.xixi = 0
   if (type === 'json') {
     functionArea.heihei = 1
     let num = new Map()
     for (let i = 0; i < 23; ++i) {
       num.set(i, i)
     }
-    let columnNumRow = createSelect('columnNum', 'columnNum', '表中一共多少字段', num)
-    columnNumRow.style.width = '700px'
-    appendC(functionArea, columnNumRow)
-    let columnNum = document.getElementById('columnNum')
-    bind(columnNum, 'change', function () {
-      let columnNumVal = parseInt(columnNum.value)
-      if (functionArea.xixi < columnNumVal) {
-        for (let i = functionArea.xixi; i < columnNumVal; ++i) {
-          let columnMappingRow = createInputRow('第' + (i + 1) + '列', true, 'columnMappingRow_' + i, i, sendFormat)
-          appendC(functionArea, columnMappingRow)
-        }
-      } else if (functionArea.xixi > columnNumVal) {
-        for (let i = functionArea.xixi; i > columnNumVal; --i) {
-          removeLastC(functionArea)
-        }
-      }
-      let add = (Math.round((columnNumVal) / 2)) * 43
-      resetFunctionPanelHeight(190 + add)
-      functionArea.xixi = columnNumVal
-      if (!checkInputButIsWrong()) {
-        unlockFunctioPanelBut(sendFormat)
-      }
-    })
     let line = createLine()
     appendC(functionArea, line)
   } else {
@@ -221,7 +197,6 @@ function getFormatMsg () {
   let fd = new FormData()
   let tableName = document.getElementById('tableName')
   let format = document.getElementById('format')
-  let columnNumber = functionArea.xixi
   let brand = functionArea.heihei
   let file = input.files[0]
   functionArea.lualua = tableName.value + format.value
@@ -229,12 +204,6 @@ function getFormatMsg () {
   fd.append('file', file)
   fd.append('table', tableName.value)
   fd.append('format', format.value)
-  let fields = new Array(columnNumber)
-  for (let i = 0; i < columnNumber; i++) {
-    let column = document.getElementById('columnMappingRow_' + i)
-    fields[i] = column.value
-  }
-  fd.append('fields', fields)
   return fd
 }
 
