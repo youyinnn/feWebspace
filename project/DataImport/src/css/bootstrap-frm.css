@@ -27,7 +27,7 @@ font-size: 11px;
 }
 .bootstrap-frm label {
 display: block;
-margin: 0px 0px 5px;
+height: 30px;
 }
 .bootstrap-frm span {
 float: left;
@@ -48,7 +48,7 @@ font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 .bootstrap-frm input[type="text"], .bootstrap-frm input[type="email"], .bootstrap-frm textarea, .bootstrap-frm select{
 border: 1px solid #CCC;
 color: #888;
-height: 30px;
+height: 26px;
 line-height:30px;
 font-size: 20px;
 /* margin-bottom: 16px; */
