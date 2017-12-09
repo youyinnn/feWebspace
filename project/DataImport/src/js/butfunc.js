@@ -139,11 +139,10 @@ function transfer () {
   createTransferPanel(type)
   if (type === 'sql') {
     functionpaneltitle.innerHTML = 'MySQL转MongoDB'
-    showFunctionPanel(150)
   } else if (type === 'json') {
     functionpaneltitle.innerHTML = 'MongoDB转MySQL'
-    showFunctionPanel(190)
   }
+  showFunctionPanel(150)
 }
 
 function transfer2 () {
