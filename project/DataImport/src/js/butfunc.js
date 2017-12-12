@@ -39,7 +39,6 @@ function upload (maxSise, acceptableFileArr, url, func) {
 
     let fd = new FormData()
     fd.append('file', input.files[0])
-    fd.append('msg', '你好')
 
     if (url !== null) {
       disablePexit2But()
@@ -54,18 +53,42 @@ function upload (maxSise, acceptableFileArr, url, func) {
 
 function sendMapping () {
   let form = getMappingMsg()
-  disablePexit2But()
-  msgPanelShow('提示', '正在发送映射并等待生成数据库文件...', '请稍等')
-  openPost(host + '/sf/dataimoprt/doimport')
-  xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-  postReq(function () {
-    let respJson = JSON.parse(xmlhttp.responseText)
-    if (respJson.code === 'I000') {
-      clickDownload(respJson.token, true)
-    } else {
-      enablePexit2But('返回', '文件生成失败，请返回重试。')
-    }
-  }, form)
+  if (form != null) {
+    disablePexit2But()
+    msgPanelShow('提示', '正在发送映射并等待生成数据库文件...', '请稍等')
+    openPost(host + '/sf/dataimoprt/doimport')
+    xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+    postReq(function () {
+      let respJson = JSON.parse(xmlhttp.responseText)
+      if (respJson.code === 'I000') {
+        clickDownload(respJson.token, true)
+      } else {
+        let warnings = respJson.warnings
+        if (warnings === undefined) {
+          enablePexit2But('返回主界面', '文件生成失败，可能是文件格式有误，请返回主界面重试。')
+          pexit2.onclick = function () {
+            changePanel(c2, 'showPanel', 'hidePanel')
+            homesidebut.onclick()
+          }
+        } else {
+          enablePexit2But('下载', '文件生成失败，设置映射关系有误，如长度出错或者溢出等等，请下载错误报告并查看错误！')
+          pexit2.onclick = function () {
+            let warningsText = ''
+            for (let i = 0; i < warnings.length; ++i) {
+              warningsText += 'Message: ' + warnings[i].Message + ', Level:' + warnings[i].Level + ', Code: ' + warnings[i].Code + ' \r\n\r\n'
+            }
+            let warningsFile = new File([warningsText], 'warnings.txt', {type: 'Text/plain;charset=utf-8'})
+            saveAs(warningsFile)
+            changePanel(c2, 'showPanel', 'hidePanel')
+            functionbut.innerHTML = '返回主界面'
+            functionbut.onclick = function () {
+              homesidebut.onclick()
+            }
+          }
+        }
+      }
+    }, form)
+  }
 }
 
 function downloadFile (token) {
@@ -110,7 +133,7 @@ function mapping () {
     createMappingPanel(headers, filemark)
     lockFunctioPanelBut('请填写信息')
     let headerslength = headers.length
-    let panelheight = 165 + Math.round(headerslength / 2) * 43
+    let panelheight = 195 + headerslength * 43
     enablePexit2But('进入映射', '上传成功')
     pexit2.onclick = function () {
       changePanel(c2, 'showPanel', 'hidePanel')

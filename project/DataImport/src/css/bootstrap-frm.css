@@ -4,11 +4,9 @@ margin-right:auto;
 margin-bottom: 20px;
 max-width: 1000px;
 background: #FFF;
-/* padding: 20px 30px 20px 30px; */
 font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
 color: #888;
 text-shadow: 1px 1px 1px #FFF;
-/* border:1px solid #DDD; */
 border-radius: 5px;
 -webkit-border-radius: 5px;
 -moz-border-radius: 5px;
@@ -33,7 +31,6 @@ height: 30px;
 float: left;
 height: 30px;
 line-height: 30px
-/* margin: 4px auto; */
 display: inline-block;
 width: 30%;
 text-align: center;
@@ -51,11 +48,8 @@ color: #888;
 height: 26px;
 line-height:30px;
 font-size: 20px;
-/* margin-bottom: 16px; */
-margin-right: 6px;
 outline: 0 none;
-/* padding: 5px 0px 5px 5px; */
-width: 65%;
+width: 67%;
 border-radius: 4px;
 -webkit-border-radius: 4px;
 -moz-border-radius: 4px;

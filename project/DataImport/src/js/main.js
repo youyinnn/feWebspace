@@ -62,9 +62,99 @@ function createMappingPanel (tableColumns, filemark) {
 
   let line = createLine()
   appendC(functionArea, line)
+
+  let mappingHead = document.createElement('div')
+  addClass(mappingHead, 'mapRow')
+  mappingHead.style.width = '900px'
+  appendC(functionArea, mappingHead)
+
+  let columnNameHead = document.createElement('span')
+  columnNameHead.innerHTML = '列名映射'
+  columnNameHead.style.cssText = 'width: 300px; margin: 0 5px;'
+  appendC(mappingHead, columnNameHead)
+
+  let dataTypeHead = document.createElement('span')
+  dataTypeHead.innerHTML = '数据类型'
+  dataTypeHead.style.cssText = 'width: 185px; margin: 0 5px;'
+  appendC(mappingHead, dataTypeHead)
+
+  let dataLengthHead = document.createElement('span')
+  dataLengthHead.innerHTML = '数据长度'
+  dataLengthHead.style.cssText = 'width: 185px; margin: 0 5px;'
+  appendC(mappingHead, dataLengthHead)
+
+  let pkHead = document.createElement('span')
+  pkHead.innerHTML = '是否主键'
+  pkHead.style.cssText = 'width: 185px; margin: 0 5px;'
+  appendC(mappingHead, pkHead)
+
+  let dataTypeSelectMap = new Map()
+  dataTypeSelectMap.set('varchar', 'varchar')
+  dataTypeSelectMap.set('tinyint', 'tinyint')
+  dataTypeSelectMap.set('smallint', 'smallint')
+  dataTypeSelectMap.set('mediumint', 'mediumint')
+  dataTypeSelectMap.set('int', 'int')
+  dataTypeSelectMap.set('bigint', 'bigint')
+  dataTypeSelectMap.set('float', 'float')
+  dataTypeSelectMap.set('double', 'double')
+  dataTypeSelectMap.set('decimal', 'decimal')
+
+  dataTypeSelectMap.set('date', 'date')
+  dataTypeSelectMap.set('time', 'time')
+  dataTypeSelectMap.set('year', 'year')
+  dataTypeSelectMap.set('datetime', 'datetime')
+  dataTypeSelectMap.set('timestamp', 'timestamp')
+
+  dataTypeSelectMap.set('char', 'char')
+  dataTypeSelectMap.set('tinyblob', 'tinyblob')
+  dataTypeSelectMap.set('tinytext', 'tinytext')
+  dataTypeSelectMap.set('blob', 'blob')
+  dataTypeSelectMap.set('mediumblob', 'mediumblob')
+  dataTypeSelectMap.set('mediumtext', 'mediumtext')
+  dataTypeSelectMap.set('longblob', 'longblob')
+
+  dataTypeSelectMap.set('numeric', 'numeric')
+  dataTypeSelectMap.set('bool', 'bool')
+  dataTypeSelectMap.set('boolean', 'boolean')
+  dataTypeSelectMap.set('varbinary', 'varbinary')
+
   let i = 0
   for (; i < tableColumns.length; i++) {
     let columnMappingRow = createInputRow(tableColumns[i], true, tableColumns[i], i, sendMapping)
+    columnMappingRow.style.width = '900px'
+    let label = columnMappingRow.childNodes[0]
+    label.style.cssText = 'width: 300px; margin: 0 5px; display: inline-block;'
+    let dataTypeSelect = createSelect('columnDataTypeSelect_' + i, 'columnDataTypeSelect_' + i, null, dataTypeSelectMap)
+    dataTypeSelect.style.cssText = 'width: 185px; margin: 0 5px;'
+
+    let dataLength = document.createElement('input')
+    dataLength.onkeyup = function () {
+      if (dataLength.value.length === 1) {
+        dataLength.value = dataLength.value.replace(/[^1-9]/g, '')
+      } else {
+        dataLength.value = dataLength.value.replace(/\D/g, '')
+      }
+    }
+    dataLength.onafterpaste = function () {
+      if (this.value.length === 1) {
+        this.value = this.value.replace(/[^1-9]/g, '')
+      } else {
+        this.value = this.value.replace(/\D/g, '')
+      }
+    }
+    dataLength.type = 'text'
+    dataLength.id = 'columnDataLength_' + i
+    dataLength.style.cssText = 'width: 185px; margin: 0 5px;'
+
+    let pk = document.createElement('input')
+    pk.name = 'pk'
+    pk.type = 'radio'
+    pk.value = i
+    pk.style.cssText = 'width: 185px; margin: 0 5px;'
+
+    appendC(columnMappingRow, dataTypeSelect)
+    appendC(columnMappingRow, dataLength)
+    appendC(columnMappingRow, pk)
     appendC(functionArea, columnMappingRow)
   }
   if (tableColumns.length % 2 !== 0) {
@@ -157,11 +247,31 @@ function getMappingMsg () {
   } else {
     functionArea.lualua = tableName.value + '.sql'
   }
+  let pkInput = document.getElementsByName('pk')
+  let pki
+  for (var i = 0; i < pkInput.length; i++) {
+    if (pkInput[i].checked) {
+      pki = i
+    }
+  }
   let form = 'filemark=' + filemark + '&table=' + tableName.value + '&brand=' + dbselect.value
   for (let i = 0; i < columnNumber; i++) {
-    let column = document.getElementById('columnMappingRow_' + i)
-    form += '&fields=' + column.value
+    let str
+    let columnName = document.getElementById('columnMappingRow_' + i).value
+    let columnDataType = document.getElementById('columnDataTypeSelect_' + i).value
+    let columnDataLength = document.getElementById('columnDataLength_' + i).value
+
+    if (columnDataLength === '') {
+      msgPanelShow('提示', '请指定数据的长度！', null)
+      return null
+    }
+    str = columnName + ',' + columnDataType + (columnDataLength === '' ? '' : ',' + columnDataLength)
+    if (pki === i) {
+      str += ',pk'
+    }
+    form += '&fields=' + str
   }
+
   return form
 }
 

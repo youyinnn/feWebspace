@@ -13,16 +13,17 @@ function createSelect (selectid, selectname, selecttext, optionmap) {
   let select = document.createElement('select')
   select.name = selectname
   select.id = selectid
-  let span = document.createElement('span')
-  span.innerHTML = selecttext + '：'
+  if (selecttext != null) {
+    let span = document.createElement('span')
+    span.innerHTML = selecttext + '：'
+    appendC(div, span)
+  }
   optionmap.forEach(function (value, key, mapObj) {
     let option = document.createElement('option')
     option.value = value
     option.innerHTML = key.toString()
     appendC(select, option)
   })
-
-  appendC(div, span)
   appendC(div, select)
   return div
 }
