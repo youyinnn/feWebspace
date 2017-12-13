@@ -70,7 +70,7 @@ function checkInputButIsWrong () {
     return true
   }
   if (inputStrPatternAllWrong()) {
-    lockFunctioPanelBut('命名只接受字母与下划线')
+    lockFunctioPanelBut('命名只接受字母与下划线与数字')
     return true
   }
 
@@ -131,7 +131,7 @@ function unlockFunctioPanelBut (butfun) {
 }
 
 function inputStrPatternWrong (inputText) {
-  let rgx = new RegExp('[a-zA-Z_]', 'g')
+  let rgx = new RegExp('[a-zA-Z_0-9]', 'g')
   for (let i = 0; i < inputText.value.length; i++) {
     let char = inputText.value.charAt(i)
     if (char.search(rgx) !== 0) {
