@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>体验神奇的算法</title>
+    <link rel="stylesheet" href="./main.css">
+    <style media="screen">
+      #mainPanel {
+        height: 700px;
+        width: 900px;
+      }
+      #title {
+        width: 90%;
+        margin: 10px auto 0;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #000;
+        font-size: 20px;
+      }
+      #typeswitch {
+        display: inline-block;
+        width: 100px;
+        height: 20px;
+        border: 2px solid rgb(120, 120, 120);
+        border-radius: 10px;
+        margin: 0 auto;
+      }
+      #result {
+        width: 90%;
+        height: 280px;
+        border: 1px solid #000;
+        margin: 10px auto;
+        border-radius: 5px;
+        overflow: auto;
+      }
+      #resultctx {
+        padding: 0 5px;
+      }
+      #clearbt {
+        position: absolute;
+        height: 25px;
+        line-height: 25px;
+        right: 120px;
+        bottom: 0;
+      }
+      #stopbt {
+        position: absolute;
+        height: 25px;
+        line-height: 25px;
+        right: 70px;
+        bottom: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- 主面板 -->
+    <div id="mainPanel" class="panel">
+      <div id="title" class="unselectable">
+        <span>功能按钮区</span>
+      </div>
+
+      <button id="bt1" class="funcbt bt">计算int支持的最大斐波那契数</button>
+      <button id="bt2" class="funcbt bt">计算long支持的最大斐波那契数</button>
+      <button id="bt3" class="funcbt bt">递归计算最大int斐波那契所需时间</button>
+      <button id="bt4" class="funcbt bt">递归计算最大long斐波那契所需时间</button>
+      <button id="bt5" class="funcbt bt">限定时间内递归计算最大的斐波那契数</button>
+      <button id="bt6" class="funcbt bt">限定时间内迭代计算最大的斐波那契数</button>
+      <button id="bt7" class="funcbt bt">公式法计算斐波那契数的最小非误差值</button>
+
+      <div id="title" class="unselectable">
+        <span>结果显示区</span>
+      </div>
+      <div id="result">
+        <div id="resultctx"></div>
+      </div>
+      <button id="clearbt" class="funcbt bt">清空</button>
+      <button id="stopbt" class="funcbt bt">停止</button>
+    </div>
+
+    <script type="text/javascript" src="./AjaxReq.js"></script>
+    <script type="text/javascript" src="./main.js"></script>
+    <script type="text/javascript">
+      var bt1 = document.getElementById('bt1')
+      var bt2 = document.getElementById('bt2')
+      var bt3 = document.getElementById('bt3')
+      var bt4 = document.getElementById('bt4')
+      var bt5 = document.getElementById('bt5')
+      var bt6 = document.getElementById('bt6')
+      var bt7 = document.getElementById('bt7')
+      var stopbt = document.getElementById('stopbt')
+      var clearbt = document.getElementById('clearbt')
+
+      var resultctx = document.getElementById('resultctx')
+      var result = document.getElementById('result')
+
+      bt1.onclick = function () {
+        fib('f1', msg)
+      }
+      bt2.onclick = function () {
+        fib('f2', msg)
+      }
+      bt3.onclick = function () {
+        addRstSpInnHtmlCtx('请稍等...')
+        fib('f3', msg)
+      }
+      bt4.onclick = function () {
+        addRstSpInnHtmlCtx('请稍等...')
+        fib('f4', msg)
+      }
+      let n = 1
+      let goOn = false
+      bt5.onclick = function () {
+        goOn = true
+        // console.log('发送f5&n=' + i)
+        fib('f5&n=' + n, function () {
+          let re = xmlhttp.responseText
+          let msgarr = JSON.parse(re)
+          for (let i = 0; i < msgarr.length; ++i) {
+            addRstSpInnHtmlCtx(msgarr[i] + '')
+          }
+          n++
+          if (goOn) {
+            bt5.onclick()
+          }
+        })
+      }
+      let nn = 1400000000
+      bt6.onclick = function () {
+        goOn = true
+        // console.log('发送f6&n=' + i)
+        fib('f6&n=' + nn, function () {
+          let re = xmlhttp.responseText
+          let msgarr = JSON.parse(re)
+          for (let i = 0; i < msgarr.length; ++i) {
+            addRstSpInnHtmlCtx(msgarr[i] + '')
+          }
+          nn *= 2
+          if (goOn) {
+            bt6.onclick()
+          }
+        })
+      }
+
+      bt7.onclick = function () {
+        if (n === 4) {
+          goOn = false
+        } else {
+          goOn = true
+        }
+        fib('f7&n=' + n, function () {
+          let re = xmlhttp.responseText
+          let msgarr = JSON.parse(re)
+          for (let i = 0; i < msgarr.length; ++i) {
+            addRstSpInnHtmlCtx(msgarr[i] + '')
+            if (n === 4) {
+              addRstSpInnHtmlCtx('到第4个数就出现误差了')
+              n = 1
+            }
+          }
+          n++
+          if (goOn) {
+            bt7.onclick()
+          }
+        })
+      }
+
+      let msg = function () {
+        let re = xmlhttp.responseText
+        let msgarr = JSON.parse(re)
+        for (let i = 0; i < msgarr.length; ++i) {
+          addRstSpInnHtmlCtx(msgarr[i] + '')
+        }
+      }
+      stopbt.onclick = function () {
+        n = 1
+        nn = 1400000000
+        goOn = false
+      }
+      clearbt.onclick = function () {
+        resultctx.innerHTML = null
+      }
+    </script>
+
+  </body>
+
+</html>

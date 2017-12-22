@@ -1,0 +1,53 @@
+/* 禁止选中并且兼容 */
+
+*.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body {
+  background-color: rgb(200, 200, 200);
+}
+
+.panel {
+  position: absolute;
+  border-radius: 40px;
+  background-color: #ffffff;
+  box-shadow: 6px 6px 0px 1px rgba(2, 2, 3, .48);
+  /* 面板适应屏幕居中 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all .4s;
+}
+
+.funcbt {
+  margin: 10px auto;
+  line-height: 30px;
+  height: 30px;
+}
+
+.bt:hover {
+  background-color: rgb(48, 134, 161);
+}
+
+.bt:active {
+  transform: translateY(10px);
+}
+
+.bt {
+  border-radius: 20px;
+  display: block;
+  color: white;
+  background-color: rgb(79, 199, 236);
+  box-shadow: 0px 4px 0px 0px rgb(59, 148, 176);
+  transition: all .3s;
+  /* 取消烦人的按钮立体样式 */
+  border: none;
+  /* 取消烦人的选中边框样式 */
+  outline: none;
+}
