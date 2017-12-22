@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>各种排序算法的比较</title>
+    <link rel="stylesheet" href="./main.css">
+    <style media="screen">
+      #mainPanel {
+        height: 700px;
+        width: 900px;
+      }
+      #title {
+        width: 90%;
+        margin: 10px auto 0;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #000;
+        font-size: 20px;
+      }
+      #typeswitch {
+        display: inline-block;
+        width: 100px;
+        height: 20px;
+        border: 2px solid rgb(120, 120, 120);
+        border-radius: 10px;
+        margin: 0 auto;
+      }
+      #result {
+        width: 90%;
+        height: 436px;
+        border: 1px solid #000;
+        margin: 10px auto;
+        border-radius: 5px;
+        overflow: auto;
+      }
+      #resultctx {
+        padding: 0 5px;
+      }
+      #clearbt {
+        position: absolute;
+        height: 25px;
+        line-height: 25px;
+        right: 70px;
+        bottom: 0;
+      }
+      #inputdiv{
+        margin: 5px auto;
+        text-align: center;
+      }
+      #arrLength{
+        border: 1px solid #000;
+        border-radius: 2px;
+        width: 100px;
+      }
+      .bt2{
+        width: 120px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- 主面板 -->
+    <div id="mainPanel" class="panel">
+      <div id="title" class="unselectable">
+        <span>功能按钮区</span>
+      </div>
+
+      <div id="inputdiv">
+        需要生成随机数数组的长度：<input type="number" id="arrLength" value="10"/>
+      </div>
+      <button id="bt1" class="funcbt bt">生成随机数数组</button>
+      <div style="text-align: center;">
+        <button id="bt2" class="funcbt bt bt2">冒泡排序</button>
+        <button id="bt3" class="funcbt bt bt2">选择排序</button>
+        <button id="bt4" class="funcbt bt bt2">插入排序</button>
+        <button id="bt5" class="funcbt bt bt2">归并排序</button>
+        <button id="bt6" class="funcbt bt bt2">快速排序</button>
+        <button id="bt7" class="funcbt bt bt2">堆排序</button>
+      </div>
+
+
+      <div id="title" class="unselectable">
+        <span>结果显示区</span>
+      </div>
+      <div id="result">
+        <div id="resultctx"></div>
+      </div>
+      <button id="clearbt" class="funcbt bt">清空</button>
+    </div>
+
+    <script type="text/javascript" src="./AjaxReq.js"></script>
+    <script type="text/javascript" src="./main.js"></script>
+    <script type="text/javascript">
+      var bt1 = document.getElementById('bt1')
+      var bt2 = document.getElementById('bt2')
+      var bt3 = document.getElementById('bt3')
+      var bt4 = document.getElementById('bt4')
+      var bt5 = document.getElementById('bt5')
+      var bt6 = document.getElementById('bt6')
+      var bt7 = document.getElementById('bt7')
+
+      var resultctx = document.getElementById('resultctx')
+      var result = document.getElementById('result')
+      var arrLength = document.getElementById('arrLength')
+
+      var arrInited = false
+      bt1.onclick = function () {
+        resultctx.innerHTML = ''
+        fib('randomArr&n=' + arrLength.value, msg)
+        arrInited = true
+      }
+
+      bt2.onclick = function () {
+        if (!arrInited) {
+          bt1.onclick()
+        }
+        fib('bubble', msg)
+      }
+      bt3.onclick = function () {
+        if (!arrInited) {
+          bt1.onclick()
+        }
+        fib('select', msg)
+      }
+      bt4.onclick = function () {
+        if (!arrInited) {
+          bt1.onclick()
+        }
+        fib('insert', msg)
+      }
+      bt5.onclick = function () {
+        if (!arrInited) {
+          bt1.onclick()
+        }
+        fib('merge', msg)
+      }
+      bt6.onclick = function () {
+        if (!arrInited) {
+          bt1.onclick()
+        }
+        fib('quick', msg)
+      }
+      bt7.onclick = function () {
+        if (!arrInited) {
+          bt1.onclick()
+        }
+        fib('heap', msg)
+      }
+      let msg = function () {
+        let re = xmlhttp.responseText
+        let msgarr = JSON.parse(re)
+        for (let i = 0; i < msgarr.length; ++i) {
+          addRstSpInnHtmlCtx(msgarr[i] + '')
+        }
+      }
+      clearbt.onclick = function () {
+        resultctx.innerHTML = null
+      }
+    </script>
+
+  </body>
+
+</html>

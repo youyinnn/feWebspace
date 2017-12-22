@@ -4,6 +4,6 @@ function addRstSpInnHtmlCtx (ctx) {
 }
 
 function fib (rute, func) {
-  createCORS('GET', 'http://localhost:8080/fibonacci?route=' + rute)
+  createCORS('GET', 'http://localhost:8080/exam?route=' + rute)
   getReq(func, null)
 }
