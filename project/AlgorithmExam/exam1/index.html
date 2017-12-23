@@ -102,7 +102,7 @@
         fib('f2', msg)
       }
       bt3.onclick = function () {
-        addRstSpInnHtmlCtx('请稍等...')
+        addRstSpInnHtmlCtx('正在计算最大Int支持的斐波那契数，预计时间9秒左右，请稍等...')
         fib('f3', msg)
       }
       bt4.onclick = function () {
@@ -136,8 +136,8 @@
           for (let i = 0; i < msgarr.length; ++i) {
             addRstSpInnHtmlCtx(msgarr[i] + '')
           }
-          nn *= 2
           if (goOn) {
+            nn *= 2
             bt6.onclick()
           }
         })
@@ -159,8 +159,8 @@
               n = 1
             }
           }
-          n++
           if (goOn) {
+            n++
             bt7.onclick()
           }
         })
