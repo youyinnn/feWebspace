@@ -114,39 +114,45 @@
 
       bt2.onclick = function () {
         if (!arrInited) {
-          bt1.onclick()
+          addRstSpInnHtmlCtx('请先生成随机数组！')
+        } else {
+          fib('bubble', msg)
         }
-        fib('bubble', msg)
       }
       bt3.onclick = function () {
         if (!arrInited) {
-          bt1.onclick()
+          addRstSpInnHtmlCtx('请先生成随机数组！')
+        } else {
+          fib('select', msg)
         }
-        fib('select', msg)
       }
       bt4.onclick = function () {
         if (!arrInited) {
-          bt1.onclick()
+          addRstSpInnHtmlCtx('请先生成随机数组！')
+        } else {
+          fib('insert', msg)
         }
-        fib('insert', msg)
       }
       bt5.onclick = function () {
         if (!arrInited) {
-          bt1.onclick()
+          addRstSpInnHtmlCtx('请先生成随机数组！')
+        } else {
+          fib('merge', msg)
         }
-        fib('merge', msg)
       }
       bt6.onclick = function () {
         if (!arrInited) {
-          bt1.onclick()
+          addRstSpInnHtmlCtx('请先生成随机数组！')
+        } else {
+          fib('quick', msg)
         }
-        fib('quick', msg)
       }
       bt7.onclick = function () {
         if (!arrInited) {
-          bt1.onclick()
+          addRstSpInnHtmlCtx('请先生成随机数组！')
+        } else {
+          fib('heap', msg)
         }
-        fib('heap', msg)
       }
       let msg = function () {
         let re = xmlhttp.responseText
