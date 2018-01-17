@@ -127,6 +127,7 @@ function createMappingPanel (tableColumns, filemark) {
     let dataTypeSelect = createSelect('columnDataTypeSelect_' + i, 'columnDataTypeSelect_' + i, null, dataTypeSelectMap)
     dataTypeSelect.style.cssText = 'width: 185px; margin: 0 5px;'
 
+
     let dataLength = document.createElement('input')
     dataLength.onkeyup = function () {
       if (dataLength.value.length === 1) {
@@ -156,6 +157,16 @@ function createMappingPanel (tableColumns, filemark) {
     appendC(columnMappingRow, dataLength)
     appendC(columnMappingRow, pk)
     appendC(functionArea, columnMappingRow)
+
+    dataTypeSelect.onchange = function () {
+      type = this.childNodes[0].value
+      console.log(dataLength)
+      if (type === 'char' || type === 'varchar' || type === 'varbinary') {
+        dataLength.disabled = false
+      } else {
+        dataLength.disabled = true
+      }
+    }
   }
   if (tableColumns.length % 2 !== 0) {
     let div = createInputRow('', false, null, null)
@@ -261,7 +272,7 @@ function getMappingMsg () {
     let columnDataType = document.getElementById('columnDataTypeSelect_' + i).value
     let columnDataLength = document.getElementById('columnDataLength_' + i).value
 
-    if (columnDataLength === '') {
+    if (columnDataLength === '' && (columnDataType === 'varchar' || columnDataType === 'char' || columnDataType === 'varbinary')) {
       msgPanelShow('提示', '请指定数据的长度！', null)
       return null
     }
